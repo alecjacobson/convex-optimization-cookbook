@@ -182,6 +182,7 @@ $$ \text{subject to: }
 A_\text{leq}  \\
 -A_\text{geq} 
 \end{bmatrix}
+x
 \leq
 \begin{bmatrix}
 b_\text{leq} \\
