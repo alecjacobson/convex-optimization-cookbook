@@ -27,8 +27,30 @@ x = Q \ -l;
 Define the squared Frobenius norm of a matrix as $\|M\|_F^2 = \sum_i \sum_j
 x_{ij}^2$, then we may consider problems of the form:
 
-$$ \min_{X \in \mathbb{R}^{n \times m}} 
+$$ \min_{X \in \mathbb{R}^{n \times m}} \frac{1}{2} \|A X - B\|_F^2
+$$
 
+Using the property $\mathop{text{trace}}(Y^\topY) = \|Y\|_F^2$, we can expand
+this to:
+
+$$ \min_{X} \mathop{text{trace}}(\frac{1}{2}  X^\top A^\top A X - \X^\top A^\top
+B) + c.$$
+
+Letting $Q = A^\top A$ and $L = -A^\top B$, this can be written in a form
+similar to the [unconstrained vector problem](#unconstrained):
+
+$$ \min_{X} \mathop{text{trace}}(\frac{1}{2}  X^\top Q X + \X^\top L) + c.$$
+
+this problem is _separable_ in the columns of $X$ and $L$ and solved by finding
+the solution to the multi-column linear system:
+
+$$ Q X = -L$$
+
+In MATLAB,
+
+```
+X = Q \ -L;
+```
 
 ## Fixed value constraints
 
