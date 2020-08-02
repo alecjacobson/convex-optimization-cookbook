@@ -34,7 +34,7 @@ this to:
 <p align="center"><img src="/tex/e0d634d435335a966459d0dbbc3b7b6c.svg?invert_in_darkmode&sanitize=true" align=middle width=267.09218745pt height=32.990165999999995pt/></p>
 
 Letting <img src="/tex/9eb4767e5eb2c4e40983c4cb0c33fedc.svg?invert_in_darkmode&sanitize=true" align=middle width=70.66656794999999pt height=27.91243950000002pt/> and <img src="/tex/23a3f7407c27e8d5ded6f25888f8b45c.svg?invert_in_darkmode&sanitize=true" align=middle width=82.60842974999998pt height=27.91243950000002pt/>, this can be written in a form
-similar to the [unconstrained vector problem](#unconstrained):
+similar to the [unconstrained vector problem](#unconstrained-quadratic-vector-optimization):
 
 <p align="center"><img src="/tex/62d4bd2e6f1d5ca61c5ab8efcb42dffe.svg?invert_in_darkmode&sanitize=true" align=middle width=218.80322474999997pt height=32.990165999999995pt/></p>
 
@@ -58,7 +58,7 @@ should be constrained to a particular known value. Then the problem:
 
 <p align="center"><img src="/tex/81ca2973b757f21b01c41eae6990f5ee.svg?invert_in_darkmode&sanitize=true" align=middle width=177.37353149999998pt height=14.611878599999999pt/></p>
 
-can be reduced to an [unconstrained problem](#unconstrained) by substitution.
+can be reduced to an [unconstrained problem](#unconstrained-quadratic-vector-optimization) by substitution.
 Introduce the set <img src="/tex/6bac6ec50c01592407695ef84f457232.svg?invert_in_darkmode&sanitize=true" align=middle width=13.01596064999999pt height=22.465723500000017pt/> to be all indices _not_ in <img src="/tex/21fd4e8eecd6bdf1a4d3d6bd1fb8d733.svg?invert_in_darkmode&sanitize=true" align=middle width=8.515988249999989pt height=22.465723500000017pt/>, then we can first re-order
 terms above to collect <img src="/tex/21fd4e8eecd6bdf1a4d3d6bd1fb8d733.svg?invert_in_darkmode&sanitize=true" align=middle width=8.515988249999989pt height=22.465723500000017pt/> and <img src="/tex/6bac6ec50c01592407695ef84f457232.svg?invert_in_darkmode&sanitize=true" align=middle width=13.01596064999999pt height=22.465723500000017pt/> sets:
 
@@ -68,7 +68,7 @@ terms above to collect <img src="/tex/21fd4e8eecd6bdf1a4d3d6bd1fb8d733.svg?inver
 
 Substituting the constraint <img src="/tex/705583ffbc841720aaa905460dd09b06.svg?invert_in_darkmode&sanitize=true" align=middle width=47.50410884999998pt height=14.15524440000002pt/> into the objective then collecting terms
 that are quadratic, linear, and constant in the remaining unknowns <img src="/tex/1e463ef25ae4c019b01284bed29e663a.svg?invert_in_darkmode&sanitize=true" align=middle width=19.58383019999999pt height=14.15524440000002pt/> we
-have a simple [unconstrained optimization](#unconstrained) over <img src="/tex/1e463ef25ae4c019b01284bed29e663a.svg?invert_in_darkmode&sanitize=true" align=middle width=19.58383019999999pt height=14.15524440000002pt/>:
+have a simple [unconstrained optimization](#unconstrained-quadratic-vector-optimization) over <img src="/tex/1e463ef25ae4c019b01284bed29e663a.svg?invert_in_darkmode&sanitize=true" align=middle width=19.58383019999999pt height=14.15524440000002pt/>:
 
 <p align="center"><img src="/tex/5508ebf4625f95425c329df99467e137.svg?invert_in_darkmode&sanitize=true" align=middle width=283.58057475pt height=33.230283899999996pt/></p>
 
