@@ -28,7 +28,7 @@ Define the squared Frobenius norm of a matrix as <img src="/tex/37a6f5089b6db546
 
 <p align="center"><img src="/tex/ae4e65e59044658f157f021b0850c835.svg?invert_in_darkmode&sanitize=true" align=middle width=157.97330505pt height=34.0919106pt/></p>
 
-Using the property <img src="/tex/d458eb9056b0a90166b8e968cc372fca.svg?invert_in_darkmode&sanitize=true" align=middle width=122.86884554999997pt height=29.190975000000005pt/>, we can expand
+Using the property <img src="/tex/de719e9964fc415c5e45e370f97943d5.svg?invert_in_darkmode&sanitize=true" align=middle width=147.5949288pt height=27.91243950000002pt/>, we can expand
 this to:
 
 <p align="center"><img src="/tex/e0d634d435335a966459d0dbbc3b7b6c.svg?invert_in_darkmode&sanitize=true" align=middle width=267.09218745pt height=32.990165999999995pt/></p>
