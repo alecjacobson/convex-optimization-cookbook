@@ -129,4 +129,15 @@ a matrix <img src="/tex/9148ad1d562c84664b9621a24ad27ca6.svg?invert_in_darkmode&
 
 <p align="center"><img src="/tex/c03d6f00852f6bb93dd4cca00b15f264.svg?invert_in_darkmode&sanitize=true" align=middle width=301.8950979pt height=16.1187015pt/></p>
 
-Multiplying both sides of <img src="/tex/a7716d8e23e5089bc6bf1e4087135d1d.svg?invert_in_darkmode&sanitize=true" align=middle width=111.21770714999998pt height=22.831056599999986pt/>-1<img src="/tex/8d11f620a8aaf0c50bfe71f614f07e5f.svg?invert_in_darkmode&sanitize=true" align=middle width=499.0599998999999pt height=22.831056599999986pt/><img src="/tex/756efa03780bdf8594da211523ece762.svg?invert_in_darkmode&sanitize=true" align=middle width=143.790009pt height=27.91243950000002pt/><img src="/tex/51709c221bb606c7f0a6193f462db8dd.svg?invert_in_darkmode&sanitize=true" align=middle width=8.21920935pt height=14.15524440000002pt/><img src="/tex/df408defe1cd5138684df0135fcb2d99.svg?invert_in_darkmode&sanitize=true" align=middle width=222.73985745pt height=47.6716218pt/>$
+Multiplying both sides of <img src="/tex/058460591438b600ab9ef92e4967fd40.svg?invert_in_darkmode&sanitize=true" align=middle width=90.12557234999998pt height=22.831056599999986pt/> by <img src="/tex/e11a8cfcf953c683196d7a48677b2277.svg?invert_in_darkmode&sanitize=true" align=middle width=21.00464354999999pt height=21.18721440000001pt/> we can
+convert all constraints to less-than-or-equals inequalities:
+
+<p align="center"><img src="/tex/cba4f827df4dcddaffe6afaa1967572a.svg?invert_in_darkmode&sanitize=true" align=middle width=137.18040435pt height=32.990165999999995pt/></p>
+
+<p align="center"><img src="/tex/9fd251d6892416e90f83abec75c356e0.svg?invert_in_darkmode&sanitize=true" align=middle width=235.52528504999998pt height=39.452455349999994pt/></p>
+
+In MATLAB,
+
+```
+x = quadprog(Q,l,[Aleq;-Ageq],[bleq;-bgeq]);
+```
