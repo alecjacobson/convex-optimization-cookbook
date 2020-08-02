@@ -67,7 +67,7 @@ $$
 
 can be reduced to an [unconstrained problem](#unconstrained-quadratic-vector-optimization) by substitution.
 Introduce the set $U$ to be all indices _not_ in $I$, then we can first re-order
-terms above to collect $I$ and $U$ sets:
+terms above according to $I$ and $U$:
 
 $$\min_x \frac{1}{2} [x_U^\top x_I^\top] 
 \begin{bmatrix}
@@ -89,6 +89,9 @@ $$
 $$
 \text{subject to } x_I = y
 $$
+
+where, for example, $Q_{UI} \in \mathbb{R^{n-k \times k}$ is the submatrix of
+$Q$ extracted by slicing the rows by the set $U$ and the columns by the set $I$.
 
 Substituting the constraint $x_I = y$ into the objective then collecting terms
 that are quadratic, linear, and constant in the remaining unknowns $x_U$ we
