@@ -27,10 +27,13 @@ x = Q \ -l;
 Let $I \in [1,\dots,n]^m$ be a set of indices indicating elements of $x$ that
 should be constrained to a particular known value. Then the problem:
 
-\[
-\min_x \frac{1}{2} x^\top Q x + x^\top \ell \\
+$$
+\min_x \frac{1}{2} x^\top Q x + x^\top \ell
+$$
+
+$$
 \text{subject to:} x_i = y_i \forall i \in I
-\]
+$$
 
 can be reduced to an [unconstrained problem](#unconstrained) by substitution.
 Introduce the set $U$ to be all indices _not_ in $I$, then we can first re-order
