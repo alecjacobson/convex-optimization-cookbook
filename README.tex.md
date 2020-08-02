@@ -161,3 +161,29 @@ or if you're not sure if the rows of `Aeq` are linearly independent:
 ```
 x = quadprog(Q,l,[],[],Aeq,beq);
 ```
+
+## Linear inequality constraints
+
+Given a matrix $A_\text{leq} \in \R^{n_\text{leq} \times n}$ and 
+a matrix $A_\text{geq} \in \R^{n_\text{geq} \times n}$, consider
+
+$$ \min_x \frac{1}{2} x^\top Q x + x^\top \ell,$$
+
+$$ \text{subject to: } A_\text{leq} x \leq b_\text{leq}.$$
+\text{ and } A_\text{geq} x \geq b_\text{geq}.$$
+
+Multiplying both sides of $A_\text{geq} x \geq b_\text{geq}` by $-1$ we can
+convert all constraints to less-than-or-equals inequalities:
+
+$$ \min_x \frac{1}{2} x^\top Q x + x^\top \ell,$$
+
+$$ \text{subject to: } 
+\begin{bmatrix}
+A_\text{leq}  \\
+-A_\text{geq} 
+\end{bmatrix}
+\leq
+\begin{bmatrix}
+b_\text{leq} \\
+b_\text{geq} \\
+\end{bmatrix}.$$
