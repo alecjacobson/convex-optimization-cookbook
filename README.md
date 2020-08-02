@@ -127,8 +127,6 @@ a matrix <img src="/tex/9148ad1d562c84664b9621a24ad27ca6.svg?invert_in_darkmode&
 
 <p align="center"><img src="/tex/cba4f827df4dcddaffe6afaa1967572a.svg?invert_in_darkmode&sanitize=true" align=middle width=137.18040435pt height=32.990165999999995pt/></p>
 
-<p align="center"><img src="/tex/67eacc4b6d2e91c6f7116d438a0e257e.svg?invert_in_darkmode&sanitize=true" align=middle width=173.50464945pt height=16.1187015pt/></p>
-\text{ and } A_\text{geq} x \geq b_\text{geq}.<p align="center"><img src="/tex/7405190d3114a41e7c47c31c67a14efc.svg?invert_in_darkmode&sanitize=true" align=middle width=700.2745563pt height=34.3379058pt/></p> \min_x \frac{1}{2} x^\top Q x + x^\top \ell,<p align="center"><img src="/tex/e7e1fce898b1583cb28cc71db94ffdd5.svg?invert_in_darkmode&sanitize=true" align=middle width=0.0pt height=0.0pt/></p> \text{subject to: } 
-<p align="center"><img src="/tex/664e26a87ee13276d86fabb348becc94.svg?invert_in_darkmode&sanitize=true" align=middle width=62.5915257pt height=39.452455349999994pt/></p>
-\leq
-<p align="center"><img src="/tex/5d0633e51582b08df92ed36d5db76a94.svg?invert_in_darkmode&sanitize=true" align=middle width=44.5320843pt height=39.452455349999994pt/></p>.$$
+<p align="center"><img src="/tex/c03d6f00852f6bb93dd4cca00b15f264.svg?invert_in_darkmode&sanitize=true" align=middle width=301.8950979pt height=16.1187015pt/></p>
+
+Multiplying both sides of <img src="/tex/a7716d8e23e5089bc6bf1e4087135d1d.svg?invert_in_darkmode&sanitize=true" align=middle width=111.21770714999998pt height=22.831056599999986pt/>-1<img src="/tex/8d11f620a8aaf0c50bfe71f614f07e5f.svg?invert_in_darkmode&sanitize=true" align=middle width=499.0599998999999pt height=22.831056599999986pt/><img src="/tex/756efa03780bdf8594da211523ece762.svg?invert_in_darkmode&sanitize=true" align=middle width=143.790009pt height=27.91243950000002pt/><img src="/tex/51709c221bb606c7f0a6193f462db8dd.svg?invert_in_darkmode&sanitize=true" align=middle width=8.21920935pt height=14.15524440000002pt/><img src="/tex/df408defe1cd5138684df0135fcb2d99.svg?invert_in_darkmode&sanitize=true" align=middle width=222.73985745pt height=47.6716218pt/>$
