@@ -4,6 +4,8 @@ Unless otherwise stated, we will assume that quadratic coefficient matrices
 (e.g., $Q$) are symmetric positive (semi-)definite so that $x^\top Q x$ is a convex function
 and that the problem has a unique minimizer.
 
+$$ \usepackage{cancel} $$
+
 ## Unconstrained 
 
 If $Q \in \mathbb{R}^{n \times n}$ is positive definite then problems of the
