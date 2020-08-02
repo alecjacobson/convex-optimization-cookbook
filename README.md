@@ -27,7 +27,10 @@ x = Q \ -l;
 Let <img src="/tex/141fcfd320311fee79e05b4f5743a9c4.svg?invert_in_darkmode&sanitize=true" align=middle width=104.01990224999997pt height=24.65753399999998pt/> be a set of indices indicating elements of <img src="/tex/332cc365a4987aacce0ead01b8bdcc0b.svg?invert_in_darkmode&sanitize=true" align=middle width=9.39498779999999pt height=14.15524440000002pt/> that
 should be constrained to a particular known value. Then the problem:
 
-<p align="center"><img src="/tex/0248d3831adbf8527357f666666ffea2.svg?invert_in_darkmode&sanitize=true" align=middle width=302.68177664999996pt height=32.990165999999995pt/></p>
+\[
+\min_x \frac{1}{2} x^\top Q x + x^\top \ell \\
+\text{subject to:} x_i = y_i \forall i \in I
+\]
 
 can be reduced to an [unconstrained problem](#unconstrained) by substitution.
 Introduce the set <img src="/tex/6bac6ec50c01592407695ef84f457232.svg?invert_in_darkmode&sanitize=true" align=middle width=13.01596064999999pt height=22.465723500000017pt/> to be all indices _not_ in <img src="/tex/21fd4e8eecd6bdf1a4d3d6bd1fb8d733.svg?invert_in_darkmode&sanitize=true" align=middle width=8.515988249999989pt height=22.465723500000017pt/>, then we can first re-order
