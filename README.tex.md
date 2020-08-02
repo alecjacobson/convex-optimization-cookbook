@@ -33,13 +33,13 @@ $$
 Using the property $\mathop{\text{trace}}(Y^\top Y) = \|Y\|_F^2$, we can expand
 this to:
 
-$$ \min_{X} \mathop{\text{trace}}(\frac{1}{2}  X^\top A^\top A X - \X^\top A^\top
+$$ \min_{X} \mathop{\text{trace}}(\frac{1}{2}  X^\top A^\top A X - X^\top A^\top
 B) + c.$$
 
 Letting $Q = A^\top A$ and $L = -A^\top B$, this can be written in a form
 similar to the [unconstrained vector problem](#unconstrained-quadratic-vector-optimization):
 
-$$ \min_{X} \mathop{\text{trace}}(\frac{1}{2}  X^\top Q X + \X^\top L) + c.$$
+$$ \min_{X} \mathop{\text{trace}}(\frac{1}{2}  X^\top Q X + X^\top L) + c.$$
 
 this problem is _separable_ in the columns of $X$ and $L$ and solved by finding
 the solution to the multi-column linear system:
@@ -108,4 +108,58 @@ x = zeros(size(Q,1),1);
 x(I) = y;
 x(U) = Q(U,U) \ -(l(U) + Q(U,I) x(I));
 ```
+
+## Linear equality constraints
+
+Given a matrix $A_\text{eq} \in \R^{n_\text{eq} \times n}$ with linearly
+independent rows, consider the problem:
+
+$$ \min_x \frac{1}{2} x^\top Q x + x^\top \ell,$$
+
+$$ \text{subject to: } A_\text{eq} x = b_\text{eq}.$$
+
+Following the [Lagrange Multiplier
+Method](https://en.wikipedia.org/wiki/Lagrange_multiplier), by introducing a
+vector of auxiliary variables $\lambda \in \mathbb{R}^n_eq$, the solution will
+coincide with the augmented max-min problem:
+
+$$
+\max_\lambda \min_x \frac{1}{2} x^\top Q x + x^\top \ell + \lambda^\top
+(A_\text{eq} x - b_\text{eq}).
+$$
+
+The [KKT
+theorem](https://en.wikipedia.org/wiki/Karush%E2%80%93Kuhn%E2%80%93Tucker_conditions)
+states that the solution is given when _all_ partial derivatives of this
+quadratic function are zero, or in matrix form, at the solution to the linear
+system:
+
+$$
+\begin{bmatrix}
+Q & A_\text{eq}^\top \\
+A_\text{eq} & 0
+\end{bmatrix}
+\begin{bmatrix}
+x \\
+\lambda
+\end{bmatrix}
+ = 
+\begin{bmatrix}
+-\ell \\
+b_\text{eq}
+\end{bmatrix}.
+$$
+
+In MATLAB,
+
+```
+x = speye(n,n+neq) * ([Q Aeq';Aeq sparse(neq,neq)] \ [-l;beq];
+```
+
+or if you're not sure if the rows of `Aeq` are linearly independent:
+
+```
+x = quadprog(Q,l,[],[],Aeq,beq);
+```
+
 
