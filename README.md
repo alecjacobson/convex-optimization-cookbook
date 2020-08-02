@@ -134,7 +134,7 @@ convert all constraints to less-than-or-equals inequalities:
 
 <p align="center"><img src="/tex/cba4f827df4dcddaffe6afaa1967572a.svg?invert_in_darkmode&sanitize=true" align=middle width=137.18040435pt height=32.990165999999995pt/></p>
 
-<p align="center"><img src="/tex/9fd251d6892416e90f83abec75c356e0.svg?invert_in_darkmode&sanitize=true" align=middle width=235.52528504999998pt height=39.452455349999994pt/></p>
+<p align="center"><img src="/tex/29e2f1ec810a2cc96e139bbec9462131.svg?invert_in_darkmode&sanitize=true" align=middle width=247.65993119999996pt height=39.452455349999994pt/></p>
 
 In MATLAB,
 
