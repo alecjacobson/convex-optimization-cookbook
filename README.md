@@ -29,10 +29,19 @@ should be constrained to a particular known value. Then the problem:
 
 <p align="center"><img src="/tex/56ac949606f724781f17c4d036bcdc2e.svg?invert_in_darkmode&sanitize=true" align=middle width=132.6141795pt height=32.990165999999995pt/></p>
 
-<p align="center"><img src="/tex/ac84547341a459726d00171c3944c2c7.svg?invert_in_darkmode&sanitize=true" align=middle width=170.06759714999998pt height=14.611878599999999pt/></p>
+<p align="center"><img src="/tex/81ca2973b757f21b01c41eae6990f5ee.svg?invert_in_darkmode&sanitize=true" align=middle width=177.37353149999998pt height=14.611878599999999pt/></p>
 
 can be reduced to an [unconstrained problem](#unconstrained) by substitution.
 Introduce the set <img src="/tex/6bac6ec50c01592407695ef84f457232.svg?invert_in_darkmode&sanitize=true" align=middle width=13.01596064999999pt height=22.465723500000017pt/> to be all indices _not_ in <img src="/tex/21fd4e8eecd6bdf1a4d3d6bd1fb8d733.svg?invert_in_darkmode&sanitize=true" align=middle width=8.515988249999989pt height=22.465723500000017pt/>, then we can first re-order
 terms above to collect <img src="/tex/21fd4e8eecd6bdf1a4d3d6bd1fb8d733.svg?invert_in_darkmode&sanitize=true" align=middle width=8.515988249999989pt height=22.465723500000017pt/> and <img src="/tex/6bac6ec50c01592407695ef84f457232.svg?invert_in_darkmode&sanitize=true" align=middle width=13.01596064999999pt height=22.465723500000017pt/> sets:
 
-<p align="center"><img src="/tex/5c4acda0a42228b25f7330e8605cfc04.svg?invert_in_darkmode&sanitize=true" align=middle width=499.3091581499999pt height=39.452455349999994pt/></p>
+<p align="center"><img src="/tex/8860fc71e64090299641b7c22fa31421.svg?invert_in_darkmode&sanitize=true" align=middle width=342.52072635pt height=39.452455349999994pt/></p>
+
+<p align="center"><img src="/tex/e7bd8cff7d3043de8578dab4445d2ba3.svg?invert_in_darkmode&sanitize=true" align=middle width=124.7644827pt height=14.611878599999999pt/></p>
+
+Substituting the constraint <img src="/tex/705583ffbc841720aaa905460dd09b06.svg?invert_in_darkmode&sanitize=true" align=middle width=47.50410884999998pt height=14.15524440000002pt/> into the objective then collecting terms
+that are quadratic, linear, and constant in the remaining unknowns <img src="/tex/1e463ef25ae4c019b01284bed29e663a.svg?invert_in_darkmode&sanitize=true" align=middle width=19.58383019999999pt height=14.15524440000002pt/> we
+have a simple [unconstrained optimization](#unconstrained) over <img src="/tex/1e463ef25ae4c019b01284bed29e663a.svg?invert_in_darkmode&sanitize=true" align=middle width=19.58383019999999pt height=14.15524440000002pt/>:
+
+<p align="center"><img src="/tex/9cf2710be26724bd0136ce0ea08fdfbf.svg?invert_in_darkmode&sanitize=true" align=middle width=449.24324445pt height=33.230283899999996pt/></p>
+
