@@ -4,9 +4,8 @@ Unless otherwise stated, we will assume that quadratic coefficient matrices
 (e.g., $Q$) are symmetric positive (semi-)definite so that $x^\top Q x$ is a convex function
 and that the problem has a unique minimizer.
 
-$$ \usepackage{cancel} $$
 
-## Unconstrained 
+## Unconstrained quadratic vector optimization
 
 If $Q \in \mathbb{R}^{n \times n}$ is positive definite then problems of the
 form:
@@ -23,10 +22,17 @@ In MATLAB,
 x = Q \ -l;
 ```
 
+## Frobenius-norm matrix optimization
+
+Define the squared Frobenius norm of a matrix as $\|M\|_F^2 = \sum_i \sum_j
+x_{ij}^2$, then we may consider problems of the form:
+
+$$ \min_{X \in \mathbb{R}^{n \times m}} 
+
 
 ## Fixed value constraints
 
-Let $I \in [1,\dots,n]^m$ be a set of indices indicating elements of $x$ that
+Let $I \in [1,\dots,n]^k$ be a set of indices indicating elements of $x$ that
 should be constrained to a particular known value. Then the problem:
 
 $$
@@ -67,5 +73,14 @@ that are quadratic, linear, and constant in the remaining unknowns $x_U$ we
 have a simple [unconstrained optimization](#unconstrained) over $x_U$:
 
 $$ \min_{x_U} \frac{1}{2} x_U^\top Q_{UU} x_U + x_U^\top (\ell_U + Q_{UI} x_I)
-+ \cancelto{x_I^\top (Q_{II} x_I + \ell_I)}{\text{constant}}$$
++ c$$
+
+In MATLAB, 
+
+```
+U = setdiff(1:size(Q,1),I);
+x = zeros(size(Q,1),1);
+x(I) = y;
+x(U) = Q(U,U) \ -(l(U) + Q(U,I) x(I));
+```
 
