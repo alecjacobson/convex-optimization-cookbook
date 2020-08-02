@@ -56,7 +56,7 @@ should be constrained to a particular known value. Then the problem:
 
 <p align="center"><img src="/tex/56ac949606f724781f17c4d036bcdc2e.svg?invert_in_darkmode&sanitize=true" align=middle width=132.6141795pt height=32.990165999999995pt/></p>
 
-<p align="center"><img src="/tex/81ca2973b757f21b01c41eae6990f5ee.svg?invert_in_darkmode&sanitize=true" align=middle width=177.37353149999998pt height=14.611878599999999pt/></p>
+<p align="center"><img src="/tex/4b88ab7ee3568bdce44ec44c972ee7fd.svg?invert_in_darkmode&sanitize=true" align=middle width=193.81191224999998pt height=14.611878599999999pt/></p>
 
 can be reduced to an [unconstrained problem](#unconstrained-quadratic-vector-optimization) by substitution.
 Introduce the set <img src="/tex/6bac6ec50c01592407695ef84f457232.svg?invert_in_darkmode&sanitize=true" align=middle width=13.01596064999999pt height=22.465723500000017pt/> to be all indices _not_ in <img src="/tex/21fd4e8eecd6bdf1a4d3d6bd1fb8d733.svg?invert_in_darkmode&sanitize=true" align=middle width=8.515988249999989pt height=22.465723500000017pt/>, then we can first re-order
