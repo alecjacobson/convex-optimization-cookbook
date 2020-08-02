@@ -26,20 +26,51 @@ x = Q \ -l;
 
 Define the squared Frobenius norm of a matrix as <img src="/tex/37a6f5089b6db546cd17b9419e5af093.svg?invert_in_darkmode&sanitize=true" align=middle width=139.75611705pt height=26.76175259999998pt/>, then we may consider problems of the form:
 
-<p align="center"><img src="/tex/42aedbf54a9b5d2a76488c7884820fd6.svg?invert_in_darkmode&sanitize=true" align=middle width=700.2744869999999pt height=90.5707473pt/></p>
-\min_x \frac{1}{2} x^\top Q x + x^\top \ell
-<p align="center"><img src="/tex/e7e1fce898b1583cb28cc71db94ffdd5.svg?invert_in_darkmode&sanitize=true" align=middle width=0.0pt height=0.0pt/></p>
-\text{subject to: } x_i = y_i \forall i \in I
-<p align="center"><img src="/tex/386d2ed2e85d2226163efe6ca21d0878.svg?invert_in_darkmode&sanitize=true" align=middle width=700.2745299000001pt height=35.251144499999995pt/></p>\min_x \frac{1}{2} [x_U^\top x_I^\top] 
-<p align="center"><img src="/tex/ff57be1f3c83d35e3ad53f2666194bfc.svg?invert_in_darkmode&sanitize=true" align=middle width=98.71151234999999pt height=39.452455349999994pt/></p>
-<p align="center"><img src="/tex/36cf3ae6e6de8c8d23a2b8a504f49587.svg?invert_in_darkmode&sanitize=true" align=middle width=37.757382299999996pt height=39.452455349999994pt/></p>
-+
-[x_U^\top x_I^\top] 
-<p align="center"><img src="/tex/68fbafb72e0955d967a2af48944034f7.svg?invert_in_darkmode&sanitize=true" align=middle width=35.2117656pt height=39.452455349999994pt/></p>
-<p align="center"><img src="/tex/e7e1fce898b1583cb28cc71db94ffdd5.svg?invert_in_darkmode&sanitize=true" align=middle width=0.0pt height=0.0pt/></p>
-\text{subject to } x_I = y
-<p align="center"><img src="/tex/ef75fdd1bc51270863cdbd9c4c031ac8.svg?invert_in_darkmode&sanitize=true" align=middle width=700.2745464pt height=54.9771717pt/></p> \min_{x_U} \frac{1}{2} x_U^\top Q_{UU} x_U + x_U^\top (\ell_U + Q_{UI} x_I)
-+ c$$
+<p align="center"><img src="/tex/ae4e65e59044658f157f021b0850c835.svg?invert_in_darkmode&sanitize=true" align=middle width=157.97330505pt height=34.0919106pt/></p>
+
+Using the property <img src="/tex/6971a8f2970cecbed7f73273ce032592.svg?invert_in_darkmode&sanitize=true" align=middle width=153.39403199999998pt height=29.190975000000005pt/>, we can expand
+this to:
+
+<p align="center"><img src="/tex/644e549d3b28cb63ebaa730951676c61.svg?invert_in_darkmode&sanitize=true" align=middle width=297.61737389999996pt height=32.990165999999995pt/></p>
+
+Letting <img src="/tex/9eb4767e5eb2c4e40983c4cb0c33fedc.svg?invert_in_darkmode&sanitize=true" align=middle width=70.66656794999999pt height=27.91243950000002pt/> and <img src="/tex/23a3f7407c27e8d5ded6f25888f8b45c.svg?invert_in_darkmode&sanitize=true" align=middle width=82.60842974999998pt height=27.91243950000002pt/>, this can be written in a form
+similar to the [unconstrained vector problem](#unconstrained):
+
+<p align="center"><img src="/tex/95314afec086b1e23f0bdee35cb3ca82.svg?invert_in_darkmode&sanitize=true" align=middle width=249.32841119999998pt height=32.990165999999995pt/></p>
+
+this problem is _separable_ in the columns of <img src="/tex/cbfb1b2a33b28eab8a3e59464768e810.svg?invert_in_darkmode&sanitize=true" align=middle width=14.908688849999992pt height=22.465723500000017pt/> and <img src="/tex/ddcb483302ed36a59286424aa5e0be17.svg?invert_in_darkmode&sanitize=true" align=middle width=11.18724254999999pt height=22.465723500000017pt/> and solved by finding
+the solution to the multi-column linear system:
+
+<p align="center"><img src="/tex/29a4f160c30f9322be68c54e72355d67.svg?invert_in_darkmode&sanitize=true" align=middle width=73.79439705pt height=14.42921205pt/></p>
+
+In MATLAB,
+
+```
+X = Q \ -L;
+```
+
+## Fixed value constraints
+
+Let <img src="/tex/48ceffddf7ca918284e3acbb9edeee97.svg?invert_in_darkmode&sanitize=true" align=middle width=99.62108309999999pt height=27.91243950000002pt/> be a set of indices indicating elements of <img src="/tex/332cc365a4987aacce0ead01b8bdcc0b.svg?invert_in_darkmode&sanitize=true" align=middle width=9.39498779999999pt height=14.15524440000002pt/> that
+should be constrained to a particular known value. Then the problem:
+
+<p align="center"><img src="/tex/56ac949606f724781f17c4d036bcdc2e.svg?invert_in_darkmode&sanitize=true" align=middle width=132.6141795pt height=32.990165999999995pt/></p>
+
+<p align="center"><img src="/tex/81ca2973b757f21b01c41eae6990f5ee.svg?invert_in_darkmode&sanitize=true" align=middle width=177.37353149999998pt height=14.611878599999999pt/></p>
+
+can be reduced to an [unconstrained problem](#unconstrained) by substitution.
+Introduce the set <img src="/tex/6bac6ec50c01592407695ef84f457232.svg?invert_in_darkmode&sanitize=true" align=middle width=13.01596064999999pt height=22.465723500000017pt/> to be all indices _not_ in <img src="/tex/21fd4e8eecd6bdf1a4d3d6bd1fb8d733.svg?invert_in_darkmode&sanitize=true" align=middle width=8.515988249999989pt height=22.465723500000017pt/>, then we can first re-order
+terms above to collect <img src="/tex/21fd4e8eecd6bdf1a4d3d6bd1fb8d733.svg?invert_in_darkmode&sanitize=true" align=middle width=8.515988249999989pt height=22.465723500000017pt/> and <img src="/tex/6bac6ec50c01592407695ef84f457232.svg?invert_in_darkmode&sanitize=true" align=middle width=13.01596064999999pt height=22.465723500000017pt/> sets:
+
+<p align="center"><img src="/tex/8860fc71e64090299641b7c22fa31421.svg?invert_in_darkmode&sanitize=true" align=middle width=342.52072635pt height=39.452455349999994pt/></p>
+
+<p align="center"><img src="/tex/e7bd8cff7d3043de8578dab4445d2ba3.svg?invert_in_darkmode&sanitize=true" align=middle width=124.7644827pt height=14.611878599999999pt/></p>
+
+Substituting the constraint <img src="/tex/705583ffbc841720aaa905460dd09b06.svg?invert_in_darkmode&sanitize=true" align=middle width=47.50410884999998pt height=14.15524440000002pt/> into the objective then collecting terms
+that are quadratic, linear, and constant in the remaining unknowns <img src="/tex/1e463ef25ae4c019b01284bed29e663a.svg?invert_in_darkmode&sanitize=true" align=middle width=19.58383019999999pt height=14.15524440000002pt/> we
+have a simple [unconstrained optimization](#unconstrained) over <img src="/tex/1e463ef25ae4c019b01284bed29e663a.svg?invert_in_darkmode&sanitize=true" align=middle width=19.58383019999999pt height=14.15524440000002pt/>:
+
+<p align="center"><img src="/tex/5508ebf4625f95425c329df99467e137.svg?invert_in_darkmode&sanitize=true" align=middle width=283.58057475pt height=33.230283899999996pt/></p>
 
 In MATLAB, 
 
