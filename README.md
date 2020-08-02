@@ -119,3 +119,16 @@ or if you're not sure if the rows of `Aeq` are linearly independent:
 ```
 x = quadprog(Q,l,[],[],Aeq,beq);
 ```
+
+## Linear inequality constraints
+
+Given a matrix <img src="/tex/a74c28e444d9798ed1503a58bee27b40.svg?invert_in_darkmode&sanitize=true" align=middle width=86.70888104999999pt height=26.17730939999998pt/> and 
+a matrix <img src="/tex/9148ad1d562c84664b9621a24ad27ca6.svg?invert_in_darkmode&sanitize=true" align=middle width=91.82309234999998pt height=26.17730939999998pt/>, consider
+
+<p align="center"><img src="/tex/cba4f827df4dcddaffe6afaa1967572a.svg?invert_in_darkmode&sanitize=true" align=middle width=137.18040435pt height=32.990165999999995pt/></p>
+
+<p align="center"><img src="/tex/67eacc4b6d2e91c6f7116d438a0e257e.svg?invert_in_darkmode&sanitize=true" align=middle width=173.50464945pt height=16.1187015pt/></p>
+\text{ and } A_\text{geq} x \geq b_\text{geq}.<p align="center"><img src="/tex/7405190d3114a41e7c47c31c67a14efc.svg?invert_in_darkmode&sanitize=true" align=middle width=700.2745563pt height=34.3379058pt/></p> \min_x \frac{1}{2} x^\top Q x + x^\top \ell,<p align="center"><img src="/tex/e7e1fce898b1583cb28cc71db94ffdd5.svg?invert_in_darkmode&sanitize=true" align=middle width=0.0pt height=0.0pt/></p> \text{subject to: } 
+<p align="center"><img src="/tex/664e26a87ee13276d86fabb348becc94.svg?invert_in_darkmode&sanitize=true" align=middle width=62.5915257pt height=39.452455349999994pt/></p>
+\leq
+<p align="center"><img src="/tex/5d0633e51582b08df92ed36d5db76a94.svg?invert_in_darkmode&sanitize=true" align=middle width=44.5320843pt height=39.452455349999994pt/></p>.$$
