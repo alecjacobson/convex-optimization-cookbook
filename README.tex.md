@@ -90,7 +90,7 @@ $$
 \text{subject to } x_I = y
 $$
 
-where, for example, $Q_{UI} \in \mathbb{R^{n-k \times k}$ is the submatrix of
+where, for example, $Q_{UI} \in \mathbb{R}^{n-k \times k}$ is the submatrix of
 $Q$ extracted by slicing the rows by the set $U$ and the columns by the set $I$.
 
 Substituting the constraint $x_I = y$ into the objective then collecting terms
@@ -161,5 +161,3 @@ or if you're not sure if the rows of `Aeq` are linearly independent:
 ```
 x = quadprog(Q,l,[],[],Aeq,beq);
 ```
-
-
