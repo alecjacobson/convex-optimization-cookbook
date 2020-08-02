@@ -4,6 +4,8 @@ Unless otherwise stated, we will assume that quadratic coefficient matrices
 (e.g., <img src="/tex/1afcdb0f704394b16fe85fb40c45ca7a.svg?invert_in_darkmode&sanitize=true" align=middle width=12.99542474999999pt height=22.465723500000017pt/>) are symmetric positive (semi-)definite so that <img src="/tex/664cf1886128c5fc05c2213e395b3fb1.svg?invert_in_darkmode&sanitize=true" align=middle width=42.88131539999999pt height=27.91243950000002pt/> is a convex function
 and that the problem has a unique minimizer.
 
+<p align="center"><img src="/tex/bfeca24deedc41f471307522e6e2de46.svg?invert_in_darkmode&sanitize=true" align=middle width=45.66612765pt height=11.4155283pt/></p>
+
 ## Unconstrained 
 
 If <img src="/tex/46d925a52666f83a6cc30a3149bb09df.svg?invert_in_darkmode&sanitize=true" align=middle width=71.48480955pt height=26.17730939999998pt/> is positive definite then problems of the
