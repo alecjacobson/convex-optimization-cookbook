@@ -62,7 +62,7 @@ $$
 $$
 
 $$
-\text{subject to: } x_i = y_i \forall i \in I
+\text{subject to: } x_i = y_i \quad \forall i \in I
 $$
 
 can be reduced to an [unconstrained problem](#unconstrained-quadratic-vector-optimization) by substitution.
