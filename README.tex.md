@@ -32,7 +32,7 @@ $$
 $$
 
 $$
-\text{subject to:} x_i = y_i \forall i \in I
+\text{subject to: } x_i = y_i \forall i \in I
 $$
 
 can be reduced to an [unconstrained problem](#unconstrained) by substitution.
@@ -53,6 +53,17 @@ x_I
 \begin{bmatrix}
 \ell_U \\
 \ell_I
-\end{bmatrix} \quad
-\text{subject to:} x(I) = y
+\end{bmatrix}
 $$
+
+$$
+\text{subject to } x_I = y
+$$
+
+Substituting the constraint $x_I = y$ into the objective then collecting terms
+that are quadratic, linear, and constant in the remaining unknowns $x_U$ we
+have a simple [unconstrained optimization](#unconstrained) over $x_U$:
+
+$$ \min_{x_U} \frac{1}{2} x_U^\top Q_{UU} x_U + x_U^\top (\ell_U + Q_{UI} x_I)
++ \cancelto{x_I^\top (Q_{II} x_I + \ell_I)}{\text{constant}}$$
+
