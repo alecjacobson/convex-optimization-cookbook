@@ -172,7 +172,7 @@ $$ \min_x \frac{1}{2} x^\top Q x + x^\top \ell,$$
 $$ \text{subject to: } A_\text{leq} x \leq b_\text{leq} 
 \text{ and } A_\text{geq} x \geq b_\text{geq}.$$
 
-Multiplying both sides of $A_\text{geq} x \geq b_\text{geq}` by $-1$ we can
+Multiplying both sides of $A_\text{geq} x \geq b_\text{geq}$ by $-1$ we can
 convert all constraints to less-than-or-equals inequalities:
 
 $$ \min_x \frac{1}{2} x^\top Q x + x^\top \ell,$$
@@ -185,5 +185,11 @@ A_\text{leq}  \\
 \leq
 \begin{bmatrix}
 b_\text{leq} \\
-b_\text{geq} \\
+-b_\text{geq} \\
 \end{bmatrix}.$$
+
+In MATLAB,
+
+```
+x = quadprog(Q,l,[Aleq;-Ageq],[bleq;-bgeq]);
+```
