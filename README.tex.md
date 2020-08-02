@@ -37,7 +37,7 @@ $$ \min_{X} \mathop{\text{trace}}(\frac{1}{2}  X^\top A^\top A X - \X^\top A^\to
 B) + c.$$
 
 Letting $Q = A^\top A$ and $L = -A^\top B$, this can be written in a form
-similar to the [unconstrained vector problem](#unconstrained):
+similar to the [unconstrained vector problem](#unconstrained-quadratic-vector-optimization):
 
 $$ \min_{X} \mathop{\text{trace}}(\frac{1}{2}  X^\top Q X + \X^\top L) + c.$$
 
@@ -65,7 +65,7 @@ $$
 \text{subject to: } x_i = y_i \forall i \in I
 $$
 
-can be reduced to an [unconstrained problem](#unconstrained) by substitution.
+can be reduced to an [unconstrained problem](#unconstrained-quadratic-vector-optimization) by substitution.
 Introduce the set $U$ to be all indices _not_ in $I$, then we can first re-order
 terms above to collect $I$ and $U$ sets:
 
@@ -92,7 +92,7 @@ $$
 
 Substituting the constraint $x_I = y$ into the objective then collecting terms
 that are quadratic, linear, and constant in the remaining unknowns $x_U$ we
-have a simple [unconstrained optimization](#unconstrained) over $x_U$:
+have a simple [unconstrained optimization](#unconstrained-quadratic-vector-optimization) over $x_U$:
 
 $$ \min_{x_U} \frac{1}{2} x_U^\top Q_{UU} x_U + x_U^\top (\ell_U + Q_{UI} x_I)
 + c$$
