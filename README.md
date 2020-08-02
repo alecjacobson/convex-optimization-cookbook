@@ -24,6 +24,13 @@ x = Q \ -l;
 
 ## Fixed value constraints
 
-Let <img src="/tex/21fd4e8eecd6bdf1a4d3d6bd1fb8d733.svg?invert_in_darkmode&sanitize=true" align=middle width=8.515988249999989pt height=22.465723500000017pt/> be a set of indices
+Let <img src="/tex/141fcfd320311fee79e05b4f5743a9c4.svg?invert_in_darkmode&sanitize=true" align=middle width=104.01990224999997pt height=24.65753399999998pt/> be a set of indices indicating elements of <img src="/tex/332cc365a4987aacce0ead01b8bdcc0b.svg?invert_in_darkmode&sanitize=true" align=middle width=9.39498779999999pt height=14.15524440000002pt/> that
+should be constrained to a particular known value. Then the problem:
 
-<p align="center"><img src="/tex/acf456b1e6a5975ded4d70137bc5149d.svg?invert_in_darkmode&sanitize=true" align=middle width=132.6141795pt height=32.990165999999995pt/></p>
+<p align="center"><img src="/tex/09b4290d9d4dbb9235c8bd4244020832.svg?invert_in_darkmode&sanitize=true" align=middle width=302.68177664999996pt height=32.990165999999995pt/></p>
+
+can be reduced to an [unconstrained problem](#unconstrained) by substitution.
+Introduce the set <img src="/tex/8eb543f68dac24748e65e2e4c5fc968c.svg?invert_in_darkmode&sanitize=true" align=middle width=10.69635434999999pt height=22.465723500000017pt/> to be all indices _not_ in <img src="/tex/21fd4e8eecd6bdf1a4d3d6bd1fb8d733.svg?invert_in_darkmode&sanitize=true" align=middle width=8.515988249999989pt height=22.465723500000017pt/>, then we can first re-order
+terms above to collect <img src="/tex/21fd4e8eecd6bdf1a4d3d6bd1fb8d733.svg?invert_in_darkmode&sanitize=true" align=middle width=8.515988249999989pt height=22.465723500000017pt/> and <img src="/tex/8eb543f68dac24748e65e2e4c5fc968c.svg?invert_in_darkmode&sanitize=true" align=middle width=10.69635434999999pt height=22.465723500000017pt/> sets:
+
+<p align="center"><img src="/tex/951abcc1c6048898fdcb92b4f9d8e8d2.svg?invert_in_darkmode&sanitize=true" align=middle width=393.0455199pt height=32.990165999999995pt/></p>
