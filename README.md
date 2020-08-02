@@ -28,15 +28,15 @@ Define the squared Frobenius norm of a matrix as <img src="/tex/37a6f5089b6db546
 
 <p align="center"><img src="/tex/ae4e65e59044658f157f021b0850c835.svg?invert_in_darkmode&sanitize=true" align=middle width=157.97330505pt height=34.0919106pt/></p>
 
-Using the property <img src="/tex/6971a8f2970cecbed7f73273ce032592.svg?invert_in_darkmode&sanitize=true" align=middle width=153.39403199999998pt height=29.190975000000005pt/>, we can expand
+Using the property <img src="/tex/d458eb9056b0a90166b8e968cc372fca.svg?invert_in_darkmode&sanitize=true" align=middle width=122.86884554999997pt height=29.190975000000005pt/>, we can expand
 this to:
 
-<p align="center"><img src="/tex/644e549d3b28cb63ebaa730951676c61.svg?invert_in_darkmode&sanitize=true" align=middle width=297.61737389999996pt height=32.990165999999995pt/></p>
+<p align="center"><img src="/tex/e0d634d435335a966459d0dbbc3b7b6c.svg?invert_in_darkmode&sanitize=true" align=middle width=267.09218745pt height=32.990165999999995pt/></p>
 
 Letting <img src="/tex/9eb4767e5eb2c4e40983c4cb0c33fedc.svg?invert_in_darkmode&sanitize=true" align=middle width=70.66656794999999pt height=27.91243950000002pt/> and <img src="/tex/23a3f7407c27e8d5ded6f25888f8b45c.svg?invert_in_darkmode&sanitize=true" align=middle width=82.60842974999998pt height=27.91243950000002pt/>, this can be written in a form
 similar to the [unconstrained vector problem](#unconstrained):
 
-<p align="center"><img src="/tex/95314afec086b1e23f0bdee35cb3ca82.svg?invert_in_darkmode&sanitize=true" align=middle width=249.32841119999998pt height=32.990165999999995pt/></p>
+<p align="center"><img src="/tex/62d4bd2e6f1d5ca61c5ab8efcb42dffe.svg?invert_in_darkmode&sanitize=true" align=middle width=218.80322474999997pt height=32.990165999999995pt/></p>
 
 this problem is _separable_ in the columns of <img src="/tex/cbfb1b2a33b28eab8a3e59464768e810.svg?invert_in_darkmode&sanitize=true" align=middle width=14.908688849999992pt height=22.465723500000017pt/> and <img src="/tex/ddcb483302ed36a59286424aa5e0be17.svg?invert_in_darkmode&sanitize=true" align=middle width=11.18724254999999pt height=22.465723500000017pt/> and solved by finding
 the solution to the multi-column linear system:
