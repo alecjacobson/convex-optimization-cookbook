@@ -169,7 +169,7 @@ a matrix $A_\text{geq} \in \R^{n_\text{geq} \times n}$, consider
 
 $$ \min_x \frac{1}{2} x^\top Q x + x^\top \ell,$$
 
-$$ \text{subject to: } A_\text{leq} x \leq b_\text{leq}.$$
+$$ \text{subject to: } A_\text{leq} x \leq b_\text{leq} 
 \text{ and } A_\text{geq} x \geq b_\text{geq}.$$
 
 Multiplying both sides of $A_\text{geq} x \geq b_\text{geq}` by $-1$ we can
