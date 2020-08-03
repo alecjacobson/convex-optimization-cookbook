@@ -389,7 +389,7 @@ In MATLAB,
 n = size(Q,1);
 m = size(B,2);
 x = speye(n,n+m) * quadprog( ...
-  Q,f, ...
+  blkdiag(Q,sparse(m,m)),[f;zeros(m,1)], ...
   [],[], ...
   [-speye(n,n) B;zeros(1,n) ones(1,m)],[zeros(n,1);1], ...
   [-inf(n,1);zeros(m,1)]);
@@ -409,4 +409,21 @@ Geometrically, this constraint is requiring that <img src="./tex/332cc365a4987aa
 hull of <img src="./tex/a7d0e0605a6acafe642d0b54226ac650.svg?invert_in_darkmode" align=middle width=13.607385000000003pt height=22.831379999999992pt/>-<img src="./tex/929ed909014029a206f344a28aa47d15.svg?invert_in_darkmode" align=middle width=17.73978854999999pt height=22.465723500000017pt/>-norm ball, which is also the [convex
 hull](convex-hull-constraint) of the points in the columns of <img src="./tex/230ca8c13f36c6225f2057bcdc00c893.svg?invert_in_darkmode" align=middle width=100.46223pt height=24.65759999999998pt/>.
 
+Introducing an auxiliary weight vectors <img src="./tex/3470bb0ee26884b43898593dd0249c07.svg?invert_in_darkmode" align=middle width=52.91500500000001pt height=26.177579999999978pt/>, the problem can be transformed into:
 
+<p align="center"><img src="./tex/00810526a0fc121554d356509b2f1b49.svg?invert_in_darkmode" align=middle width=165.73424999999997pt height=35.458499999999994pt/></p>
+
+<p align="center"><img src="./tex/e394122ea181159b269173f7300abde7.svg?invert_in_darkmode" align=middle width=267.3363pt height=39.45249pt/></p>
+
+<p align="center"><img src="./tex/aa09c3a00c2361d17b95ef6c65370832.svg?invert_in_darkmode" align=middle width=122.22985499999999pt height=17.10687pt/></p>
+
+In MATLAB,
+```
+n = size(Q,1);
+m = size(B,2);
+x = speye(n,n+m) * quadprog( ...
+  blkdiag(Q,sparse(2*n,2*n)),[f;zeros(2*n,1)], ...
+  [],[], ...
+  [-speye(n,n) speye(n,n) -speye(n,n);zeros(1,n) ones(1,2*n)],[zeros(n,1);1], ...
+  [-inf(n,1);zeros(2*n,1)]);
+```
