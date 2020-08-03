@@ -112,7 +112,7 @@ x(U) = Q(U,U) \ -(f(U) + Q(U,I) x(I));
 
 ## 4. Linear equality constraints
 
-Given a matrix $A_\text{eq} \in \R^{n_\text{eq} \times n}$ with linearly
+Given a matrix $A_\text{eq} \in \mathbb{R}^{n_\text{eq} \times n}$ with linearly
 independent rows, consider the problem:
 
 $$ \min_x \frac{1}{2} x^\top Q x + x^\top f,$$
@@ -167,8 +167,8 @@ x = quadprog(Q,f,[],[],Aeq,beq);
 
 ## 5. Linear inequality constraints
 
-Given a matrix $A_\text{leq} \in \R^{n_\text{leq} \times n}$ and 
-a matrix $A_\text{geq} \in \R^{n_\text{geq} \times n}$, consider
+Given a matrix $A_\text{leq} \in \mathbb{R}^{n_\text{leq} \times n}$ and 
+a matrix $A_\text{geq} \in \mathbb{R}^{n_\text{geq} \times n}$, consider
 
 $$ \min_x \frac{1}{2} x^\top Q x + x^\top f,$$
 
