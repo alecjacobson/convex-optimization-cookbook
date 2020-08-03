@@ -18,7 +18,7 @@ $$ Q x = - f$$
 
 In MATLAB,
 
-```
+```matlab
 x = Q \ -f;
 ```
 
@@ -48,7 +48,7 @@ $$ Q X = -L$$
 
 In MATLAB,
 
-```
+```matlab
 X = Q \ -F;
 ```
 
@@ -102,7 +102,7 @@ $$ \min_{x_U} \frac{1}{2} x_U^\top Q_{UU} x_U + x_U^\top (f_U + Q_{UI} x_I)
 
 In MATLAB, 
 
-```
+```matlab
 U = setdiff(1:size(Q,1),I);
 x = zeros(size(Q,1),1);
 x(I) = y;
@@ -152,7 +152,7 @@ $$
 
 In MATLAB,
 
-```
+```matlab
 n = size(Q,1);
 neq = size(Aeq,1);
 x = speye(n,n+neq) * ([Q Aeq';Aeq sparse(neq,neq)] \ [-f;beq];
@@ -160,7 +160,7 @@ x = speye(n,n+neq) * ([Q Aeq';Aeq sparse(neq,neq)] \ [-f;beq];
 
 or if you're not sure if the rows of `Aeq` are linearly independent:
 
-```
+```matlab
 x = quadprog(Q,f,[],[],Aeq,beq);
 ```
 
@@ -193,7 +193,7 @@ b_\text{leq} \\
 
 In MATLAB,
 
-```
+```matlab
 x = quadprog(Q,f,[Aleq;-Ageq],[bleq;-bgeq]);
 ```
 
@@ -213,7 +213,7 @@ $f$, $A_\text{leq}$, and $b_\text{leq}$.
 
 In MATLAB,
 
-```
+```matlab
 x = linprog(f,Aleq,bleq);
 ```
 
@@ -253,7 +253,7 @@ $$
 
 In MATLAB,
 
-```
+```matlab
 l = -inf(size(Q,1),1);
 l(Jl) = bgeq;
 u =  inf(size(Q,1),1);
@@ -287,7 +287,7 @@ $$
 
 In MATLAB,
 
-```
+```matlab
 l = -inf(size(Q,1),1);
 l(J) = -a;
 u =  inf(size(Q,1),1);
@@ -325,7 +325,7 @@ $$ \text{subject to: }
 
 In MATLAB,
 
-```
+```matlab
 x = quadprog(Q,f,[Aa;-Aa],[ba;ba]);
 ```
 
@@ -348,7 +348,7 @@ $$
 
 In MATLAB,
 
-```
+```matlab
 n = size(Q,1);
 na = size(Aa,1);
 x = speye(n,n+na) * quadprog( ...
@@ -404,7 +404,7 @@ $$
 
 In MATLAB,
 
-```
+```matlab
 n = size(A,2);
 na = size(A,1);
 I = speye(na,na);
@@ -453,7 +453,7 @@ $$
 
 In MATLAB,
 
-```
+```matlab
 n = size(A,2);
 na = size(A,1);
 I = speye(na,na);
@@ -494,7 +494,8 @@ $$
 $$\text{and: } w \geq 0$$
 
 In MATLAB,
-```
+
+```matlab
 n = size(Q,1);
 m = size(B,2);
 x = speye(n,n+m) * quadprog( ...
@@ -506,7 +507,7 @@ x = speye(n,n+m) * quadprog( ...
 
 ## 12. L1 upper bound
 
-An $L_1$ term can also appear with an upper bound. 
+An $L_1$ term can also appear in the constraints with an upper bound. 
 
 $$ \min_{x} \frac{1}{2} x^\top Q x + x^\top f,$$
 
@@ -514,7 +515,55 @@ $$ \text{subject to: }
 | x |_1 \leq b
 $$
 
-### 12.1. Convex hull constraint
+
+### 12.1. Auxiliary variables
+
+Introduce a set of auxiliary variables $y$ and require that:
+
+$$ |A x - b| \leq y \quad \text{ and } \quad \mathbf{1}^\top y = b $$
+
+This can be incorporated into the optimization, for example, using two linear
+sets of inequalities:
+
+$$ \min_{x,y} \frac{1}{2} x^\top Q x + x^\top f,$$
+
+$$ \text{subject to: } \mathbf{1}^\top y = b $$
+$$ \text{and: } Ax - b \leq y \quad \text{ and } \quad Ax - b \geq -y$$
+
+In turn, this can be converted into pure less-than-or-equals constraints:
+
+$$ \min_{x,y} \frac{1}{2} x^\top Q x + x^\top f,$$
+
+$$ \text{subject to: } \mathbf{1}^\top y = b $$
+$$ \text{and: } 
+\begin{bmatrix}
+ A & -I \\
+-A & -I 
+\end{bmatrix}
+\begin{bmatrix}
+x \\
+y
+\end{bmatrix}
+=
+\begin{bmatrix}
+b \\
+-b
+\end{bmatrix}
+$$
+
+In MATLAB,
+
+```matlab
+n = size(Q,1);
+na = size(A,1);
+I = speye(na,na);
+x = speye(n,n+na) * quadprog( ...
+  blkdiag(Q,sparse(na,na)),[f;zeros(na,1)], ...
+  [A -I;-A I],[b;-b], ...
+  [zeros(1,n) ones(1,na)], b);
+```
+
+### 12.2. Convex hull constraint
 
 Geometrically, this constraint is requiring that $x$ lie within in the convex
 hull of $b_1$-$L_1$-norm ball, which is also the [convex
@@ -535,6 +584,7 @@ $$
 $$\text{and: } w^+,w^- \geq 0$$
 
 In MATLAB,
+
 ```matlab
 n = size(Q,1);
 m = size(B,2);
