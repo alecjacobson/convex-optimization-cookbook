@@ -197,6 +197,26 @@ In MATLAB,
 x = quadprog(Q,f,[Aleq;-Ageq],[bleq;-bgeq]);
 ```
 
+## Constrained linear vector optimization
+
+In the absence of a quadratic term (e.g., $x^\top Q x$) leaving just a linear
+term, constraints of some form are required to pin down a finite solution. For
+example, we could consider linear inequality constrained linear optimization as
+a generic form of linear programming:
+
+$$ \min_x  x^\top f,$$
+
+$$ \text{subject to: } A_\text{leq} x \leq b_\text{leq}  $$
+
+Whether a finite, unique solution exists depends on the particular values in
+$f$, $A_\text{leq}$, and $b_\text{leq}$.
+
+In MATLAB,
+
+```
+x = linprog(f,Aleq,bleq);
+```
+
 
 ## Box or Bound constraints
 
@@ -240,6 +260,8 @@ u =  inf(size(Q,1),1);
 u(Ju) = bleq;
 x = quadprog(Q,f,[],[],[],[],l,u);
 ```
+
+
 
 ## Upper-bound on absolute value
 
