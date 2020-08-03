@@ -288,7 +288,7 @@ x = speye(n,n+na) * quadprog( ...
   [-inf(n,1);-ba],[inf(n,1);ba]);
 ```
 
-## 10. L1 minimization [l1]
+## 10. L1 minimization [#l1]
 
 The absolute value may appear in the objective function such as with minimizing
 the <img src="./tex/929ed909014029a206f344a28aa47d15.svg?invert_in_darkmode" align=middle width=17.73978854999999pt height=22.465723500000017pt/> norm of a linear expression (sum of absolute values):
