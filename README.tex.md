@@ -211,8 +211,9 @@ complementary set, then this could be written as:
 $$ \min_x \frac{1}{2} x^\top Q x + x^\top f,$$
 
 $$ \text{subject to: } 
-I_{k \times n} \begin{bmatrix}x_I \\ x_U\end{matrix} \leq b_\text{leq}
+I_{k \times n} \begin{bmatrix}x_I \\ x_U\end{bmatrix} \leq b_\text{leq},
 $$
+where $I_{k \times n}$ is the rectangular identity matrix.
 
 More often, we see this written as a per-element constant bound constraint with
 upper and lower bounds:
@@ -220,7 +221,7 @@ upper and lower bounds:
 $$ \min_x \frac{1}{2} x^\top Q x + x^\top f,$$
 
 $$ \text{subject to: } 
-x_i \geq \ell^i \quad \forall i \in I \text{ and }
+x_i \geq \ell^i \quad \forall i \in I \quad \text{ and } \quad
 x_j \leq u^j \quad \forall j \in J
 $$
 
