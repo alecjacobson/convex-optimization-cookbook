@@ -197,7 +197,7 @@ In MATLAB,
 x = quadprog(Q,f,[Aleq;-Ageq],[bleq;-bgeq]);
 ```
 
-## Constrained linear vector optimization
+## Linear program
 
 In the absence of a quadratic term (e.g., $x^\top Q x$) leaving just a linear
 term, constraints of some form are required to pin down a finite solution. For
@@ -356,3 +356,109 @@ x = speye(n,n+na) * quadprog( ...
   [],[],[Aa -speye(na,na)],zeros(na,1), ...
   [-inf(n,1);-ba],[inf(n,1);ba]);
 ```
+
+## L1 minimization
+
+The absolute value may appear in the objective function such as with minimizing
+the $L_1$ norm of a linear expression (sum of absolute values):
+
+$$ \min_x \| A x + b \|_1 $$
+
+
+### Linear inequalities
+
+Introduce the auxiliary vector variable $t$:
+
+$$ \min_{x,t} t^\top \mathbf{1} $$
+
+$$\text{subject to: } |A x - b| \leq t $$
+
+which is a form of [absolute value constrained
+optimization](#upper-bound-of-absolute-value-of-linear-expression), then solved,
+for example, by further transforming to:
+
+$$ \min_{x,t} t^\top \mathbf{1} $$
+
+$$\text{subject to: } A x - b \leq t \quad \text{ and } A x - b \geq -t,$$
+
+In turn, this can be converted into pure less-than-or-equals constraints:
+
+$$ \min_{x,t} [x^\top t^\top] \begin{bmatrix}\mathbf{0} \\ \mathbf{1}
+\end{bmatrix}$$
+
+$$\text{subject to: } 
+\begin{bmatrix}
+A & -I \\
+-A & -I 
+\end{bmatrix}
+\begin{bmatrix}
+x \\ 
+t
+\end{bmatrix}
+= 
+\begin{bmatrix}
+b \\ 
+-b
+\end{bmatrix}
+$$
+
+In MATLAB,
+
+```
+n = size(A,2);
+na = size(A,1);
+I = speye(na,na);
+x = speye(n,n+na) * linprog([zeros(n,1);ones(na,1)],[A -I;-A -I],[b;-b]);
+```
+
+### Variable splitting
+
+Introduce the vector variables $u$,$v$ so that the element-wise equalities hold:
+
+$$ |Ax - b| = u - v \quad \text{ and } u = max(Ax-b,0) \text{ and } v =
+max(Ax-b,0)$$
+
+Then the problem becomes:
+
+$$\min_{x,u,v} u^\top \mathbf{1} + v^\top \mathbf{1}$$
+$$\text{subject to: } A x - b = u - v$$
+$$\text{and: } u, \geq 0 $$
+
+This can be expanded in matrix form to:
+
+$$\min_{x,u,v} [x^\top u^\top v^\top] \begin{bmatrix}\mathbf{0}\\ \mathbf{1} \\
+\mathbf{1} \end{bmatrix}$$
+
+$$\text{subject to: } 
+\begin{bmatrix}
+A & -I & I 
+\end{bmatrix}
+\begin{bmatrix}
+x \\ u \\ v
+\end{bmatrix}
+= 
+b.$$
+
+$$\text{and: } 
+\begin{bmatrix}
+x \\ u \\ v
+\end{bmatrix}
+\geq
+\begin{bmatrix}
+-\mathbf{\infty} \\
+\mathbf{0} \\
+\mathbf{0} 
+\end{bmatrix}.
+$$
+
+In MATLAB,
+
+```
+n = size(A,2);
+na = size(A,1);
+I = speye(na,na);
+x = speye(n,n+2*na) * ...
+  linprog([zeros(n,1);ones(2*na,1)],[],[],[A -I I],b,[-inf(n,1);zeros(2*na,1)]);
+```
+
+
