@@ -465,16 +465,40 @@ x = speye(n,n+m) * quadprog( ...
   [-inf(n,1);zeros(2*n,1)]);
 ```
 
-## L2,1 norm
+## 13. L2,1 norm
 The <img src="./tex/5b918dca421c871de87c096acfeb29e5.svg?invert_in_darkmode" align=middle width=28.196520000000003pt height=22.46574pt/> norm is defined to be the sum of the Euclidean norms
-of a matrix's columns <img src="./tex/7f64e3ac8322584776fdef21909edb84.svg?invert_in_darkmode" align=middle width=278.346255pt height=28.603079999999977pt/>. Consider the matrix problem:
+of a matrix's columns <img src="./tex/4f73b4185b81a335005ed93bb6eac66c.svg?invert_in_darkmode" align=middle width=270.972405pt height=28.603079999999977pt/>. Consider the matrix problem:
 
 <p align="center"><img src="./tex/030c5d9936c66f26a9c02059afb78e73.svg?invert_in_darkmode" align=middle width=116.900685pt height=22.931535pt/></p>
 
-(If <img src="./tex/cbfb1b2a33b28eab8a3e59464768e810.svg?invert_in_darkmode" align=middle width=14.908688849999992pt height=22.465723500000017pt/> has only one column, this reduces to [L1
+(If <img src="./tex/53d147e7f3fe6e47ee05b88b166bd3f6.svg?invert_in_darkmode" align=middle width=12.328800000000005pt height=22.46574pt/> has only one row, this reduces to [L1
 minimization](#10-l1-minimization).)
 
+First, let us move the affine expression in a constraint, leaving the <img src="./tex/5b918dca421c871de87c096acfeb29e5.svg?invert_in_darkmode" align=middle width=28.196520000000003pt height=22.46574pt/>
+norm of a matrix of auxiliary variables <img src="./tex/91aac9730317276af725abd8cef04ca9.svg?invert_in_darkmode" align=middle width=13.196370000000005pt height=22.46574pt/> in the objective:
+
+<p align="center"><img src="./tex/65108a9af4de6d535ac471fb5f310f0a.svg?invert_in_darkmode" align=middle width=69.47506499999999pt height=25.168934999999998pt/></p>
+<p align="center"><img src="./tex/cafa8156531ce27284a8385f864a8c31.svg?invert_in_darkmode" align=middle width=179.38965pt height=14.611871999999998pt/></p>
+
+Now, introduce a vector of auxiliary variables corresponding to the columns of
+<img src="./tex/91aac9730317276af725abd8cef04ca9.svg?invert_in_darkmode" align=middle width=13.196370000000005pt height=22.46574pt/>:
+
+<p align="center"><img src="./tex/2e6b46813a3b87b76a3694f71ddc9e22.svg?invert_in_darkmode" align=middle width=65.617695pt height=27.618359999999996pt/></p>
+<p align="center"><img src="./tex/cafa8156531ce27284a8385f864a8c31.svg?invert_in_darkmode" align=middle width=179.38965pt height=14.611871999999998pt/></p>
+<p align="center"><img src="./tex/755a94154bdf72e6fa386a23803c7fde.svg?invert_in_darkmode" align=middle width=136.07995499999998pt height=16.438356pt/></p>
+
+Many, solvers will require that variables are vectorized, so we may transform
+this yet again to:
+
+<p align="center"><img src="./tex/2e6b46813a3b87b76a3694f71ddc9e22.svg?invert_in_darkmode" align=middle width=65.617695pt height=27.618359999999996pt/></p>
+<p align="center"><img src="./tex/fcdf39ef6665f7f1cf2fa13845074f23.svg?invert_in_darkmode" align=middle width=327.63059999999996pt height=16.438356pt/></p>
+<p align="center"><img src="./tex/755a94154bdf72e6fa386a23803c7fde.svg?invert_in_darkmode" align=middle width=136.07995499999998pt height=16.438356pt/></p>
 
 
+In MATLAB with mosek's `conic` function,
+```
+```
+
+## References
 
 See also: [MOSEK Modeling Cookbook](https://docs.mosek.com/MOSEKModelingCookbook-letter.pdf), [YALMIP](https://yalmip.github.io/)
