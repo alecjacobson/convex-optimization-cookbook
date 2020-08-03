@@ -1,9 +1,8 @@
 # Convex Optimization Cookbook
 
 Unless otherwise stated, we will assume that quadratic coefficient matrices
-(e.g., $Q$) are symmetric positive (semi-)definite so that $x^\top Q x$ is a convex function
-and that the problem has a unique minimizer.
-
+(e.g., $Q$) are symmetric positive (semi-)definite so that $x^\top Q x$ is a
+convex function and that the stated problem has a unique minimizer.
 
 ## 1. Unconstrained quadratic vector optimization
 
@@ -36,15 +35,15 @@ this to:
 $$ \min_{X} \mathop{\text{trace}}(\frac{1}{2}  X^\top A^\top A X - X^\top A^\top
 B) + c.$$
 
-Letting $Q = A^\top A$ and $L = -A^\top B$, this can be written in a form
+Letting $Q = A^\top A$ and $F = -A^\top B$, this can be written in a form
 similar to the [unconstrained vector problem](#1-unconstrained-quadratic-vector-optimization):
 
 $$ \min_{X} \mathop{\text{trace}}(\frac{1}{2}  X^\top Q X + X^\top F) + c.$$
 
-this problem is _separable_ in the columns of $X$ and $L$ and solved by finding
+this problem is _separable_ in the columns of $X$ and $F$ and solved by finding
 the solution to the multi-column linear system:
 
-$$ Q X = -L$$
+$$ Q X = -F$$
 
 In MATLAB,
 
@@ -363,7 +362,7 @@ x = speye(n,n+na) * quadprog( ...
 The absolute value may appear in the objective function such as with minimizing
 the $L_1$ norm of a linear expression (sum of absolute values):
 
-$$ \min_x \| A x + b \|_1 $$
+$$ \min_x \| A x - b \|_1 $$
 
 
 ### 10.1. Linear inequalities
@@ -627,6 +626,15 @@ $$ \text{subject to: }
 (I \otimes A) \text{vec}(X) - \text{vec}(B) = \text{vec}(Y)$$
 $$ \text{       and: } z_i \geq \| Y_i \| \quad \forall i$$
 
+### 13.1. Transpose
+
+$$ \min_X |(A X - B)^\top|_{2,1} $$
+
+First, let us move the affine expression in a constraint, leaving the $L_{2,1}$
+norm of a matrix of auxiliary variables $Z$ in the objective:
+
+$$ \min_{X,Z} |Z|_{2,1} $$
+$$ \text{subject to: } A X - B = Y$$
 
 In MATLAB with mosek's `conic` function,
 ```
