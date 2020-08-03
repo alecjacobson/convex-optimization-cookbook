@@ -157,14 +157,15 @@ complementary set, then this could be written as:
 
 <p align="center"><img src="/tex/771699c7667129e3dbe6d152ce541400.svg?invert_in_darkmode&sanitize=true" align=middle width=139.2352038pt height=32.990165999999995pt/></p>
 
-<p align="center"><img src="/tex/63389a68ff47c853ec85ffe241351c3b.svg?invert_in_darkmode&sanitize=true" align=middle width=196.60599584999997pt height=39.452455349999994pt/></p>
+<p align="center"><img src="/tex/6bc6d72dfda86bf3f6f4842aaaa8b286.svg?invert_in_darkmode&sanitize=true" align=middle width=208.69734929999998pt height=39.452455349999994pt/></p>
+where <img src="/tex/4b046bb1b60972463ea72c3666c8f78b.svg?invert_in_darkmode&sanitize=true" align=middle width=32.892124649999985pt height=22.465723500000017pt/> is the rectangular identity matrix.
 
 More often, we see this written as a per-element constant bound constraint with
 upper and lower bounds:
 
 <p align="center"><img src="/tex/771699c7667129e3dbe6d152ce541400.svg?invert_in_darkmode&sanitize=true" align=middle width=139.2352038pt height=32.990165999999995pt/></p>
 
-<p align="center"><img src="/tex/189df57ab785927df7298cb5ae0d4ddc.svg?invert_in_darkmode&sanitize=true" align=middle width=348.6892497pt height=19.104592649999997pt/></p>
+<p align="center"><img src="/tex/4e96a935cf9dbe8957ba2e80758deddc.svg?invert_in_darkmode&sanitize=true" align=middle width=381.5660112pt height=19.104592649999997pt/></p>
 
 
 
