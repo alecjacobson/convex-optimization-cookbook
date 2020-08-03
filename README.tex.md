@@ -467,3 +467,39 @@ Consider the problem where the solution $x \in \mathbb{R}^n$ is required to lie 
 hull defined by points $b_1,b_2,\dots,...,b_m \in \mathbb{R}^n$:
 
 $$ \min_x \frac{1}{2} x^\top Q x + x^\top f,$$
+
+$$\text{subject to: } x \in \text{ConvexHull}(b_1,b_2,\dots,...,b_m)$$
+
+A point $x$ is in the convex hull of $b_1,b_2,\dots,...,b_m$ if and only if
+there exist a set of positive, unity partitioning weights $w$ such that:
+
+$$ B w = x$$,
+
+where we collect $b_1,b_2,\dots,...,b_m$ in the columns of $B \in \mathbb{R}^{n
+\times m}$. 
+
+(As a consequence, $w \leq 1$).
+
+Introducing these weights as auxiliary variables, we can express the problem as:
+
+
+$$ \min_{x,w} \frac{1}{2} x^\top Q x + x^\top f,$$
+
+$$
+\text{subject to:} 
+\begin{bmatrix} B \\ \mathbf{1}^\top \end{bmatrix} w =
+\begin{bmatrix} x \\ 1 \end{bmatrix}
+$$
+
+$$\text{and: } w \geq 0$$
+
+In MATLAB,
+```
+n = size(Q,1);
+m = size(B,2);
+x = speye(n,n+m) * quadprog( ...
+  Q,f, ...
+  [],[], ...
+  [-speye(n,n) B;zeros(1,n) ones(1,m)],[zeros(n,1);1], ...
+  [-inf(n,1);zeros(m,1)]);
+```
