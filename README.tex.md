@@ -526,7 +526,7 @@ $$ \min_{x,w^+,w^-} \frac{1}{2} x^\top Q x + x^\top f,$$
 
 $$
 \text{subject to:} 
-\begin{bmatrix} b I & -b I \\ \mathbf{1}^\top \mathbf{1}^\top \end{bmatrix} 
+\begin{bmatrix} b I & -b I \\ \mathbf{1}^\top & \mathbf{1}^\top \end{bmatrix} 
 \begin{bmatrix} w^+ \\ w^- \end{bmatrix}
 =
 \begin{bmatrix} x \\ 1 \end{bmatrix}
@@ -535,7 +535,7 @@ $$
 $$\text{and: } w^+,w^- \geq 0$$
 
 In MATLAB,
-```
+```matlab
 n = size(Q,1);
 m = size(B,2);
 x = speye(n,n+m) * quadprog( ...

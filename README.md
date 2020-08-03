@@ -413,12 +413,12 @@ Introducing an auxiliary weight vectors <img src="./tex/3470bb0ee26884b43898593d
 
 <p align="center"><img src="./tex/00810526a0fc121554d356509b2f1b49.svg?invert_in_darkmode" align=middle width=165.73470375pt height=35.45857425pt/></p>
 
-<p align="center"><img src="./tex/ae37f2f0cc33e64e6141479d14e442f7.svg?invert_in_darkmode" align=middle width=274.39120829999996pt height=39.452455349999994pt/></p>
+<p align="center"><img src="./tex/8ee092afd3727894f3d926a79615cd74.svg?invert_in_darkmode" align=middle width=253.84259999999998pt height=39.45249pt/></p>
 
 <p align="center"><img src="./tex/aa09c3a00c2361d17b95ef6c65370832.svg?invert_in_darkmode" align=middle width=122.22987314999999pt height=17.1069228pt/></p>
 
 In MATLAB,
-```
+```matlab
 n = size(Q,1);
 m = size(B,2);
 x = speye(n,n+m) * quadprog( ...
