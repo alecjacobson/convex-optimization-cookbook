@@ -473,7 +473,10 @@ $$\text{subject to: } x \in \text{ConvexHull}(b_1,b_2,\dots,...,b_m)$$
 A point $x$ is in the convex hull of $b_1,b_2,\dots,...,b_m$ if and only if
 there exist a set of positive, unity partitioning weights $w$ such that:
 
-$$ \underbrace{\begin{bmatrix}b_1 & b_2 & \dots & b_m\end{bmatrix}}_B w = x$$.
+$$ B w = x$$,
+
+where we collect $b_1,b_2,\dots,...,b_m$ in the columns of $B \in \mathbb{R}^{n
+\times m}$. 
 
 (As a consequence, $w \leq 1$).
 
