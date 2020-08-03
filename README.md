@@ -288,7 +288,7 @@ x = speye(n,n+na) * quadprog( ...
   [-inf(n,1);-ba],[inf(n,1);ba]);
 ```
 
-## 10. L1 minimization
+## 10. L1 minimization [l1]
 
 The absolute value may appear in the objective function such as with minimizing
 the <img src="./tex/929ed909014029a206f344a28aa47d15.svg?invert_in_darkmode" align=middle width=17.73978854999999pt height=22.465723500000017pt/> norm of a linear expression (sum of absolute values):
@@ -463,3 +463,13 @@ x = speye(n,n+m) * quadprog( ...
   [-speye(n,n) b*speye(n,n) -b*speye(n,n);zeros(1,n) ones(1,2*n)],[zeros(n,1);1], ...
   [-inf(n,1);zeros(2*n,1)]);
 ```
+
+## L2,1 norm
+The <img src="./tex/5b918dca421c871de87c096acfeb29e5.svg?invert_in_darkmode" align=middle width=28.196520000000003pt height=22.46574pt/> norm is defined to be the sum of the Euclidean norms
+of a matrix's columns <img src="./tex/192b5c1b1cb835a9c058797a55a35a0e.svg?invert_in_darkmode" align=middle width=47.53452000000001pt height=24.65759999999998pt/> = \sum_j \|M_j\|_2 = \sum_j \sqrt{\sum_i
+(m_{ij})^2}<img src="./tex/039f9faa0479a060e0cd9055d087e571.svg?invert_in_darkmode" align=middle width=215.44330499999998pt height=22.831379999999992pt/><img src="./tex/3607867afde7a55a42779592b6a243c2.svg?invert_in_darkmode" align=middle width=129.39745499999998pt height=24.65759999999998pt/><img src="./tex/34e2e94971fc40557d174610102e376d.svg?invert_in_darkmode" align=middle width=12.237555000000004pt height=47.67113999999998pt/>X$ has only one column, this reduces to [L1 minimization](#l1).)
+
+
+
+
+See also: [MOSEK Modeling Cookbook](https://docs.mosek.com/MOSEKModelingCookbook-letter.pdf), [YALMIP](https://yalmip.github.io/)
