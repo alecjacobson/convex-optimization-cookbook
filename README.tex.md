@@ -473,7 +473,7 @@ $$\text{subject to: } x \in \text{ConvexHull}(b_1,b_2,\dots,...,b_m)$$
 A point $x$ is in the convex hull of $b_1,b_2,\dots,...,b_m$ if and only if
 there exist a set of positive, unity partitioning weights $w$ such that:
 
-$$ B w = x$$,
+$$ B w = x,$$
 
 where we collect $b_1,b_2,\dots,...,b_m$ in the columns of $B \in \mathbb{R}^{n
 \times m}$. 
@@ -503,3 +503,21 @@ x = speye(n,n+m) * quadprog( ...
   [-speye(n,n) B;zeros(1,n) ones(1,m)],[zeros(n,1);1], ...
   [-inf(n,1);zeros(m,1)]);
 ```
+
+## L1 upper bound
+
+An $L_1$ term can also appear with an upper bound. 
+
+$$ \min_{x} \frac{1}{2} x^\top Q x + x^\top f,$$
+
+$$ \text{subject to: } 
+| x |_1 \leq b_1
+$$
+
+### Convex hull constraint
+
+Geometrically, this constraint is requiring that $x$ lie within in the convex
+hull of $b_1$-$L_1$-norm ball, which is also the [convex
+hull](convex-hull-constraint) of the points in the columns of $B := b_1 [I -I]$.
+
+

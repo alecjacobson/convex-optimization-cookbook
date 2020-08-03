@@ -369,7 +369,7 @@ hull defined by points <img src="./tex/ffcf5c49a968798f43517f1b07626125.svg?inve
 A point <img src="./tex/332cc365a4987aacce0ead01b8bdcc0b.svg?invert_in_darkmode" align=middle width=9.39498779999999pt height=14.15524440000002pt/> is in the convex hull of <img src="./tex/6bcc7fcfee94a17aa4b7b892a372fcf4.svg?invert_in_darkmode" align=middle width=112.41813000000002pt height=22.831379999999992pt/> if and only if
 there exist a set of positive, unity partitioning weights <img src="./tex/31fae8b8b78ebe01cbfbe2fe53832624.svg?invert_in_darkmode" align=middle width=12.210990000000004pt height=14.155350000000013pt/> such that:
 
-<p align="center"><img src="./tex/cf38491e4eac404aa5b3499c232b4f10.svg?invert_in_darkmode" align=middle width=56.816925pt height=11.23287pt/></p>,
+<p align="center"><img src="./tex/82a864bd57676e90bee03febdb560d43.svg?invert_in_darkmode" align=middle width=61.383135pt height=14.429217pt/></p>
 
 where we collect <img src="./tex/6bcc7fcfee94a17aa4b7b892a372fcf4.svg?invert_in_darkmode" align=middle width=112.41813000000002pt height=22.831379999999992pt/> in the columns of <img src="./tex/de7bb3cc354024021089643be79c171a.svg?invert_in_darkmode" align=middle width=75.321675pt height=26.177579999999978pt/>. 
 
@@ -394,3 +394,19 @@ x = speye(n,n+m) * quadprog( ...
   [-speye(n,n) B;zeros(1,n) ones(1,m)],[zeros(n,1);1], ...
   [-inf(n,1);zeros(m,1)]);
 ```
+
+## L1 upper bound
+
+An <img src="./tex/929ed909014029a206f344a28aa47d15.svg?invert_in_darkmode" align=middle width=17.73978854999999pt height=22.465723500000017pt/> term can also appear with an upper bound. 
+
+<p align="center"><img src="./tex/f95c7eef47b5400896a422ca13cc45e8.svg?invert_in_darkmode" align=middle width=139.23525pt height=32.9901pt/></p>
+
+<p align="center"><img src="./tex/c22bd72cad80cc8072a7876ea5daa8d3.svg?invert_in_darkmode" align=middle width=145.07988pt height=16.438356pt/></p>
+
+### Convex hull constraint
+
+Geometrically, this constraint is requiring that <img src="./tex/332cc365a4987aacce0ead01b8bdcc0b.svg?invert_in_darkmode" align=middle width=9.39498779999999pt height=14.15524440000002pt/> lie within in the convex
+hull of <img src="./tex/a7d0e0605a6acafe642d0b54226ac650.svg?invert_in_darkmode" align=middle width=13.607385000000003pt height=22.831379999999992pt/>-<img src="./tex/929ed909014029a206f344a28aa47d15.svg?invert_in_darkmode" align=middle width=17.73978854999999pt height=22.465723500000017pt/>-norm ball, which is also the [convex
+hull](convex-hull-constraint) of the points in the columns of <img src="./tex/230ca8c13f36c6225f2057bcdc00c893.svg?invert_in_darkmode" align=middle width=100.46223pt height=24.65759999999998pt/>.
+
+
