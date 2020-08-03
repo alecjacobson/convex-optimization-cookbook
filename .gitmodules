@@ -1,0 +1,3 @@
+[submodule "readme2tex"]
+	path = readme2tex
+	url = https://github.com/leegao/readme2tex.git
