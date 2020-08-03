@@ -5,7 +5,7 @@ Unless otherwise stated, we will assume that quadratic coefficient matrices
 and that the problem has a unique minimizer.
 
 
-## 1 Unconstrained quadratic vector optimization
+## 1. Unconstrained quadratic vector optimization
 
 If $Q \in \mathbb{R}^{n \times n}$ is positive definite then problems of the
 form:
@@ -22,7 +22,7 @@ In MATLAB,
 x = Q \ -f;
 ```
 
-## 2 Frobenius-norm matrix optimization
+## 2. Frobenius-norm matrix optimization
 
 Define the squared Frobenius norm of a matrix as $\|M\|_\text{F}^2 = \sum_i \sum_j
 x_{ij}^2$, then we may consider problems of the form:
@@ -52,7 +52,7 @@ In MATLAB,
 X = Q \ -F;
 ```
 
-## 3 Fixed value constraints
+## 3. Fixed value constraints
 
 Let $I \in [1,\dots,n]^k$ be a set of indices indicating elements of $x$ that
 should be constrained to a particular known value. Then the problem:
@@ -109,7 +109,7 @@ x(I) = y;
 x(U) = Q(U,U) \ -(f(U) + Q(U,I) x(I));
 ```
 
-## 4 Linear equality constraints
+## 4. Linear equality constraints
 
 Given a matrix $A_\text{eq} \in \R^{n_\text{eq} \times n}$ with linearly
 independent rows, consider the problem:
@@ -164,7 +164,7 @@ or if you're not sure if the rows of `Aeq` are linearly independent:
 x = quadprog(Q,f,[],[],Aeq,beq);
 ```
 
-## 5 Linear inequality constraints
+## 5. Linear inequality constraints
 
 Given a matrix $A_\text{leq} \in \R^{n_\text{leq} \times n}$ and 
 a matrix $A_\text{geq} \in \R^{n_\text{geq} \times n}$, consider
@@ -197,7 +197,7 @@ In MATLAB,
 x = quadprog(Q,f,[Aleq;-Ageq],[bleq;-bgeq]);
 ```
 
-## 6 Linear program
+## 6. Linear program
 
 In the absence of a quadratic term (e.g., $x^\top Q x$) leaving just a linear
 term, constraints of some form are required to pin down a finite solution. For
@@ -218,7 +218,7 @@ x = linprog(f,Aleq,bleq);
 ```
 
 
-## 7 Box or Bound constraints
+## 7. Box or Bound constraints
 
 A special case of [linear inequality
 constraints](#linear-inequality-constraints) happens when
@@ -263,7 +263,7 @@ x = quadprog(Q,f,[],[],[],[],l,u);
 
 
 
-## 8 Upper-bound on absolute value
+## 8. Upper-bound on absolute value
 
 Placing an _upper_ bound on the absolute value of an element is a convex
 constraint. So the problem 
@@ -295,7 +295,7 @@ u(J) = a;
 x = quadprog(Q,f,[],[],[],[],l,u);
 ```
 
-## 9 Upper-bound of absolute value of linear expression
+## 9. Upper-bound of absolute value of linear expression
 
 The per-element [upper-bound on absolute value](#upper-bound-on-absolute-value)
 generalizes to linear expressions. Given a matrix $A_a \in \mathbb{R}^{na \times
@@ -305,7 +305,7 @@ $$ \min_x \frac{1}{2} x^\top Q x + x^\top f,$$
 
 $$ \text{subject to: } |A_a x | \leq  b_a $$
 
-### 9.1 Linear inequality constraints
+### 9.1. Linear inequality constraints
 
 Expand the absolute value constraints into two sets of [linear inequality
 constraints](#linear-inequality-constraints):
@@ -329,7 +329,7 @@ In MATLAB,
 x = quadprog(Q,f,[Aa;-Aa],[ba;ba]);
 ```
 
-### 9.2 Auxiliary variables
+### 9.2. Auxiliary variables
 
 Introduce an auxiliary set of variables $y \in \mathbb{R}^na$, then introduce a
 [linear equality constraint](#linear-equality-constraints) tying $y$ to $A_a x$
@@ -357,7 +357,7 @@ x = speye(n,n+na) * quadprog( ...
   [-inf(n,1);-ba],[inf(n,1);ba]);
 ```
 
-## 10 L1 minimization
+## 10. L1 minimization
 
 The absolute value may appear in the objective function such as with minimizing
 the $L_1$ norm of a linear expression (sum of absolute values):
@@ -365,7 +365,7 @@ the $L_1$ norm of a linear expression (sum of absolute values):
 $$ \min_x \| A x + b \|_1 $$
 
 
-### 10.1 Linear inequalities
+### 10.1. Linear inequalities
 
 Introduce the auxiliary vector variable $t$:
 
@@ -411,7 +411,7 @@ I = speye(na,na);
 x = speye(n,n+na) * linprog([zeros(n,1);ones(na,1)],[A -I;-A -I],[b;-b]);
 ```
 
-### 10.2 Variable splitting
+### 10.2. Variable splitting
 
 Introduce the vector variables $u$,$v$ so that the element-wise equalities hold:
 
@@ -461,7 +461,7 @@ x = speye(n,n+2*na) * ...
   linprog([zeros(n,1);ones(2*na,1)],[],[],[A -I I],b,[-inf(n,1);zeros(2*na,1)]);
 ```
 
-## 11 Convex hull constraint
+## 11. Convex hull constraint
 
 Consider the problem where the solution $x \in \mathbb{R}^n$ is required to lie in the convex
 hull defined by points $b_1,b_2,\dots,...,b_m \in \mathbb{R}^n$:
@@ -504,7 +504,7 @@ x = speye(n,n+m) * quadprog( ...
   [-inf(n,1);zeros(m,1)]);
 ```
 
-## 12 L1 upper bound
+## 12. L1 upper bound
 
 An $L_1$ term can also appear with an upper bound. 
 
@@ -514,7 +514,7 @@ $$ \text{subject to: }
 | x |_1 \leq b
 $$
 
-### 12.1 Convex hull constraint
+### 12.1. Convex hull constraint
 
 Geometrically, this constraint is requiring that $x$ lie within in the convex
 hull of $b_1$-$L_1$-norm ball, which is also the [convex
