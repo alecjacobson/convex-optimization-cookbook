@@ -144,7 +144,7 @@ In MATLAB,
 x = quadprog(Q,f,[Aleq;-Ageq],[bleq;-bgeq]);
 ```
 
-## Constrained linear vector optimization
+## Linear program
 
 In the absence of a quadratic term (e.g., <img src="/tex/664cf1886128c5fc05c2213e395b3fb1.svg?invert_in_darkmode&sanitize=true" align=middle width=42.88131539999999pt height=27.91243950000002pt/>) leaving just a linear
 term, constraints of some form are required to pin down a finite solution. For
@@ -287,3 +287,74 @@ x = speye(n,n+na) * quadprog( ...
   [],[],[Aa -speye(na,na)],zeros(na,1), ...
   [-inf(n,1);-ba],[inf(n,1);ba]);
 ```
+
+## L1 minimization
+
+The absolute value may appear in the objective function such as with minimizing
+the <img src="/tex/929ed909014029a206f344a28aa47d15.svg?invert_in_darkmode&sanitize=true" align=middle width=17.73978854999999pt height=22.465723500000017pt/> norm of a linear expression (sum of absolute values):
+
+<p align="center"><img src="/tex/2547c2b749998c73fd2003d55d2f0ead.svg?invert_in_darkmode&sanitize=true" align=middle width=101.9977431pt height=22.1917806pt/></p>
+
+
+### Linear inequalities
+
+Introduce the auxiliary vector variable <img src="/tex/4f4f4e395762a3af4575de74c019ebb5.svg?invert_in_darkmode&sanitize=true" align=middle width=5.936097749999991pt height=20.221802699999984pt/>:
+
+<p align="center"><img src="/tex/4839253e32549a5964b2c39409d72e8c.svg?invert_in_darkmode&sanitize=true" align=middle width=56.6210205pt height=26.878597349999996pt/></p>
+
+<p align="center"><img src="/tex/9360c01615e6c796333aecc0b92aad32.svg?invert_in_darkmode&sanitize=true" align=middle width=169.50903749999998pt height=16.438356pt/></p>
+
+which is a form of [absolute value constrained
+optimization](#upper-bound-of-absolute-value-of-linear-expression), then solved,
+for example, by further transforming to:
+
+<p align="center"><img src="/tex/4839253e32549a5964b2c39409d72e8c.svg?invert_in_darkmode&sanitize=true" align=middle width=56.6210205pt height=26.878597349999996pt/></p>
+
+<p align="center"><img src="/tex/4690ce9ee7c851527f56e679d8cfd0e6.svg?invert_in_darkmode&sanitize=true" align=middle width=308.3331174pt height=14.611878599999999pt/></p>
+
+In turn, this can be converted into pure less-than-or-equals constraints:
+
+<p align="center"><img src="/tex/2888e0417124dd59bf5fbfadb72235fe.svg?invert_in_darkmode&sanitize=true" align=middle width=103.5960552pt height=39.452455349999994pt/></p>
+
+<p align="center"><img src="/tex/9613ca7ccb20f777e8186bed5254ef0e.svg?invert_in_darkmode&sanitize=true" align=middle width=255.19420409999998pt height=39.452455349999994pt/></p>
+
+In MATLAB,
+
+```
+n = size(A,2);
+na = size(A,1);
+I = speye(na,na);
+x = speye(n,n+na) * linprog([zeros(n,1);ones(na,1)],[A -I;-A -I],[b;-b]);
+```
+
+### Variable splitting
+
+Introduce the vector variables <img src="/tex/6dbb78540bd76da3f1625782d42d6d16.svg?invert_in_darkmode&sanitize=true" align=middle width=9.41027339999999pt height=14.15524440000002pt/>,<img src="/tex/6c4adbc36120d62b98deef2a20d5d303.svg?invert_in_darkmode&sanitize=true" align=middle width=8.55786029999999pt height=14.15524440000002pt/> so that the element-wise equalities hold:
+
+<p align="center"><img src="/tex/1c6d6f43b9b5fecca9212bdb2f24b61e.svg?invert_in_darkmode&sanitize=true" align=middle width=490.50197295000004pt height=16.438356pt/></p>
+
+Then the problem becomes:
+
+<p align="center"><img src="/tex/257c32646c21bfb4187dd4213d1320cf.svg?invert_in_darkmode&sanitize=true" align=middle width=111.9177807pt height=26.878597349999996pt/></p>
+<p align="center"><img src="/tex/544e2e5d9ecc7c90123717a2be55d01c.svg?invert_in_darkmode&sanitize=true" align=middle width=192.49981739999998pt height=14.611878599999999pt/></p>
+<p align="center"><img src="/tex/49f2cd6fa023b43130e4213f9f06a91c.svg?invert_in_darkmode&sanitize=true" align=middle width=80.64315435pt height=14.611878599999999pt/></p>
+
+This can be expanded in matrix form to:
+
+<p align="center"><img src="/tex/d65cedafdd11cb5f5934cbe7056d1fc7.svg?invert_in_darkmode&sanitize=true" align=middle width=133.915815pt height=59.1786591pt/></p>
+
+<p align="center"><img src="/tex/cd4fe362cb2b3e4e614c3e18004169fe.svg?invert_in_darkmode&sanitize=true" align=middle width=242.72074695pt height=59.1786591pt/></p>
+
+<p align="center"><img src="/tex/d6aa786a9018033eb4833dd8f99aa799.svg?invert_in_darkmode&sanitize=true" align=middle width=152.7892542pt height=59.1786591pt/></p>
+
+In MATLAB,
+
+```
+n = size(A,2);
+na = size(A,1);
+I = speye(na,na);
+x = speye(n,n+2*na) * ...
+  linprog([zeros(n,1);ones(2*na,1)],[],[],[A -I I],b,[-inf(n,1);zeros(2*na,1)]);
+```
+
+
