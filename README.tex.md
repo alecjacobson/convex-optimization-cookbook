@@ -37,7 +37,7 @@ $$ \min_{X} \mathop{\text{trace}}(\frac{1}{2}  X^\top A^\top A X - X^\top A^\top
 B) + c.$$
 
 Letting $Q = A^\top A$ and $L = -A^\top B$, this can be written in a form
-similar to the [unconstrained vector problem](#unconstrained-quadratic-vector-optimization):
+similar to the [unconstrained vector problem](#1-unconstrained-quadratic-vector-optimization):
 
 $$ \min_{X} \mathop{\text{trace}}(\frac{1}{2}  X^\top Q X + X^\top F) + c.$$
 
@@ -65,7 +65,7 @@ $$
 \text{subject to: } x_i = y_i \quad \forall i \in I
 $$
 
-can be reduced to an [unconstrained problem](#unconstrained-quadratic-vector-optimization) by substitution.
+can be reduced to an [unconstrained problem](#1-unconstrained-quadratic-vector-optimization) by substitution.
 Introduce the set $U$ to be all indices _not_ in $I$, then we can first re-order
 terms above according to $I$ and $U$:
 
@@ -95,7 +95,8 @@ $Q$ extracted by slicing the rows by the set $U$ and the columns by the set $I$.
 
 Substituting the constraint $x_I = y$ into the objective then collecting terms
 that are quadratic, linear, and constant in the remaining unknowns $x_U$ we
-have a simple [unconstrained optimization](#unconstrained-quadratic-vector-optimization) over $x_U$:
+have a simple [unconstrained
+optimization](#1-unconstrained-quadratic-vector-optimization) over $x_U$:
 
 $$ \min_{x_U} \frac{1}{2} x_U^\top Q_{UU} x_U + x_U^\top (f_U + Q_{UI} x_I)
 + c$$
@@ -221,7 +222,7 @@ x = linprog(f,Aleq,bleq);
 ## 7. Box or Bound constraints
 
 A special case of [linear inequality
-constraints](#linear-inequality-constraints) happens when
+constraints](#4-linear-inequality-constraints) happens when
 $A_\text{leq}$ is formed with rows of the identity matrix $I$, indicating simple
 upper bound constraints on specific elements of $x$.
 
@@ -275,7 +276,7 @@ $$ \text{subject to: }
 |x_j| \leq  a_j \quad \forall j \in J
 $$
 
-can be simply expanded to a [bound constraint](#box-or-bound-constraints)
+can be simply expanded to a [bound constraint](#7-box-or-bound-constraints)
 problem:
 
 
@@ -297,7 +298,7 @@ x = quadprog(Q,f,[],[],[],[],l,u);
 
 ## 9. Upper-bound of absolute value of linear expression
 
-The per-element [upper-bound on absolute value](#upper-bound-on-absolute-value)
+The per-element [upper-bound on absolute value](#8-upper-bound-on-absolute-value)
 generalizes to linear expressions. Given a matrix $A_a \in \mathbb{R}^{na \times
 n}$, then consider:
 
@@ -308,7 +309,7 @@ $$ \text{subject to: } |A_a x | \leq  b_a $$
 ### 9.1. Linear inequality constraints
 
 Expand the absolute value constraints into two sets of [linear inequality
-constraints](#linear-inequality-constraints):
+constraints](#5-linear-inequality-constraints):
 
 $$ \min_x \frac{1}{2} x^\top Q x + x^\top f,$$
 
@@ -316,7 +317,7 @@ $$ \text{subject to: } A_a x  \leq  b_a  \quad \text{ and } \quad A_a x \geq
 -b_a,$$
 
 the greater-than-or-equals constraints of which can in turn be converted to
-less-than-or-equals constraints as [above](#linear-inequality-constraints):
+less-than-or-equals constraints as [above](#5-linear-inequality-constraints):
 
 $$ \min_x \frac{1}{2} x^\top Q x + x^\top f,$$
 
@@ -332,9 +333,9 @@ x = quadprog(Q,f,[Aa;-Aa],[ba;ba]);
 ### 9.2. Auxiliary variables
 
 Introduce an auxiliary set of variables $y \in \mathbb{R}^na$, then introduce a
-[linear equality constraint](#linear-equality-constraints) tying $y$ to $A_a x$
+[linear equality constraint](#5-linear-equality-constraints) tying $y$ to $A_a x$
 and apply [upper-bound absolute value
-constraints](#upper-bound-on-absolute-value) on $y$:
+constraints](#8-upper-bound-on-absolute-value) on $y$:
 
 $$ \min_{x,y} \frac{1}{2} x^\top Q x + x^\top f,$$
 
@@ -357,7 +358,7 @@ x = speye(n,n+na) * quadprog( ...
   [-inf(n,1);-ba],[inf(n,1);ba]);
 ```
 
-## 10. L1 minimization (#l1)
+## 10. L1 minimization 
 
 The absolute value may appear in the objective function such as with minimizing
 the $L_1$ norm of a linear expression (sum of absolute values):
@@ -374,7 +375,7 @@ $$ \min_{x,t} t^\top \mathbf{1} $$
 $$\text{subject to: } |A x - b| \leq t $$
 
 which is a form of [absolute value constrained
-optimization](#upper-bound-of-absolute-value-of-linear-expression), then solved,
+optimization](#9-upper-bound-of-absolute-value-of-linear-expression), then solved,
 for example, by further transforming to:
 
 $$ \min_{x,t} t^\top \mathbf{1} $$
@@ -602,7 +603,8 @@ of a matrix's columns $\|M|_{2,1} = \sum_j \|M_j\|_2 = \sum_j \sqrt{\sum_i
 
 $$ \min_X |A X - B|_{2,1} $$
 
-(If $X$ has only one column, this reduces to [L1 minimization](#l1).)
+(If $X$ has only one column, this reduces to [L1
+minimization](#10-l1-minimization).)
 
 
 

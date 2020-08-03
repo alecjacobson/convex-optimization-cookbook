@@ -34,7 +34,7 @@ this to:
 <p align="center"><img src="./tex/bd817c907beee2449169e03e42bb4cb2.svg?invert_in_darkmode" align=middle width=282.00085484999994pt height=32.990165999999995pt/></p>
 
 Letting <img src="./tex/9eb4767e5eb2c4e40983c4cb0c33fedc.svg?invert_in_darkmode" align=middle width=70.66656794999999pt height=27.91243950000002pt/> and <img src="./tex/23a3f7407c27e8d5ded6f25888f8b45c.svg?invert_in_darkmode" align=middle width=82.60842974999998pt height=27.91243950000002pt/>, this can be written in a form
-similar to the [unconstrained vector problem](#unconstrained-quadratic-vector-optimization):
+similar to the [unconstrained vector problem](#1-unconstrained-quadratic-vector-optimization):
 
 <p align="center"><img src="./tex/6540175597e7390791d4d169f66c7ba0.svg?invert_in_darkmode" align=middle width=235.378572pt height=32.990165999999995pt/></p>
 
@@ -58,7 +58,7 @@ should be constrained to a particular known value. Then the problem:
 
 <p align="center"><img src="./tex/4b88ab7ee3568bdce44ec44c972ee7fd.svg?invert_in_darkmode" align=middle width=193.81191224999998pt height=14.611878599999999pt/></p>
 
-can be reduced to an [unconstrained problem](#unconstrained-quadratic-vector-optimization) by substitution.
+can be reduced to an [unconstrained problem](#1-unconstrained-quadratic-vector-optimization) by substitution.
 Introduce the set <img src="./tex/6bac6ec50c01592407695ef84f457232.svg?invert_in_darkmode" align=middle width=13.01596064999999pt height=22.465723500000017pt/> to be all indices _not_ in <img src="./tex/21fd4e8eecd6bdf1a4d3d6bd1fb8d733.svg?invert_in_darkmode" align=middle width=8.515988249999989pt height=22.465723500000017pt/>, then we can first re-order
 terms above according to <img src="./tex/21fd4e8eecd6bdf1a4d3d6bd1fb8d733.svg?invert_in_darkmode" align=middle width=8.515988249999989pt height=22.465723500000017pt/> and <img src="./tex/6bac6ec50c01592407695ef84f457232.svg?invert_in_darkmode" align=middle width=13.01596064999999pt height=22.465723500000017pt/>:
 
@@ -71,7 +71,8 @@ where, for example, <img src="./tex/69a27b5b029b1e60af9e0161d7f8a915.svg?invert_
 
 Substituting the constraint <img src="./tex/705583ffbc841720aaa905460dd09b06.svg?invert_in_darkmode" align=middle width=47.50410884999998pt height=14.15524440000002pt/> into the objective then collecting terms
 that are quadratic, linear, and constant in the remaining unknowns <img src="./tex/1e463ef25ae4c019b01284bed29e663a.svg?invert_in_darkmode" align=middle width=19.58383019999999pt height=14.15524440000002pt/> we
-have a simple [unconstrained optimization](#unconstrained-quadratic-vector-optimization) over <img src="./tex/1e463ef25ae4c019b01284bed29e663a.svg?invert_in_darkmode" align=middle width=19.58383019999999pt height=14.15524440000002pt/>:
+have a simple [unconstrained
+optimization](#1-unconstrained-quadratic-vector-optimization) over <img src="./tex/1e463ef25ae4c019b01284bed29e663a.svg?invert_in_darkmode" align=middle width=19.58383019999999pt height=14.15524440000002pt/>:
 
 <p align="center"><img src="./tex/80ea33f5bf6adf66d116299374bccbe4.svg?invert_in_darkmode" align=middle width=284.77919414999997pt height=33.230283899999996pt/></p>
 
@@ -168,7 +169,7 @@ x = linprog(f,Aleq,bleq);
 ## 7. Box or Bound constraints
 
 A special case of [linear inequality
-constraints](#linear-inequality-constraints) happens when
+constraints](#4-linear-inequality-constraints) happens when
 <img src="./tex/dd0f5c7c63cb97076f7abf4e0b712a9d.svg?invert_in_darkmode" align=middle width=28.801472699999987pt height=22.465723500000017pt/> is formed with rows of the identity matrix <img src="./tex/21fd4e8eecd6bdf1a4d3d6bd1fb8d733.svg?invert_in_darkmode" align=middle width=8.515988249999989pt height=22.465723500000017pt/>, indicating simple
 upper bound constraints on specific elements of <img src="./tex/332cc365a4987aacce0ead01b8bdcc0b.svg?invert_in_darkmode" align=middle width=9.39498779999999pt height=14.15524440000002pt/>.
 
@@ -215,7 +216,7 @@ constraint. So the problem
 
 <p align="center"><img src="./tex/11b22ab783ec2b4eaf3347bd9ea46888.svg?invert_in_darkmode" align=middle width=210.70885275pt height=17.031940199999998pt/></p>
 
-can be simply expanded to a [bound constraint](#box-or-bound-constraints)
+can be simply expanded to a [bound constraint](#7-box-or-bound-constraints)
 problem:
 
 
@@ -235,7 +236,7 @@ x = quadprog(Q,f,[],[],[],[],l,u);
 
 ## 9. Upper-bound of absolute value of linear expression
 
-The per-element [upper-bound on absolute value](#upper-bound-on-absolute-value)
+The per-element [upper-bound on absolute value](#8-upper-bound-on-absolute-value)
 generalizes to linear expressions. Given a matrix <img src="./tex/196bd7a2970416338465b81e61685417.svg?invert_in_darkmode" align=middle width=85.9008612pt height=26.17730939999998pt/>, then consider:
 
 <p align="center"><img src="./tex/771699c7667129e3dbe6d152ce541400.svg?invert_in_darkmode" align=middle width=139.2352038pt height=32.990165999999995pt/></p>
@@ -245,14 +246,14 @@ generalizes to linear expressions. Given a matrix <img src="./tex/196bd7a2970416
 ### 9.1. Linear inequality constraints
 
 Expand the absolute value constraints into two sets of [linear inequality
-constraints](#linear-inequality-constraints):
+constraints](#5-linear-inequality-constraints):
 
 <p align="center"><img src="./tex/771699c7667129e3dbe6d152ce541400.svg?invert_in_darkmode" align=middle width=139.2352038pt height=32.990165999999995pt/></p>
 
 <p align="center"><img src="./tex/9c71504e4b9e6c7cb4bda9f2ff027d98.svg?invert_in_darkmode" align=middle width=304.52610374999995pt height=14.611878599999999pt/></p>
 
 the greater-than-or-equals constraints of which can in turn be converted to
-less-than-or-equals constraints as [above](#linear-inequality-constraints):
+less-than-or-equals constraints as [above](#5-linear-inequality-constraints):
 
 <p align="center"><img src="./tex/771699c7667129e3dbe6d152ce541400.svg?invert_in_darkmode" align=middle width=139.2352038pt height=32.990165999999995pt/></p>
 
@@ -267,9 +268,9 @@ x = quadprog(Q,f,[Aa;-Aa],[ba;ba]);
 ### 9.2. Auxiliary variables
 
 Introduce an auxiliary set of variables <img src="./tex/2fcb08babe9a41630cce2ddc1386b6d4.svg?invert_in_darkmode" align=middle width=58.24961504999998pt height=22.648391699999998pt/>, then introduce a
-[linear equality constraint](#linear-equality-constraints) tying <img src="./tex/deceeaf6940a8c7a5a02373728002b0f.svg?invert_in_darkmode" align=middle width=8.649225749999989pt height=14.15524440000002pt/> to <img src="./tex/1b2dfed866baa2ee9bfa2a15ed5cff86.svg?invert_in_darkmode" align=middle width=29.67608159999999pt height=22.465723500000017pt/>
+[linear equality constraint](#5-linear-equality-constraints) tying <img src="./tex/deceeaf6940a8c7a5a02373728002b0f.svg?invert_in_darkmode" align=middle width=8.649225749999989pt height=14.15524440000002pt/> to <img src="./tex/1b2dfed866baa2ee9bfa2a15ed5cff86.svg?invert_in_darkmode" align=middle width=29.67608159999999pt height=22.465723500000017pt/>
 and apply [upper-bound absolute value
-constraints](#upper-bound-on-absolute-value) on <img src="./tex/deceeaf6940a8c7a5a02373728002b0f.svg?invert_in_darkmode" align=middle width=8.649225749999989pt height=14.15524440000002pt/>:
+constraints](#8-upper-bound-on-absolute-value) on <img src="./tex/deceeaf6940a8c7a5a02373728002b0f.svg?invert_in_darkmode" align=middle width=8.649225749999989pt height=14.15524440000002pt/>:
 
 <p align="center"><img src="./tex/fa0aa225ecc037b9f5d98dcb7deef50f.svg?invert_in_darkmode" align=middle width=139.2352038pt height=33.814738649999995pt/></p>
 
@@ -288,7 +289,7 @@ x = speye(n,n+na) * quadprog( ...
   [-inf(n,1);-ba],[inf(n,1);ba]);
 ```
 
-## 10. L1 minimization (#l1)
+## 10. L1 minimization 
 
 The absolute value may appear in the objective function such as with minimizing
 the <img src="./tex/929ed909014029a206f344a28aa47d15.svg?invert_in_darkmode" align=middle width=17.73978854999999pt height=22.465723500000017pt/> norm of a linear expression (sum of absolute values):
@@ -305,7 +306,7 @@ Introduce the auxiliary vector variable <img src="./tex/4f4f4e395762a3af4575de74
 <p align="center"><img src="./tex/9360c01615e6c796333aecc0b92aad32.svg?invert_in_darkmode" align=middle width=169.50903749999998pt height=16.438356pt/></p>
 
 which is a form of [absolute value constrained
-optimization](#upper-bound-of-absolute-value-of-linear-expression), then solved,
+optimization](#9-upper-bound-of-absolute-value-of-linear-expression), then solved,
 for example, by further transforming to:
 
 <p align="center"><img src="./tex/4839253e32549a5964b2c39409d72e8c.svg?invert_in_darkmode" align=middle width=56.6210205pt height=26.878597349999996pt/></p>
@@ -470,7 +471,8 @@ of a matrix's columns <img src="./tex/7f64e3ac8322584776fdef21909edb84.svg?inver
 
 <p align="center"><img src="./tex/030c5d9936c66f26a9c02059afb78e73.svg?invert_in_darkmode" align=middle width=116.900685pt height=22.931535pt/></p>
 
-(If <img src="./tex/cbfb1b2a33b28eab8a3e59464768e810.svg?invert_in_darkmode" align=middle width=14.908688849999992pt height=22.465723500000017pt/> has only one column, this reduces to [L1 minimization](#l1).)
+(If <img src="./tex/cbfb1b2a33b28eab8a3e59464768e810.svg?invert_in_darkmode" align=middle width=14.908688849999992pt height=22.465723500000017pt/> has only one column, this reduces to [L1
+minimization](#10-l1-minimization).)
 
 
 
