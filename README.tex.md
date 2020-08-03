@@ -597,7 +597,7 @@ x = speye(n,n+m) * quadprog( ...
 
 ## L2,1 norm
 The $L_{2,1}$ norm is defined to be the sum of the Euclidean norms
-of a matrix's columns $\|M|_{2,1}$ = \sum_j \|M_j\|_2 = \sum_j \sqrt{\sum_i
+of a matrix's columns $\|M|_{2,1} = \sum_j \|M_j\|_2 = \sum_j \sqrt{\sum_i
 (m_{ij})^2}$. Consider the matrix problem:
 
 $$ \min_X |A X - B|_{2,1} $$

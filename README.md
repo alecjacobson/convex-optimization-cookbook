@@ -466,8 +466,11 @@ x = speye(n,n+m) * quadprog( ...
 
 ## L2,1 norm
 The <img src="./tex/5b918dca421c871de87c096acfeb29e5.svg?invert_in_darkmode" align=middle width=28.196520000000003pt height=22.46574pt/> norm is defined to be the sum of the Euclidean norms
-of a matrix's columns <img src="./tex/192b5c1b1cb835a9c058797a55a35a0e.svg?invert_in_darkmode" align=middle width=47.53452000000001pt height=24.65759999999998pt/> = \sum_j \|M_j\|_2 = \sum_j \sqrt{\sum_i
-(m_{ij})^2}<img src="./tex/039f9faa0479a060e0cd9055d087e571.svg?invert_in_darkmode" align=middle width=215.44330499999998pt height=22.831379999999992pt/><img src="./tex/3607867afde7a55a42779592b6a243c2.svg?invert_in_darkmode" align=middle width=129.39745499999998pt height=24.65759999999998pt/><img src="./tex/34e2e94971fc40557d174610102e376d.svg?invert_in_darkmode" align=middle width=12.237555000000004pt height=47.67113999999998pt/>X$ has only one column, this reduces to [L1 minimization](#l1).)
+of a matrix's columns <img src="./tex/7f64e3ac8322584776fdef21909edb84.svg?invert_in_darkmode" align=middle width=278.346255pt height=28.603079999999977pt/>. Consider the matrix problem:
+
+<p align="center"><img src="./tex/030c5d9936c66f26a9c02059afb78e73.svg?invert_in_darkmode" align=middle width=116.900685pt height=22.931535pt/></p>
+
+(If <img src="./tex/cbfb1b2a33b28eab8a3e59464768e810.svg?invert_in_darkmode" align=middle width=14.908688849999992pt height=22.465723500000017pt/> has only one column, this reduces to [L1 minimization](#l1).)
 
 
 
