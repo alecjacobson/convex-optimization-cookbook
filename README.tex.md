@@ -511,14 +511,14 @@ An $L_1$ term can also appear with an upper bound.
 $$ \min_{x} \frac{1}{2} x^\top Q x + x^\top f,$$
 
 $$ \text{subject to: } 
-| x |_1 \leq b_1
+| x |_1 \leq b
 $$
 
 ### Convex hull constraint
 
 Geometrically, this constraint is requiring that $x$ lie within in the convex
 hull of $b_1$-$L_1$-norm ball, which is also the [convex
-hull](convex-hull-constraint) of the points in the columns of $B := b_1 [I -I]$.
+hull](convex-hull-constraint) of the points in the columns of $B := b [I -I]$.
 
 Introducing an auxiliary weight vectors $w^+,w^-$, the problem can be transformed into:
 
@@ -526,7 +526,7 @@ $$ \min_{x,w^+,w^-} \frac{1}{2} x^\top Q x + x^\top f,$$
 
 $$
 \text{subject to:} 
-\begin{bmatrix} I & -I \\ \mathbf{1}^\top \mathbf{1}^\top \end{bmatrix} 
+\begin{bmatrix} b I & -b I \\ \mathbf{1}^\top \mathbf{1}^\top \end{bmatrix} 
 \begin{bmatrix} w^+ \\ w^- \end{bmatrix}
 =
 \begin{bmatrix} x \\ 1 \end{bmatrix}
@@ -541,6 +541,6 @@ m = size(B,2);
 x = speye(n,n+m) * quadprog( ...
   blkdiag(Q,sparse(2*n,2*n)),[f;zeros(2*n,1)], ...
   [],[], ...
-  [-speye(n,n) speye(n,n) -speye(n,n);zeros(1,n) ones(1,2*n)],[zeros(n,1);1], ...
+  [-speye(n,n) b*speye(n,n) -b*speye(n,n);zeros(1,n) ones(1,2*n)],[zeros(n,1);1], ...
   [-inf(n,1);zeros(2*n,1)]);
 ```

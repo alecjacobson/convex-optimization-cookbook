@@ -401,19 +401,19 @@ An <img src="./tex/929ed909014029a206f344a28aa47d15.svg?invert_in_darkmode" alig
 
 <p align="center"><img src="./tex/f95c7eef47b5400896a422ca13cc45e8.svg?invert_in_darkmode" align=middle width=139.23525pt height=32.9901pt/></p>
 
-<p align="center"><img src="./tex/c22bd72cad80cc8072a7876ea5daa8d3.svg?invert_in_darkmode" align=middle width=145.07988pt height=16.438356pt/></p>
+<p align="center"><img src="./tex/f68b34c17171bcf3b7b5b3095082c60f.svg?invert_in_darkmode" align=middle width=138.5274pt height=16.438356pt/></p>
 
 ### Convex hull constraint
 
 Geometrically, this constraint is requiring that <img src="./tex/332cc365a4987aacce0ead01b8bdcc0b.svg?invert_in_darkmode" align=middle width=9.39498779999999pt height=14.15524440000002pt/> lie within in the convex
 hull of <img src="./tex/a7d0e0605a6acafe642d0b54226ac650.svg?invert_in_darkmode" align=middle width=13.607385000000003pt height=22.831379999999992pt/>-<img src="./tex/929ed909014029a206f344a28aa47d15.svg?invert_in_darkmode" align=middle width=17.73978854999999pt height=22.465723500000017pt/>-norm ball, which is also the [convex
-hull](convex-hull-constraint) of the points in the columns of <img src="./tex/230ca8c13f36c6225f2057bcdc00c893.svg?invert_in_darkmode" align=middle width=100.46223pt height=24.65759999999998pt/>.
+hull](convex-hull-constraint) of the points in the columns of <img src="./tex/e8086ca465222379817decafbc013637.svg?invert_in_darkmode" align=middle width=93.08772pt height=24.65759999999998pt/>.
 
 Introducing an auxiliary weight vectors <img src="./tex/3470bb0ee26884b43898593dd0249c07.svg?invert_in_darkmode" align=middle width=52.91500500000001pt height=26.177579999999978pt/>, the problem can be transformed into:
 
 <p align="center"><img src="./tex/00810526a0fc121554d356509b2f1b49.svg?invert_in_darkmode" align=middle width=165.73424999999997pt height=35.458499999999994pt/></p>
 
-<p align="center"><img src="./tex/e394122ea181159b269173f7300abde7.svg?invert_in_darkmode" align=middle width=267.3363pt height=39.45249pt/></p>
+<p align="center"><img src="./tex/ae37f2f0cc33e64e6141479d14e442f7.svg?invert_in_darkmode" align=middle width=274.3917pt height=39.45249pt/></p>
 
 <p align="center"><img src="./tex/aa09c3a00c2361d17b95ef6c65370832.svg?invert_in_darkmode" align=middle width=122.22985499999999pt height=17.10687pt/></p>
 
@@ -424,6 +424,6 @@ m = size(B,2);
 x = speye(n,n+m) * quadprog( ...
   blkdiag(Q,sparse(2*n,2*n)),[f;zeros(2*n,1)], ...
   [],[], ...
-  [-speye(n,n) speye(n,n) -speye(n,n);zeros(1,n) ones(1,2*n)],[zeros(n,1);1], ...
+  [-speye(n,n) b*speye(n,n) -b*speye(n,n);zeros(1,n) ones(1,2*n)],[zeros(n,1);1], ...
   [-inf(n,1);zeros(2*n,1)]);
 ```
