@@ -111,6 +111,8 @@ system:
 In MATLAB,
 
 ```
+n = size(Q,1);
+neq = size(Aeq,1);
 x = speye(n,n+neq) * ([Q Aeq';Aeq sparse(neq,neq)] \ [-f;beq];
 ```
 
@@ -142,6 +144,26 @@ In MATLAB,
 x = quadprog(Q,f,[Aleq;-Ageq],[bleq;-bgeq]);
 ```
 
+## Constrained linear vector optimization
+
+In the absence of a quadratic term (e.g., <img src="/tex/664cf1886128c5fc05c2213e395b3fb1.svg?invert_in_darkmode&sanitize=true" align=middle width=42.88131539999999pt height=27.91243950000002pt/>) leaving just a linear
+term, constraints of some form are required to pin down a finite solution. For
+example, we could consider linear inequality constrained linear optimization as
+a generic form of linear programming:
+
+<p align="center"><img src="/tex/51162e2f23b4b743593f8e831e92f291.svg?invert_in_darkmode&sanitize=true" align=middle width=64.09829909999999pt height=24.64115115pt/></p>
+
+<p align="center"><img src="/tex/9e516f9153628c9962c435f665352409.svg?invert_in_darkmode&sanitize=true" align=middle width=168.11653815pt height=16.1187015pt/></p>
+
+Whether a finite, unique solution exists depends on the particular values in
+<img src="/tex/190083ef7a1625fbc75f243cffb9c96d.svg?invert_in_darkmode&sanitize=true" align=middle width=9.81741584999999pt height=22.831056599999986pt/>, <img src="/tex/dd0f5c7c63cb97076f7abf4e0b712a9d.svg?invert_in_darkmode&sanitize=true" align=middle width=28.801472699999987pt height=22.465723500000017pt/>, and <img src="/tex/44a2cb54b57ada7709eed99ce92472f2.svg?invert_in_darkmode&sanitize=true" align=middle width=23.52747044999999pt height=22.831056599999986pt/>.
+
+In MATLAB,
+
+```
+x = linprog(f,Aleq,bleq);
+```
+
 
 ## Box or Bound constraints
 
@@ -162,11 +184,12 @@ complementary set, then this could be written as:
 where <img src="/tex/4b046bb1b60972463ea72c3666c8f78b.svg?invert_in_darkmode&sanitize=true" align=middle width=32.892124649999985pt height=22.465723500000017pt/> is the rectangular identity matrix.
 
 More often, we see this written as a per-element constant bound constraint with
-upper and lower bounds:
+upper and lower bounds. Suppose <img src="/tex/d258dbb976bfc0817fee6aebdba060a3.svg?invert_in_darkmode&sanitize=true" align=middle width=14.617642049999988pt height=22.465723500000017pt/> and <img src="/tex/893501db543dae4f3a4edb1cf6f976f4.svg?invert_in_darkmode&sanitize=true" align=middle width=16.88744969999999pt height=22.465723500000017pt/> are sets of indices for lower and
+upper bound constraints respectively, then consider:
 
 <p align="center"><img src="/tex/771699c7667129e3dbe6d152ce541400.svg?invert_in_darkmode&sanitize=true" align=middle width=139.2352038pt height=32.990165999999995pt/></p>
 
-<p align="center"><img src="/tex/cd55b63a5b101757f231e53e98efa4cf.svg?invert_in_darkmode&sanitize=true" align=middle width=381.5660112pt height=16.1187015pt/></p>
+<p align="center"><img src="/tex/a6e4c8bdbbd344ddc88a629709805c35.svg?invert_in_darkmode&sanitize=true" align=middle width=397.58791379999997pt height=16.1187015pt/></p>
 
 
 
@@ -174,8 +197,93 @@ In MATLAB,
 
 ```
 l = -inf(size(Q,1),1);
-l(I) = bgeq;
+l(Jl) = bgeq;
 u =  inf(size(Q,1),1);
-u(I) = bleq;
+u(Ju) = bleq;
 x = quadprog(Q,f,[],[],[],[],l,u);
+```
+
+
+
+## Upper-bound on absolute value
+
+Placing an _upper_ bound on the absolute value of an element is a convex
+constraint. So the problem 
+
+
+<p align="center"><img src="/tex/771699c7667129e3dbe6d152ce541400.svg?invert_in_darkmode&sanitize=true" align=middle width=139.2352038pt height=32.990165999999995pt/></p>
+
+<p align="center"><img src="/tex/11b22ab783ec2b4eaf3347bd9ea46888.svg?invert_in_darkmode&sanitize=true" align=middle width=210.70885275pt height=17.031940199999998pt/></p>
+
+can be simply expanded to a [bound constraint](#box-or-bound-constraints)
+problem:
+
+
+<p align="center"><img src="/tex/771699c7667129e3dbe6d152ce541400.svg?invert_in_darkmode&sanitize=true" align=middle width=139.2352038pt height=32.990165999999995pt/></p>
+
+<p align="center"><img src="/tex/8d1bd394ca4db0a6de11f6a1395464af.svg?invert_in_darkmode&sanitize=true" align=middle width=327.5774733pt height=16.1187015pt/></p>
+
+In MATLAB,
+
+```
+l = -inf(size(Q,1),1);
+l(J) = -a;
+u =  inf(size(Q,1),1);
+u(J) = a;
+x = quadprog(Q,f,[],[],[],[],l,u);
+```
+
+## Upper-bound of absolute value of linear expression
+
+The per-element [upper-bound on absolute value](#upper-bound-on-absolute-value)
+generalizes to linear expressions. Given a matrix <img src="/tex/196bd7a2970416338465b81e61685417.svg?invert_in_darkmode&sanitize=true" align=middle width=85.9008612pt height=26.17730939999998pt/>, then consider:
+
+<p align="center"><img src="/tex/771699c7667129e3dbe6d152ce541400.svg?invert_in_darkmode&sanitize=true" align=middle width=139.2352038pt height=32.990165999999995pt/></p>
+
+<p align="center"><img src="/tex/bb8fe974b75f8d9038616364b461ee61.svg?invert_in_darkmode&sanitize=true" align=middle width=158.56442745pt height=16.438356pt/></p>
+
+### Linear inequality constraints
+
+Expand the absolute value constraints into two sets of [linear inequality
+constraints](#linear-inequality-constraints):
+
+<p align="center"><img src="/tex/771699c7667129e3dbe6d152ce541400.svg?invert_in_darkmode&sanitize=true" align=middle width=139.2352038pt height=32.990165999999995pt/></p>
+
+<p align="center"><img src="/tex/9c71504e4b9e6c7cb4bda9f2ff027d98.svg?invert_in_darkmode&sanitize=true" align=middle width=304.52610374999995pt height=14.611878599999999pt/></p>
+
+the greater-than-or-equals constraints of which can in turn be converted to
+less-than-or-equals constraints as [above](#linear-inequality-constraints):
+
+<p align="center"><img src="/tex/771699c7667129e3dbe6d152ce541400.svg?invert_in_darkmode&sanitize=true" align=middle width=139.2352038pt height=32.990165999999995pt/></p>
+
+<p align="center"><img src="/tex/246fd60c0d7ac71847e2ee71ad12e68a.svg?invert_in_darkmode&sanitize=true" align=middle width=210.52784774999998pt height=39.452455349999994pt/></p>
+
+In MATLAB,
+
+```
+x = quadprog(Q,f,[Aa;-Aa],[ba;ba]);
+```
+
+### Auxiliary variables
+
+Introduce an auxiliary set of variables <img src="/tex/2fcb08babe9a41630cce2ddc1386b6d4.svg?invert_in_darkmode&sanitize=true" align=middle width=58.24961504999998pt height=22.648391699999998pt/>, then introduce a
+[linear equality constraint](#linear-equality-constraints) tying <img src="/tex/deceeaf6940a8c7a5a02373728002b0f.svg?invert_in_darkmode&sanitize=true" align=middle width=8.649225749999989pt height=14.15524440000002pt/> to <img src="/tex/1b2dfed866baa2ee9bfa2a15ed5cff86.svg?invert_in_darkmode&sanitize=true" align=middle width=29.67608159999999pt height=22.465723500000017pt/>
+and apply [upper-bound absolute value
+constraints](#upper-bound-on-absolute-value) on <img src="/tex/deceeaf6940a8c7a5a02373728002b0f.svg?invert_in_darkmode&sanitize=true" align=middle width=8.649225749999989pt height=14.15524440000002pt/>:
+
+<p align="center"><img src="/tex/fa0aa225ecc037b9f5d98dcb7deef50f.svg?invert_in_darkmode&sanitize=true" align=middle width=139.2352038pt height=33.814738649999995pt/></p>
+
+<p align="center"><img src="/tex/a00b23325fee89c8ba4f0175cbf21dfd.svg?invert_in_darkmode&sanitize=true" align=middle width=172.20640799999998pt height=14.611878599999999pt/></p>
+
+<p align="center"><img src="/tex/2ed5c4cbeaa993008a5e19c470e89141.svg?invert_in_darkmode&sanitize=true" align=middle width=217.17552120000002pt height=14.611878599999999pt/></p>
+
+In MATLAB,
+
+```
+n = size(Q,1);
+na = size(Aa,1);
+x = speye(n,n+na) * quadprog( ...
+  blkdiag(Q,sparse(na,na)),[f;zeros(na,1)], ...
+  [],[],[Aa -speye(na,na)],zeros(na,1), ...
+  [-inf(n,1);-ba],[inf(n,1);ba]);
 ```
