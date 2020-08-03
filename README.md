@@ -5,7 +5,7 @@ Unless otherwise stated, we will assume that quadratic coefficient matrices
 and that the problem has a unique minimizer.
 
 
-## Unconstrained quadratic vector optimization
+## 1 Unconstrained quadratic vector optimization
 
 If <img src="./tex/46d925a52666f83a6cc30a3149bb09df.svg?invert_in_darkmode" align=middle width=71.48480955pt height=26.17730939999998pt/> is positive definite then problems of the
 form:
@@ -22,7 +22,7 @@ In MATLAB,
 x = Q \ -f;
 ```
 
-## Frobenius-norm matrix optimization
+## 2 Frobenius-norm matrix optimization
 
 Define the squared Frobenius norm of a matrix as <img src="./tex/8688a80aebaace3691b0359749a7a740.svg?invert_in_darkmode" align=middle width=138.13167059999998pt height=26.76175259999998pt/>, then we may consider problems of the form:
 
@@ -49,7 +49,7 @@ In MATLAB,
 X = Q \ -F;
 ```
 
-## Fixed value constraints
+## 3 Fixed value constraints
 
 Let <img src="./tex/48ceffddf7ca918284e3acbb9edeee97.svg?invert_in_darkmode" align=middle width=99.62108309999999pt height=27.91243950000002pt/> be a set of indices indicating elements of <img src="./tex/332cc365a4987aacce0ead01b8bdcc0b.svg?invert_in_darkmode" align=middle width=9.39498779999999pt height=14.15524440000002pt/> that
 should be constrained to a particular known value. Then the problem:
@@ -84,7 +84,7 @@ x(I) = y;
 x(U) = Q(U,U) \ -(f(U) + Q(U,I) x(I));
 ```
 
-## Linear equality constraints
+## 4 Linear equality constraints
 
 Given a matrix <img src="./tex/edce993245efb305e317cc35c6ce570a.svg?invert_in_darkmode" align=middle width=79.67685329999999pt height=26.17730939999998pt/> with linearly
 independent rows, consider the problem:
@@ -122,7 +122,7 @@ or if you're not sure if the rows of `Aeq` are linearly independent:
 x = quadprog(Q,f,[],[],Aeq,beq);
 ```
 
-## Linear inequality constraints
+## 5 Linear inequality constraints
 
 Given a matrix <img src="./tex/a74c28e444d9798ed1503a58bee27b40.svg?invert_in_darkmode" align=middle width=86.70888104999999pt height=26.17730939999998pt/> and 
 a matrix <img src="./tex/9148ad1d562c84664b9621a24ad27ca6.svg?invert_in_darkmode" align=middle width=91.82309234999998pt height=26.17730939999998pt/>, consider
@@ -144,7 +144,7 @@ In MATLAB,
 x = quadprog(Q,f,[Aleq;-Ageq],[bleq;-bgeq]);
 ```
 
-## Linear program
+## 6 Linear program
 
 In the absence of a quadratic term (e.g., <img src="./tex/664cf1886128c5fc05c2213e395b3fb1.svg?invert_in_darkmode" align=middle width=42.88131539999999pt height=27.91243950000002pt/>) leaving just a linear
 term, constraints of some form are required to pin down a finite solution. For
@@ -165,7 +165,7 @@ x = linprog(f,Aleq,bleq);
 ```
 
 
-## Box or Bound constraints
+## 7 Box or Bound constraints
 
 A special case of [linear inequality
 constraints](#linear-inequality-constraints) happens when
@@ -205,7 +205,7 @@ x = quadprog(Q,f,[],[],[],[],l,u);
 
 
 
-## Upper-bound on absolute value
+## 8 Upper-bound on absolute value
 
 Placing an _upper_ bound on the absolute value of an element is a convex
 constraint. So the problem 
@@ -233,7 +233,7 @@ u(J) = a;
 x = quadprog(Q,f,[],[],[],[],l,u);
 ```
 
-## Upper-bound of absolute value of linear expression
+## 9 Upper-bound of absolute value of linear expression
 
 The per-element [upper-bound on absolute value](#upper-bound-on-absolute-value)
 generalizes to linear expressions. Given a matrix <img src="./tex/196bd7a2970416338465b81e61685417.svg?invert_in_darkmode" align=middle width=85.9008612pt height=26.17730939999998pt/>, then consider:
@@ -242,7 +242,7 @@ generalizes to linear expressions. Given a matrix <img src="./tex/196bd7a2970416
 
 <p align="center"><img src="./tex/bb8fe974b75f8d9038616364b461ee61.svg?invert_in_darkmode" align=middle width=158.56442745pt height=16.438356pt/></p>
 
-### Linear inequality constraints
+### 9.1 Linear inequality constraints
 
 Expand the absolute value constraints into two sets of [linear inequality
 constraints](#linear-inequality-constraints):
@@ -264,7 +264,7 @@ In MATLAB,
 x = quadprog(Q,f,[Aa;-Aa],[ba;ba]);
 ```
 
-### Auxiliary variables
+### 9.2 Auxiliary variables
 
 Introduce an auxiliary set of variables <img src="./tex/2fcb08babe9a41630cce2ddc1386b6d4.svg?invert_in_darkmode" align=middle width=58.24961504999998pt height=22.648391699999998pt/>, then introduce a
 [linear equality constraint](#linear-equality-constraints) tying <img src="./tex/deceeaf6940a8c7a5a02373728002b0f.svg?invert_in_darkmode" align=middle width=8.649225749999989pt height=14.15524440000002pt/> to <img src="./tex/1b2dfed866baa2ee9bfa2a15ed5cff86.svg?invert_in_darkmode" align=middle width=29.67608159999999pt height=22.465723500000017pt/>
@@ -288,7 +288,7 @@ x = speye(n,n+na) * quadprog( ...
   [-inf(n,1);-ba],[inf(n,1);ba]);
 ```
 
-## L1 minimization
+## 10 L1 minimization
 
 The absolute value may appear in the objective function such as with minimizing
 the <img src="./tex/929ed909014029a206f344a28aa47d15.svg?invert_in_darkmode" align=middle width=17.73978854999999pt height=22.465723500000017pt/> norm of a linear expression (sum of absolute values):
@@ -296,7 +296,7 @@ the <img src="./tex/929ed909014029a206f344a28aa47d15.svg?invert_in_darkmode" ali
 <p align="center"><img src="./tex/2547c2b749998c73fd2003d55d2f0ead.svg?invert_in_darkmode" align=middle width=101.9977431pt height=22.1917806pt/></p>
 
 
-### Linear inequalities
+### 10.1 Linear inequalities
 
 Introduce the auxiliary vector variable <img src="./tex/4f4f4e395762a3af4575de74c019ebb5.svg?invert_in_darkmode" align=middle width=5.936097749999991pt height=20.221802699999984pt/>:
 
@@ -327,7 +327,7 @@ I = speye(na,na);
 x = speye(n,n+na) * linprog([zeros(n,1);ones(na,1)],[A -I;-A -I],[b;-b]);
 ```
 
-### Variable splitting
+### 10.2 Variable splitting
 
 Introduce the vector variables <img src="./tex/6dbb78540bd76da3f1625782d42d6d16.svg?invert_in_darkmode" align=middle width=9.41027339999999pt height=14.15524440000002pt/>,<img src="./tex/6c4adbc36120d62b98deef2a20d5d303.svg?invert_in_darkmode" align=middle width=8.55786029999999pt height=14.15524440000002pt/> so that the element-wise equalities hold:
 
@@ -357,7 +357,7 @@ x = speye(n,n+2*na) * ...
   linprog([zeros(n,1);ones(2*na,1)],[],[],[A -I I],b,[-inf(n,1);zeros(2*na,1)]);
 ```
 
-## Convex hull constraint
+## 11 Convex hull constraint
 
 Consider the problem where the solution <img src="./tex/52729df27072fb95b89c6fe5f01950ed.svg?invert_in_darkmode" align=middle width=49.484325000000005pt height=22.64855999999997pt/> is required to lie in the convex
 hull defined by points <img src="./tex/ffcf5c49a968798f43517f1b07626125.svg?invert_in_darkmode" align=middle width=153.32938499999997pt height=22.831379999999992pt/>:
@@ -395,7 +395,7 @@ x = speye(n,n+m) * quadprog( ...
   [-inf(n,1);zeros(m,1)]);
 ```
 
-## L1 upper bound
+## 12 L1 upper bound
 
 An <img src="./tex/929ed909014029a206f344a28aa47d15.svg?invert_in_darkmode" align=middle width=17.73978854999999pt height=22.465723500000017pt/> term can also appear with an upper bound. 
 
@@ -403,7 +403,7 @@ An <img src="./tex/929ed909014029a206f344a28aa47d15.svg?invert_in_darkmode" alig
 
 <p align="center"><img src="./tex/f68b34c17171bcf3b7b5b3095082c60f.svg?invert_in_darkmode" align=middle width=138.5274pt height=16.438356pt/></p>
 
-### Convex hull constraint
+### 12.1 Convex hull constraint
 
 Geometrically, this constraint is requiring that <img src="./tex/332cc365a4987aacce0ead01b8bdcc0b.svg?invert_in_darkmode" align=middle width=9.39498779999999pt height=14.15524440000002pt/> lie within in the convex
 hull of <img src="./tex/a7d0e0605a6acafe642d0b54226ac650.svg?invert_in_darkmode" align=middle width=13.607385000000003pt height=22.831379999999992pt/>-<img src="./tex/929ed909014029a206f344a28aa47d15.svg?invert_in_darkmode" align=middle width=17.73978854999999pt height=22.465723500000017pt/>-norm ball, which is also the [convex
