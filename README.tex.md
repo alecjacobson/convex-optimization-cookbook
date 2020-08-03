@@ -153,6 +153,8 @@ $$
 In MATLAB,
 
 ```
+n = size(Q,1);
+neq = size(Aeq,1);
 x = speye(n,n+neq) * ([Q Aeq';Aeq sparse(neq,neq)] \ [-f;beq];
 ```
 
@@ -217,13 +219,14 @@ $$
 where $I_{k \times n}$ is the rectangular identity matrix.
 
 More often, we see this written as a per-element constant bound constraint with
-upper and lower bounds:
+upper and lower bounds. Suppose $J_\ell$ and $J_u$ are sets of indices for lower and
+upper bound constraints respectively, then consider:
 
 $$ \min_x \frac{1}{2} x^\top Q x + x^\top f,$$
 
 $$ \text{subject to: } 
-x_i \geq \ell_i \quad \forall i \in I \quad \text{ and } \quad
-x_j \leq u_j \quad \forall j \in J
+x_j \geq \ell_j \quad \forall i \in J_\ell \quad \text{ and } \quad
+x_j \leq u_j \quad \forall j \in J_u
 $$
 
 
@@ -232,8 +235,102 @@ In MATLAB,
 
 ```
 l = -inf(size(Q,1),1);
-l(I) = bgeq;
+l(Jl) = bgeq;
 u =  inf(size(Q,1),1);
-u(I) = bleq;
+u(Ju) = bleq;
 x = quadprog(Q,f,[],[],[],[],l,u);
+```
+
+## Upper-bound on absolute value
+
+Placing an _upper_ bound on the absolute value of an element is a convex
+constraint. So the problem 
+
+
+$$ \min_x \frac{1}{2} x^\top Q x + x^\top f,$$
+
+$$ \text{subject to: } 
+|x_j| \leq  a_j \quad \forall j \in J
+$$
+
+can be simply expanded to a [bound constraint](#box-or-bound-constraints)
+problem:
+
+
+$$ \min_x \frac{1}{2} x^\top Q x + x^\top f,$$
+
+$$ \text{subject to: } 
+x_j \leq  a_j \quad \forall j \i J \quad \text{ and } \quad x_j \geq  -a_j.
+$$
+
+In MATLAB,
+
+```
+l = -inf(size(Q,1),1);
+l(J) = -a;
+u =  inf(size(Q,1),1);
+u(J) = a;
+x = quadprog(Q,f,[],[],[],[],l,u);
+```
+
+## Upper-bound of absolute value of linear expression
+
+The per-element [upper-bound on absolute value](#upper-bound-on-absolute-value)
+generalizes to linear expressions. Given a matrix $A_a \in \mathbb{R}^{na \times
+n}$, then consider:
+
+$$ \min_x \frac{1}{2} x^\top Q x + x^\top f,$$
+
+$$ \text{subject to: } |A_a x | \leq  b_a $$
+
+### Linear inequality constraints
+
+Expand the absolute value constraints into two sets of [linear inequality
+constraints](#linear-inequality-constraints):
+
+$$ \min_x \frac{1}{2} x^\top Q x + x^\top f,$$
+
+$$ \text{subject to: } A_a x  \leq  b_a  \quad \text{ and } \quad A_a x \geq
+-b_a,$$
+
+the greater-than-or-equals constraints of which can in turn be converted to
+less-than-or-equals constraints as [above](#linear-inequality-constraints):
+
+$$ \min_x \frac{1}{2} x^\top Q x + x^\top f,$$
+
+$$ \text{subject to: } 
+\begin{bmatrix} A_a \\ -A_a \end{bmatrix} x  \leq  \begin{bmatrix} b_a \\ b_a \end{bmatrix},$$
+
+In MATLAB,
+
+```
+x = quadprog(Q,f,[Aa;-Aa],[ba;ba]);
+```
+
+### Auxiliary variables
+
+Introduce an auxiliary set of variables $y \in \mathbb{R}^na$, then introduce a
+[linear equality constraint](#linear-equality-constraints) tying $y$ to $A_a x$
+and apply [upper-bound absolute value
+constraints](#upper-bound-on-absolute-value) on $y$:
+
+$$ \min_{x,y} \frac{1}{2} x^\top Q x + x^\top f,$$
+
+$$ \text{subject to: } 
+A_a x - y = 0
+$$
+
+$$ \text{and: } 
+y \leq  b_a \quad \text{ and } \quad y \geq  -b_a.
+$$
+
+In MATLAB,
+
+```
+n = size(Q,1);
+na = size(Aa,1);
+x = speye(n,n+na) * quadprog( ...
+  blkdiag(Q,sparse(na,na)),[f;zeros(na,1)], ...
+  [],[],[Aa -speye(na,na)],zeros(na,1), ...
+  [-inf(n,1);-ba],[inf(n,1);ba]);
 ```
