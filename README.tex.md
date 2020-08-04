@@ -1,5 +1,9 @@
 # Convex Optimization Cookbook
 
+The goal of this cookbook is to serve as a reference for various convex
+optimization problems (with a bias toward computer graphics and geometry
+processing). 
+
 Unless otherwise stated, we will assume that quadratic coefficient matrices
 (e.g., $Q$) are symmetric positive (semi-)definite so that $x^\top Q x$ is a
 convex function and that the stated problem has a unique minimizer.
@@ -690,6 +694,40 @@ prob.cones.sub = ...
 prob.cones.subptr = 1:(nb+1):(nb+1)*na;
 [r,res]=mosekopt('minimize echo(0)',prob);
 X = reshape(res.sol.itr.xx(1:n*nb),n,nb);
+```
+
+## Bonus: Orthogonal Procrustes
+
+Orthogonal Procrustes problem asks to find an orthogonal matrix $R$ that
+approximately maps a set of vectors in $A$ to another set of vectors $B$:
+
+$$ \min_{R} \| R A - B \|_F^2$$
+$$ \text{subject to } R^\top R = I$$
+
+While _not convex_, this problem can be solved efficiently via singular
+value decomposition. First, transform the minimization of the Frobenius into a
+maximization of a matrix-product trace:
+
+$$ \max_{R} \text{trace}(R X)$$
+$$ \text{subject to: } R^\top R = I$$
+
+where $X = BA^\top$. Let $X$ have a SVD decomposition $X = USV^\top$, then the
+optimal $R$ can be computed as
+
+$$R = VU^\top.$$
+
+up to changing the sign of the last column of $U$ associated with the smallest
+singular value so that $det(R) > 0$
+
+In MATLAB,
+
+```matlab
+[U,S,V] = svd(B*A');
+R = V*U';
+if( det(R) < 0 )
+    U(:,end) = -U(:,end);
+    R = V*U';
+end
 ```
 
 ## References

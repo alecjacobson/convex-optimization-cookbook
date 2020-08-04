@@ -1,5 +1,9 @@
 # Convex Optimization Cookbook
 
+The goal of this cookbook is to serve as a reference for various convex
+optimization problems (with a bias toward computer graphics and geometry
+processing). 
+
 Unless otherwise stated, we will assume that quadratic coefficient matrices
 (e.g., <img src="./tex/1afcdb0f704394b16fe85fb40c45ca7a.svg?invert_in_darkmode" align=middle width=12.99542474999999pt height=22.465723500000017pt/>) are symmetric positive (semi-)definite so that <img src="./tex/664cf1886128c5fc05c2213e395b3fb1.svg?invert_in_darkmode" align=middle width=42.88131539999999pt height=27.91243950000002pt/> is a
 convex function and that the stated problem has a unique minimizer.
@@ -556,6 +560,40 @@ prob.cones.sub = ...
 prob.cones.subptr = 1:(nb+1):(nb+1)*na;
 [r,res]=mosekopt('minimize echo(0)',prob);
 X = reshape(res.sol.itr.xx(1:n*nb),n,nb);
+```
+
+## Bonus: Orthogonal Procrustes
+
+Orthogonal Procrustes problem asks to find an orthogonal matrix <img src="./tex/1e438235ef9ec72fc51ac5025516017c.svg?invert_in_darkmode" align=middle width=12.60847334999999pt height=22.465723500000017pt/> that
+approximately maps a set of vectors in <img src="./tex/53d147e7f3fe6e47ee05b88b166bd3f6.svg?invert_in_darkmode" align=middle width=12.328800000000005pt height=22.46574pt/> to another set of vectors <img src="./tex/61e84f854bc6258d4108d08d4c4a0852.svg?invert_in_darkmode" align=middle width=13.29340979999999pt height=22.465723500000017pt/>:
+
+<p align="center"><img src="./tex/dfc68e33fd9d625879cc8690c50247e4.svg?invert_in_darkmode" align=middle width=115.00352819999999pt height=24.805529099999998pt/></p>
+<p align="center"><img src="./tex/25d553fa67335aa4b6f4a3d77b825e47.svg?invert_in_darkmode" align=middle width=144.00684869999998pt height=17.9744895pt/></p>
+
+While _not convex_, this problem can be solved efficiently via singular
+value decomposition. First, transform the minimization of the Frobenius into a
+maximization of a matrix-product trace:
+
+<p align="center"><img src="./tex/0ee80ce04b0abe6131a7a25ccdf8ae04.svg?invert_in_darkmode" align=middle width=109.29809054999998pt height=22.931502pt/></p>
+<p align="center"><img src="./tex/66b8c2280839a43789a762db4f218996.svg?invert_in_darkmode" align=middle width=150.3995625pt height=17.9744895pt/></p>
+
+where <img src="./tex/340d7c3c05487642e4d3212c0b52fbf0.svg?invert_in_darkmode" align=middle width=72.72252074999999pt height=27.91243950000002pt/>. Let <img src="./tex/cbfb1b2a33b28eab8a3e59464768e810.svg?invert_in_darkmode" align=middle width=14.908688849999992pt height=22.465723500000017pt/> have a SVD decomposition <img src="./tex/fa96b4a09195e526ad0c589e0e05153e.svg?invert_in_darkmode" align=middle width=84.38567114999998pt height=27.91243950000002pt/>, then the
+optimal <img src="./tex/1e438235ef9ec72fc51ac5025516017c.svg?invert_in_darkmode" align=middle width=12.60847334999999pt height=22.465723500000017pt/> can be computed as
+
+<p align="center"><img src="./tex/4ab3635f09106854bde755162d48d1b3.svg?invert_in_darkmode" align=middle width=76.44621105pt height=14.77813755pt/></p>
+
+up to changing the sign of the last column of <img src="./tex/6bac6ec50c01592407695ef84f457232.svg?invert_in_darkmode" align=middle width=13.01596064999999pt height=22.465723500000017pt/> associated with the smallest
+singular value so that <img src="./tex/b9d4e284c34e4785e81dea26ab6ec9f9.svg?invert_in_darkmode" align=middle width=77.67694274999998pt height=24.65753399999998pt/>
+
+In MATLAB,
+
+```matlab
+[U,S,V] = svd(B*A');
+R = V*U';
+if( det(R) < 0 )
+    U(:,end) = -U(:,end);
+    R = V*U';
+end
 ```
 
 ## References
