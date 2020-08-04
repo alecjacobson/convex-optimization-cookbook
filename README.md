@@ -1,9 +1,8 @@
 # Convex Optimization Cookbook
 
 Unless otherwise stated, we will assume that quadratic coefficient matrices
-(e.g., <img src="./tex/1afcdb0f704394b16fe85fb40c45ca7a.svg?invert_in_darkmode" align=middle width=12.99542474999999pt height=22.465723500000017pt/>) are symmetric positive (semi-)definite so that <img src="./tex/664cf1886128c5fc05c2213e395b3fb1.svg?invert_in_darkmode" align=middle width=42.88131539999999pt height=27.91243950000002pt/> is a convex function
-and that the problem has a unique minimizer.
-
+(e.g., <img src="./tex/1afcdb0f704394b16fe85fb40c45ca7a.svg?invert_in_darkmode" align=middle width=12.99542474999999pt height=22.465723500000017pt/>) are symmetric positive (semi-)definite so that <img src="./tex/664cf1886128c5fc05c2213e395b3fb1.svg?invert_in_darkmode" align=middle width=42.88131539999999pt height=27.91243950000002pt/> is a
+convex function and that the stated problem has a unique minimizer.
 
 ## 1. Unconstrained quadratic vector optimization
 
@@ -33,15 +32,15 @@ this to:
 
 <p align="center"><img src="./tex/bd817c907beee2449169e03e42bb4cb2.svg?invert_in_darkmode" align=middle width=282.00085484999994pt height=32.990165999999995pt/></p>
 
-Letting <img src="./tex/9eb4767e5eb2c4e40983c4cb0c33fedc.svg?invert_in_darkmode" align=middle width=70.66656794999999pt height=27.91243950000002pt/> and <img src="./tex/23a3f7407c27e8d5ded6f25888f8b45c.svg?invert_in_darkmode" align=middle width=82.60842974999998pt height=27.91243950000002pt/>, this can be written in a form
+Letting <img src="./tex/9eb4767e5eb2c4e40983c4cb0c33fedc.svg?invert_in_darkmode" align=middle width=70.66656794999999pt height=27.91243950000002pt/> and <img src="./tex/74088816610eabdf394f5741b51dfc6f.svg?invert_in_darkmode" align=middle width=84.27523500000001pt height=27.91271999999999pt/>, this can be written in a form
 similar to the [unconstrained vector problem](#1-unconstrained-quadratic-vector-optimization):
 
 <p align="center"><img src="./tex/6540175597e7390791d4d169f66c7ba0.svg?invert_in_darkmode" align=middle width=235.378572pt height=32.990165999999995pt/></p>
 
-this problem is _separable_ in the columns of <img src="./tex/cbfb1b2a33b28eab8a3e59464768e810.svg?invert_in_darkmode" align=middle width=14.908688849999992pt height=22.465723500000017pt/> and <img src="./tex/ddcb483302ed36a59286424aa5e0be17.svg?invert_in_darkmode" align=middle width=11.18724254999999pt height=22.465723500000017pt/> and solved by finding
+this problem is _separable_ in the columns of <img src="./tex/cbfb1b2a33b28eab8a3e59464768e810.svg?invert_in_darkmode" align=middle width=14.908688849999992pt height=22.465723500000017pt/> and <img src="./tex/b8bc815b5e9d5177af01fd4d3d3c2f10.svg?invert_in_darkmode" align=middle width=12.853995000000003pt height=22.46574pt/> and solved by finding
 the solution to the multi-column linear system:
 
-<p align="center"><img src="./tex/29a4f160c30f9322be68c54e72355d67.svg?invert_in_darkmode" align=middle width=73.79439705pt height=14.42921205pt/></p>
+<p align="center"><img src="./tex/a70679fad3e36f1eccf85884db339862.svg?invert_in_darkmode" align=middle width=75.4611pt height=14.429217pt/></p>
 
 In MATLAB,
 
@@ -87,7 +86,7 @@ x(U) = Q(U,U) \ -(f(U) + Q(U,I) x(I));
 
 ## 4. Linear equality constraints
 
-Given a matrix <img src="./tex/edce993245efb305e317cc35c6ce570a.svg?invert_in_darkmode" align=middle width=79.67685329999999pt height=26.17730939999998pt/> with linearly
+Given a matrix <img src="./tex/a62e636c0a5a0dc7bb27db081d191ac3.svg?invert_in_darkmode" align=middle width=96.11514pt height=26.177579999999978pt/> with linearly
 independent rows, consider the problem:
 
 <p align="center"><img src="./tex/771699c7667129e3dbe6d152ce541400.svg?invert_in_darkmode" align=middle width=139.2352038pt height=32.990165999999995pt/></p>
@@ -125,8 +124,8 @@ x = quadprog(Q,f,[],[],Aeq,beq);
 
 ## 5. Linear inequality constraints
 
-Given a matrix <img src="./tex/a74c28e444d9798ed1503a58bee27b40.svg?invert_in_darkmode" align=middle width=86.70888104999999pt height=26.17730939999998pt/> and 
-a matrix <img src="./tex/9148ad1d562c84664b9621a24ad27ca6.svg?invert_in_darkmode" align=middle width=91.82309234999998pt height=26.17730939999998pt/>, consider
+Given a matrix <img src="./tex/fe9962541018ddfc535fc99a23c2b2aa.svg?invert_in_darkmode" align=middle width=103.147275pt height=26.177579999999978pt/> and 
+a matrix <img src="./tex/035d3cdcbe2a412c297ab6d27a5c4eeb.svg?invert_in_darkmode" align=middle width=108.26145pt height=26.177579999999978pt/>, consider
 
 <p align="center"><img src="./tex/771699c7667129e3dbe6d152ce541400.svg?invert_in_darkmode" align=middle width=139.2352038pt height=32.990165999999995pt/></p>
 
@@ -294,7 +293,7 @@ x = speye(n,n+na) * quadprog( ...
 The absolute value may appear in the objective function such as with minimizing
 the <img src="./tex/929ed909014029a206f344a28aa47d15.svg?invert_in_darkmode" align=middle width=17.73978854999999pt height=22.465723500000017pt/> norm of a linear expression (sum of absolute values):
 
-<p align="center"><img src="./tex/2547c2b749998c73fd2003d55d2f0ead.svg?invert_in_darkmode" align=middle width=101.9977431pt height=22.1917806pt/></p>
+<p align="center"><img src="./tex/400b1af52ddbe3a758972372483de6b6.svg?invert_in_darkmode" align=middle width=101.99772pt height=22.19184pt/></p>
 
 
 ### 10.1. Linear inequalities
@@ -494,9 +493,69 @@ this yet again to:
 <p align="center"><img src="./tex/fcdf39ef6665f7f1cf2fa13845074f23.svg?invert_in_darkmode" align=middle width=327.63059999999996pt height=16.438356pt/></p>
 <p align="center"><img src="./tex/755a94154bdf72e6fa386a23803c7fde.svg?invert_in_darkmode" align=middle width=136.07995499999998pt height=16.438356pt/></p>
 
+In MATLAB with mosek's conic solver,
 
-In MATLAB with mosek's `conic` function,
+```matlab
+nb = size(B,2);
+na = size(A,1);
+n = size(A,2);
+prob = struct();
+prob.c = [zeros(n*nb + na*nb,1);ones(nb,1)];
+prob.a = [repdiag(A,nb) -speye(na*nb,na*nb) sparse(na*nb,nb)];
+prob.blc = B(:);
+prob.buc = prob.blc;
+[~, res] = mosekopt('symbcon echo(0)');
+prob.cones.type = repmat(res.symbcon.MSK_CT_QUAD,1,nb);
+prob.cones.sub = ...
+  reshape([n*nb+na*nb+(1:nb);reshape(n*nb+(1:na*nb),na,nb)],[],1);
+prob.cones.subptr = 1:(na+1):(na+1)*nb;
+[r,res]=mosekopt('minimize echo(0)',prob);
+X = reshape(res.sol.itr.xx(1:n*nb),n,nb);
 ```
+
+### 13.1. Transpose
+
+<p align="center"><img src="./tex/1660c365039facfd4ac031db6b1a9e69.svg?invert_in_darkmode" align=middle width=140.782125pt height=25.380795pt/></p>
+
+First, let us move the affine expression in a constraint, leaving the <img src="./tex/5b918dca421c871de87c096acfeb29e5.svg?invert_in_darkmode" align=middle width=28.196520000000003pt height=22.46574pt/>
+norm of a matrix of auxiliary variables <img src="./tex/91aac9730317276af725abd8cef04ca9.svg?invert_in_darkmode" align=middle width=13.196370000000005pt height=22.46574pt/> in the objective:
+
+<p align="center"><img src="./tex/65108a9af4de6d535ac471fb5f310f0a.svg?invert_in_darkmode" align=middle width=69.47506499999999pt height=25.168934999999998pt/></p>
+<p align="center"><img src="./tex/c28936ccee421e0fed854d70f740ced9.svg?invert_in_darkmode" align=middle width=212.67675pt height=17.974439999999998pt/></p>
+
+Now, introduce a vector of auxiliary variables corresponding to the columns of
+<img src="./tex/91aac9730317276af725abd8cef04ca9.svg?invert_in_darkmode" align=middle width=13.196370000000005pt height=22.46574pt/>:
+
+<p align="center"><img src="./tex/2e6b46813a3b87b76a3694f71ddc9e22.svg?invert_in_darkmode" align=middle width=65.617695pt height=27.618359999999996pt/></p>
+<p align="center"><img src="./tex/c28936ccee421e0fed854d70f740ced9.svg?invert_in_darkmode" align=middle width=212.67675pt height=17.974439999999998pt/></p>
+<p align="center"><img src="./tex/755a94154bdf72e6fa386a23803c7fde.svg?invert_in_darkmode" align=middle width=136.07995499999998pt height=16.438356pt/></p>
+
+Many, solvers will require that variables are vectorized, so we may transform
+this yet again to:
+
+<p align="center"><img src="./tex/2e6b46813a3b87b76a3694f71ddc9e22.svg?invert_in_darkmode" align=middle width=65.617695pt height=27.618359999999996pt/></p>
+<p align="center"><img src="./tex/253d3f995052390db9e5014e747fe50e.svg?invert_in_darkmode" align=middle width=338.72684999999996pt height=18.887715pt/></p>
+<p align="center"><img src="./tex/755a94154bdf72e6fa386a23803c7fde.svg?invert_in_darkmode" align=middle width=136.07995499999998pt height=16.438356pt/></p>
+
+In MATLAB with mosek's conic optimization (and [gptoolbox's
+kroneye](https://github.com/alecjacobson/gptoolbox/master/matrix/kroneye.m)):
+
+```matlab
+nb = size(B,2);
+na = size(A,1);
+n = size(A,2);
+prob = struct();
+prob.c = [zeros(n*nb + na*nb,1);ones(na,1)];
+prob.a = [kroneye(A,nb) -speye(na*nb,na*nb) sparse(na*nb,na)];
+prob.blc = reshape(B',[],1);
+prob.buc = prob.blc;
+[~, res] = mosekopt('symbcon echo(0)');
+prob.cones.type = repmat(res.symbcon.MSK_CT_QUAD,1,na);
+prob.cones.sub = ...
+  reshape([n*nb+na*nb+(1:na);reshape(n*nb+(1:na*nb),nb,na)],[],1);
+prob.cones.subptr = 1:(nb+1):(nb+1)*na;
+[r,res]=mosekopt('minimize echo(0)',prob);
+X = reshape(res.sol.itr.xx(1:n*nb),n,nb);
 ```
 
 ## References
