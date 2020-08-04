@@ -626,18 +626,70 @@ $$ \text{subject to: }
 (I \otimes A) \text{vec}(X) - \text{vec}(B) = \text{vec}(Y)$$
 $$ \text{       and: } z_i \geq \| Y_i \| \quad \forall i$$
 
+In MATLAB with mosek's conic solver,
+
+```matlab
+nb = size(B,2);
+na = size(A,1);
+n = size(A,2);
+prob = struct();
+prob.c = [zeros(n*nb + na*nb,1);ones(nb,1)];
+prob.a = [repdiag(A,nb) -speye(na*nb,na*nb) sparse(na*nb,nb)];
+prob.blc = B(:);
+prob.buc = prob.blc;
+[~, res] = mosekopt('symbcon echo(0)');
+prob.cones.type = repmat(res.symbcon.MSK_CT_QUAD,1,nb);
+prob.cones.sub = ...
+  reshape([n*nb+na*nb+(1:nb);reshape(n*nb+(1:na*nb),na,nb)],[],1);
+prob.cones.subptr = 1:(na+1):(na+1)*nb;
+[r,res]=mosekopt('minimize echo(0)',prob);
+X = reshape(res.sol.itr.xx(1:n*nb),n,nb);
+```
+
 ### 13.1. Transpose
 
 $$ \min_X |(A X - B)^\top|_{2,1} $$
 
 First, let us move the affine expression in a constraint, leaving the $L_{2,1}$
-norm of a matrix of auxiliary variables $Z$ in the objective:
+norm of a matrix of auxiliary variables $Y$ in the objective:
 
-$$ \min_{X,Z} |Z|_{2,1} $$
-$$ \text{subject to: } A X - B = Y$$
+$$ \min_{X,Y} |Y|_{2,1} $$
+$$ \text{subject to: } X^\top A^\top - B^\top = Y$$
 
-In MATLAB with mosek's `conic` function,
-```
+Now, introduce a vector of auxiliary variables corresponding to the columns of
+$Y$:
+
+$$ \min_{X,Y,z} z^\top \mathbf{1} $$
+$$ \text{subject to: } X^\top A^\top - B^\top = Y$$
+$$ \text{       and: } z_i \geq \| Y_i \| \quad \forall i$$
+
+Many, solvers will require that variables are vectorized, so we may transform
+this yet again to:
+
+$$ \min_{X,Y,z} z^\top \mathbf{1} $$
+$$ \text{subject to: } 
+(A \otimes I) \text{vec}(X) - \text{vec}(B^\top) = \text{vec}(Y)$$
+$$ \text{       and: } z_i \geq \| Y_i \| \quad \forall i$$
+
+In MATLAB with mosek's conic optimization (and [gptoolbox's
+kroneye](https://github.com/alecjacobson/gptoolbox/master/matrix/kroneye.m)):
+
+```matlab
+nb = size(B,2);
+na = size(A,1);
+n = size(A,2);
+prob = struct();
+prob.c = [zeros(n*nb + na*nb,1);ones(na,1)];
+prob.a = [kroneye(A,nb) -speye(na*nb,na*nb) sparse(na*nb,na)];
+prob.blc = reshape(B',[],1);
+prob.buc = prob.blc;
+[~, res] = mosekopt('symbcon echo(0)');
+prob.cones.type = repmat(res.symbcon.MSK_CT_QUAD,1,na);
+prob.cones.sub = ...
+  reshape([n*nb+na*nb+(1:na);reshape(n*nb+(1:na*nb),nb,na)],[],1);
+prob.cones.subptr = 1:(nb+1):(nb+1)*na;
+[r,res]=mosekopt('minimize echo(0)',prob);
+X = reshape(res.sol.itr.xx(1:n*nb),n,nb);
 ```
 
 ## References
