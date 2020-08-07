@@ -516,7 +516,7 @@ An $L_1$ term can also appear in the constraints with an upper bound.
 $$ \min_{x} \frac{1}{2} x^\top Q x + x^\top f,$$
 
 $$ \text{subject to: } 
-| x |_1 \leq b
+\| x \|_1 \leq b
 $$
 
 
@@ -601,10 +601,10 @@ x = speye(n,n+m) * quadprog( ...
 
 ## 13. L2,1 norm
 The $L_{2,1}$ norm is defined to be the sum of the Euclidean norms
-of a matrix's columns $\|M|_{2,1} = \sum_j \|M_j\| = \sum_j \sqrt{\sum_i
+of a matrix's columns $\|M\|_{2,1} = \sum_j \|M_j\| = \sum_j \sqrt{\sum_i
 (m_{ij})^2}$. Consider the matrix problem:
 
-$$ \min_X |A X - B|_{2,1} $$
+$$ \min_X \|A X - B\|_{2,1} $$
 
 (If $A$ has only one row, this reduces to [L1
 minimization](#10-l1-minimization).)
@@ -612,7 +612,7 @@ minimization](#10-l1-minimization).)
 First, let us move the affine expression in a constraint, leaving the $L_{2,1}$
 norm of a matrix of auxiliary variables $Y$ in the objective:
 
-$$ \min_{X,Y} |Y|_{2,1} $$
+$$ \min_{X,Y} \|Y\|_{2,1} $$
 $$ \text{subject to: } A X - B = Y$$
 
 Now, introduce a vector of auxiliary variables corresponding to the columns of
@@ -652,12 +652,12 @@ X = reshape(res.sol.itr.xx(1:n*nb),n,nb);
 
 ### 13.1. Transpose
 
-$$ \min_X |(A X - B)^\top|_{2,1} $$
+$$ \min_X \|(A X - B)^\top\|_{2,1} $$
 
 First, let us move the affine expression in a constraint, leaving the $L_{2,1}$
 norm of a matrix of auxiliary variables $Y$ in the objective:
 
-$$ \min_{X,Y} |Y|_{2,1} $$
+$$ \min_{X,Y} \|Y\|_{2,1} $$
 $$ \text{subject to: } X^\top A^\top - B^\top = Y$$
 
 Now, introduce a vector of auxiliary variables corresponding to the columns of

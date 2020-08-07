@@ -406,7 +406,7 @@ An <img src="./tex/929ed909014029a206f344a28aa47d15.svg?invert_in_darkmode" alig
 
 <p align="center"><img src="./tex/f95c7eef47b5400896a422ca13cc45e8.svg?invert_in_darkmode" align=middle width=139.2352038pt height=32.990165999999995pt/></p>
 
-<p align="center"><img src="./tex/f68b34c17171bcf3b7b5b3095082c60f.svg?invert_in_darkmode" align=middle width=138.52741154999998pt height=16.438356pt/></p>
+<p align="center"><img src="./tex/bc5b3a4946642f0d9055197642c82a2b.svg?invert_in_darkmode" align=middle width=145.83343499999998pt height=16.438356pt/></p>
 
 
 ### 12.1. Auxiliary variables
@@ -470,9 +470,9 @@ x = speye(n,n+m) * quadprog( ...
 
 ## 13. L2,1 norm
 The <img src="./tex/5b918dca421c871de87c096acfeb29e5.svg?invert_in_darkmode" align=middle width=28.196520000000003pt height=22.46574pt/> norm is defined to be the sum of the Euclidean norms
-of a matrix's columns <img src="./tex/4f73b4185b81a335005ed93bb6eac66c.svg?invert_in_darkmode" align=middle width=270.972405pt height=28.603079999999977pt/>. Consider the matrix problem:
+of a matrix's columns <img src="./tex/795b59405aefb71d4343db8a701622ae.svg?invert_in_darkmode" align=middle width=274.625505pt height=28.603079999999977pt/>. Consider the matrix problem:
 
-<p align="center"><img src="./tex/030c5d9936c66f26a9c02059afb78e73.svg?invert_in_darkmode" align=middle width=116.900685pt height=22.931535pt/></p>
+<p align="center"><img src="./tex/07fc1d29dcfc72eca6916822b4c4825a.svg?invert_in_darkmode" align=middle width=124.20671999999999pt height=22.931535pt/></p>
 
 (If <img src="./tex/53d147e7f3fe6e47ee05b88b166bd3f6.svg?invert_in_darkmode" align=middle width=12.328800000000005pt height=22.46574pt/> has only one row, this reduces to [L1
 minimization](#10-l1-minimization).)
@@ -480,7 +480,7 @@ minimization](#10-l1-minimization).)
 First, let us move the affine expression in a constraint, leaving the <img src="./tex/5b918dca421c871de87c096acfeb29e5.svg?invert_in_darkmode" align=middle width=28.196520000000003pt height=22.46574pt/>
 norm of a matrix of auxiliary variables <img src="./tex/91aac9730317276af725abd8cef04ca9.svg?invert_in_darkmode" align=middle width=13.196370000000005pt height=22.46574pt/> in the objective:
 
-<p align="center"><img src="./tex/65108a9af4de6d535ac471fb5f310f0a.svg?invert_in_darkmode" align=middle width=69.47506499999999pt height=25.168934999999998pt/></p>
+<p align="center"><img src="./tex/7493077736e0498dccef3e079b8c4be3.svg?invert_in_darkmode" align=middle width=76.7811pt height=25.168934999999998pt/></p>
 <p align="center"><img src="./tex/cafa8156531ce27284a8385f864a8c31.svg?invert_in_darkmode" align=middle width=179.38965pt height=14.611871999999998pt/></p>
 
 Now, introduce a vector of auxiliary variables corresponding to the columns of
@@ -519,12 +519,12 @@ X = reshape(res.sol.itr.xx(1:n*nb),n,nb);
 
 ### 13.1. Transpose
 
-<p align="center"><img src="./tex/1660c365039facfd4ac031db6b1a9e69.svg?invert_in_darkmode" align=middle width=140.78208705pt height=25.380872549999996pt/></p>
+<p align="center"><img src="./tex/bfe5f2d5f228f43613a0bb544a594784.svg?invert_in_darkmode" align=middle width=148.08799499999998pt height=25.380795pt/></p>
 
 First, let us move the affine expression in a constraint, leaving the <img src="./tex/5b918dca421c871de87c096acfeb29e5.svg?invert_in_darkmode" align=middle width=28.196520000000003pt height=22.46574pt/>
 norm of a matrix of auxiliary variables <img src="./tex/91aac9730317276af725abd8cef04ca9.svg?invert_in_darkmode" align=middle width=13.196370000000005pt height=22.46574pt/> in the objective:
 
-<p align="center"><img src="./tex/65108a9af4de6d535ac471fb5f310f0a.svg?invert_in_darkmode" align=middle width=69.47506499999999pt height=25.168934999999998pt/></p>
+<p align="center"><img src="./tex/7493077736e0498dccef3e079b8c4be3.svg?invert_in_darkmode" align=middle width=76.7811pt height=25.168934999999998pt/></p>
 <p align="center"><img src="./tex/c28936ccee421e0fed854d70f740ced9.svg?invert_in_darkmode" align=middle width=212.67691169999998pt height=17.9744895pt/></p>
 
 Now, introduce a vector of auxiliary variables corresponding to the columns of
