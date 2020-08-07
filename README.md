@@ -545,7 +545,7 @@ this yet again to:
 <p align="center"><img src="./tex/755a94154bdf72e6fa386a23803c7fde.svg?invert_in_darkmode" align=middle width=136.07995499999998pt height=16.438356pt/></p>
 
 In MATLAB with mosek's conic optimization (and [gptoolbox's
-kroneye](https://github.com/alecjacobson/gptoolbox/master/matrix/kroneye.m)):
+kroneye](https://github.com/alecjacobson/gptoolbox/blob/master/matrix/kroneye.m)):
 
 ```matlab
 nb = size(B,2);

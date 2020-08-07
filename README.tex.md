@@ -679,7 +679,7 @@ $$ \text{subject to: }
 $$ \text{       and: } z_i \geq \| Y_i \| \quad \forall i$$
 
 In MATLAB with mosek's conic optimization (and [gptoolbox's
-kroneye](https://github.com/alecjacobson/gptoolbox/master/matrix/kroneye.m)):
+kroneye](https://github.com/alecjacobson/gptoolbox/blob/master/matrix/kroneye.m)):
 
 ```matlab
 nb = size(B,2);
