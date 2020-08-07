@@ -519,6 +519,9 @@ X = reshape(res.sol.itr.xx(1:n*nb),n,nb);
 
 ### 13.1. Transpose
 
+Consider also the <img src="./tex/5b918dca421c871de87c096acfeb29e5.svg?invert_in_darkmode" align=middle width=28.196520000000003pt height=22.46574pt/> norm of the transpose of an affine expression, i.e.,
+measuring the sum of Euclidean norms of each _row_ of <img src="./tex/87a9a9f76960fec5da1a1dc27666c98d.svg?invert_in_darkmode" align=middle width=60.62215500000001pt height=22.46574pt/>:
+
 <p align="center"><img src="./tex/bfe5f2d5f228f43613a0bb544a594784.svg?invert_in_darkmode" align=middle width=148.08799499999998pt height=25.380795pt/></p>
 
 First, let us move the affine expression in a constraint, leaving the <img src="./tex/5b918dca421c871de87c096acfeb29e5.svg?invert_in_darkmode" align=middle width=28.196520000000003pt height=22.46574pt/>

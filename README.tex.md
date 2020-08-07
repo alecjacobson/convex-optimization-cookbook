@@ -652,6 +652,9 @@ X = reshape(res.sol.itr.xx(1:n*nb),n,nb);
 
 ### 13.1. Transpose
 
+Consider also the $L_{2,1}$ norm of the transpose of an affine expression, i.e.,
+measuring the sum of Euclidean norms of each _row_ of $A X - B$:
+
 $$ \min_X \|(A X - B)^\top\|_{2,1} $$
 
 First, let us move the affine expression in a constraint, leaving the $L_{2,1}$
