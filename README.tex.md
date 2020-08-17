@@ -420,7 +420,7 @@ x = speye(n,n+na) * linprog([zeros(n,1);ones(na,1)],[A -I;-A -I],[b;-b]);
 Introduce the vector variables $u$,$v$ so that the element-wise equalities hold:
 
 $$ |Ax - b| = u - v \quad \text{ and } u = max(Ax-b,0) \text{ and } v =
-max(Ax-b,0)$$
+max(b-Ax,0)$$
 
 Then the problem becomes:
 
