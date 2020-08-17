@@ -426,7 +426,7 @@ Then the problem becomes:
 
 $$\min_{x,u,v} u^\top \mathbf{1} + v^\top \mathbf{1}$$
 $$\text{subject to: } A x - b = u - v$$
-$$\text{and: } u, \geq 0 $$
+$$\text{and: } u,v \geq 0 $$
 
 This can be expanded in matrix form to:
 
