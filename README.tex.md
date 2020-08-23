@@ -5,7 +5,7 @@ optimization problems (with a bias toward computer graphics and geometry
 processing). 
 
 Unless otherwise stated, we will assume that quadratic coefficient matrices
-(e.g., $Q$) are symmetric positive (semi-)definite so that $x^\top Q x$ is a
+(e.g., $Q$) are symmetric and positive (semi-)definite so that $x^\top Q x$ is a
 convex function and that the stated problem has a unique minimizer.
 
 ## 1. Unconstrained quadratic vector optimization
