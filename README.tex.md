@@ -519,7 +519,6 @@ method from statistics.
 $$ \min_{x} \frac{1}{2} x^\top Q x + x^\top f,$$
 
 $$ \text{subject to: } 
-<<<<<<< HEAD
 \| x \|_1 \leq c
 $$
 
@@ -530,9 +529,6 @@ $$ \min_{x} \frac{1}{2} x^\top Q x + x^\top f,$$
 
 $$ \text{subject to: } 
 \| A x - b\|_1 \leq c
-=======
-\| x \|_1 \leq b
->>>>>>> c0cc7045f3899d20407782d8655196c51baab932
 $$
 
 
@@ -540,7 +536,7 @@ $$
 
 Introduce a set of auxiliary variables $y$ and require that:
 
-$$ |A x - b| \leq y \quad \text{ and } \quad \mathbf{1}^\top y = c $$
+$$ |A x - b| \leq y \quad \text{ and } \quad \mathbf{1}^\top y \leq c $$
 
 This can be incorporated into the optimization, for example, using two linear
 sets of inequalities:
@@ -548,14 +544,14 @@ sets of inequalities:
 $$ \min_{x,y} \frac{1}{2} x^\top Q x + x^\top f,$$
 
 $$ \text{subject to: } \mathbf{1}^\top y = c $$
-$$ \text{and: } Ax - b \leq y \quad \text{ and } \quad Ax - b \geq -y$$
+$$ \text{and: } Ax - b \leq y \quad \text{ and } \quad Ax - b \geq -y $$ 
 
 In turn, this can be converted into pure less-than-or-equals constraints:
 
-$$ \min_{x,y} \frac{1}{2} x^\top Q x + x^\top f,$$
-
-$$ \text{subject to: } \mathbf{1}^\top y = c $$
-$$ \text{and: } 
+\begin{align}
+\min_{x,y} \;& \frac{1}{2} x^\top Q x + x^\top f,\\
+\text{subject to: } & \mathbf{1}^\top y = c \\
+\text{and: }  &
 \begin{bmatrix}
  A & -I \\
 -A & -I 
@@ -568,8 +564,8 @@ y
 \begin{bmatrix}
 b \\
 -b
-\end{bmatrix}
-$$
+\end{bmatrix} 
+\end{align}
 
 In MATLAB,
 
@@ -579,7 +575,7 @@ na = size(A,1);
 I = speye(na,na);
 x = speye(n,n+na) * quadprog( ...
   blkdiag(Q,sparse(na,na)),[f;zeros(na,1)], ...
-  [A -I;-A I],[b;-b], ...
+  [A -I;-A -I],[b;-b], ...
   [zeros(1,n) ones(1,na)], c);
 ```
 

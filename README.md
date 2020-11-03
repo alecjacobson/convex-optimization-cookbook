@@ -409,21 +409,21 @@ method from statistics.
 
 <p align="center"><img src="./tex/f95c7eef47b5400896a422ca13cc45e8.svg?invert_in_darkmode" align=middle width=139.2352038pt height=32.990165999999995pt/></p>
 
-<p align="center"><img src="./tex/291da12cc2e8bab66238664883abbce6.svg?invert_in_darkmode" align=middle width=298.99979505pt height=16.438356pt/></p>
+<p align="center"><img src="./tex/63a2cdeaaf7f16ede93366c1f6451f5f.svg?invert_in_darkmode" align=middle width=145.89238949999998pt height=16.438356pt/></p>
 
 This problem corresponds to <img src="./tex/a2a0c1898d7b2fbf58182ec841a3172a.svg?invert_in_darkmode" align=middle width=87.25991504999998pt height=22.831056599999986pt/> of a more general problem where
 affine L1 upper bounds appear. 
 
 <p align="center"><img src="./tex/f95c7eef47b5400896a422ca13cc45e8.svg?invert_in_darkmode" align=middle width=139.2352038pt height=32.990165999999995pt/></p>
 
-<p align="center"><img src="./tex/ee82f7fbbc3a494623f1217d7e17b104.svg?invert_in_darkmode" align=middle width=762.7317059999999pt height=16.438356pt/></p>
+<p align="center"><img src="./tex/5cf048cc8d4fdea774c0caadedcf6182.svg?invert_in_darkmode" align=middle width=185.36717595pt height=16.438356pt/></p>
 
 
 ### 12.1. Auxiliary variables
 
 Introduce a set of auxiliary variables <img src="./tex/deceeaf6940a8c7a5a02373728002b0f.svg?invert_in_darkmode" align=middle width=8.649225749999989pt height=14.15524440000002pt/> and require that:
 
-<p align="center"><img src="./tex/0443dbf16d03203f2e0dc59d56e81d27.svg?invert_in_darkmode" align=middle width=217.1173686pt height=18.88772655pt/></p>
+<p align="center"><img src="./tex/a72f14a36a8dbdcdcf6b930995813d53.svg?invert_in_darkmode" align=middle width=217.1173686pt height=18.88772655pt/></p>
 
 This can be incorporated into the optimization, for example, using two linear
 sets of inequalities:
@@ -431,14 +431,11 @@ sets of inequalities:
 <p align="center"><img src="./tex/fa0aa225ecc037b9f5d98dcb7deef50f.svg?invert_in_darkmode" align=middle width=139.2352038pt height=33.814738649999995pt/></p>
 
 <p align="center"><img src="./tex/999b65f4d18c32c258f73ec95e05b865.svg?invert_in_darkmode" align=middle width=141.8816487pt height=17.9744895pt/></p>
-<p align="center"><img src="./tex/0bb810dbb23ea02edbde9397a45d9355.svg?invert_in_darkmode" align=middle width=280.335pt height=14.611871999999998pt/></p>
+<p align="center"><img src="./tex/f1b92f73ddc78410715c61112e706c1b.svg?invert_in_darkmode" align=middle width=280.3346799pt height=14.611878599999999pt/></p> 
 
 In turn, this can be converted into pure less-than-or-equals constraints:
 
-<p align="center"><img src="./tex/fa0aa225ecc037b9f5d98dcb7deef50f.svg?invert_in_darkmode" align=middle width=139.2352038pt height=33.814738649999995pt/></p>
-
-<p align="center"><img src="./tex/999b65f4d18c32c258f73ec95e05b865.svg?invert_in_darkmode" align=middle width=141.8816487pt height=17.9744895pt/></p>
-<p align="center"><img src="./tex/eccb4ca92dfe299b36ae798da5f5c1da.svg?invert_in_darkmode" align=middle width=209.89737284999998pt height=39.452455349999994pt/></p>
+<p align="center"><img src="./tex/fb5aac48d99cabe6602b61aad9e26f58.svg?invert_in_darkmode" align=middle width=477.73409475pt height=108.75765944999998pt/></p>
 
 In MATLAB,
 
@@ -448,7 +445,7 @@ na = size(A,1);
 I = speye(na,na);
 x = speye(n,n+na) * quadprog( ...
   blkdiag(Q,sparse(na,na)),[f;zeros(na,1)], ...
-  [A -I;-A I],[b;-b], ...
+  [A -I;-A -I],[b;-b], ...
   [zeros(1,n) ones(1,na)], c);
 ```
 
@@ -478,33 +475,33 @@ x = speye(n,n+2*n) * quadprog( ...
 ```
 
 ## 13. L2,1 norm
-The <img src="./tex/5b918dca421c871de87c096acfeb29e5.svg?invert_in_darkmode" align=middle width=28.196520000000003pt height=22.46574pt/> norm is defined to be the sum of the Euclidean norms
-of a matrix's columns <img src="./tex/795b59405aefb71d4343db8a701622ae.svg?invert_in_darkmode" align=middle width=274.625505pt height=28.603079999999977pt/>. Consider the matrix problem:
+The <img src="./tex/5b918dca421c871de87c096acfeb29e5.svg?invert_in_darkmode" align=middle width=28.19646884999999pt height=22.465723500000017pt/> norm is defined to be the sum of the Euclidean norms
+of a matrix's columns <img src="./tex/795b59405aefb71d4343db8a701622ae.svg?invert_in_darkmode" align=middle width=274.62536969999996pt height=28.602918299999985pt/>. Consider the matrix problem:
 
-<p align="center"><img src="./tex/07fc1d29dcfc72eca6916822b4c4825a.svg?invert_in_darkmode" align=middle width=124.20671999999999pt height=22.931535pt/></p>
+<p align="center"><img src="./tex/07fc1d29dcfc72eca6916822b4c4825a.svg?invert_in_darkmode" align=middle width=124.20670845pt height=22.931502pt/></p>
 
-(If <img src="./tex/53d147e7f3fe6e47ee05b88b166bd3f6.svg?invert_in_darkmode" align=middle width=12.328800000000005pt height=22.46574pt/> has only one row, this reduces to [L1
+(If <img src="./tex/53d147e7f3fe6e47ee05b88b166bd3f6.svg?invert_in_darkmode" align=middle width=12.32879834999999pt height=22.465723500000017pt/> has only one row, this reduces to [L1
 minimization](#10-l1-minimization).)
 
-First, let us move the affine expression in a constraint, leaving the <img src="./tex/5b918dca421c871de87c096acfeb29e5.svg?invert_in_darkmode" align=middle width=28.196520000000003pt height=22.46574pt/>
-norm of a matrix of auxiliary variables <img src="./tex/91aac9730317276af725abd8cef04ca9.svg?invert_in_darkmode" align=middle width=13.196370000000005pt height=22.46574pt/> in the objective:
+First, let us move the affine expression in a constraint, leaving the <img src="./tex/5b918dca421c871de87c096acfeb29e5.svg?invert_in_darkmode" align=middle width=28.19646884999999pt height=22.465723500000017pt/>
+norm of a matrix of auxiliary variables <img src="./tex/91aac9730317276af725abd8cef04ca9.svg?invert_in_darkmode" align=middle width=13.19638649999999pt height=22.465723500000017pt/> in the objective:
 
-<p align="center"><img src="./tex/7493077736e0498dccef3e079b8c4be3.svg?invert_in_darkmode" align=middle width=76.7811pt height=25.168934999999998pt/></p>
-<p align="center"><img src="./tex/cafa8156531ce27284a8385f864a8c31.svg?invert_in_darkmode" align=middle width=179.38965pt height=14.611871999999998pt/></p>
+<p align="center"><img src="./tex/7493077736e0498dccef3e079b8c4be3.svg?invert_in_darkmode" align=middle width=76.78102905pt height=25.168946549999998pt/></p>
+<p align="center"><img src="./tex/cafa8156531ce27284a8385f864a8c31.svg?invert_in_darkmode" align=middle width=179.3891649pt height=14.611878599999999pt/></p>
 
 Now, introduce a vector of auxiliary variables corresponding to the columns of
-<img src="./tex/91aac9730317276af725abd8cef04ca9.svg?invert_in_darkmode" align=middle width=13.196370000000005pt height=22.46574pt/>:
+<img src="./tex/91aac9730317276af725abd8cef04ca9.svg?invert_in_darkmode" align=middle width=13.19638649999999pt height=22.465723500000017pt/>:
 
-<p align="center"><img src="./tex/2e6b46813a3b87b76a3694f71ddc9e22.svg?invert_in_darkmode" align=middle width=65.617695pt height=27.618359999999996pt/></p>
-<p align="center"><img src="./tex/cafa8156531ce27284a8385f864a8c31.svg?invert_in_darkmode" align=middle width=179.38965pt height=14.611871999999998pt/></p>
-<p align="center"><img src="./tex/755a94154bdf72e6fa386a23803c7fde.svg?invert_in_darkmode" align=middle width=136.07995499999998pt height=16.438356pt/></p>
+<p align="center"><img src="./tex/2e6b46813a3b87b76a3694f71ddc9e22.svg?invert_in_darkmode" align=middle width=65.6177016pt height=27.61831875pt/></p>
+<p align="center"><img src="./tex/cafa8156531ce27284a8385f864a8c31.svg?invert_in_darkmode" align=middle width=179.3891649pt height=14.611878599999999pt/></p>
+<p align="center"><img src="./tex/755a94154bdf72e6fa386a23803c7fde.svg?invert_in_darkmode" align=middle width=136.08000945pt height=16.438356pt/></p>
 
 Many, solvers will require that variables are vectorized, so we may transform
 this yet again to:
 
-<p align="center"><img src="./tex/2e6b46813a3b87b76a3694f71ddc9e22.svg?invert_in_darkmode" align=middle width=65.617695pt height=27.618359999999996pt/></p>
-<p align="center"><img src="./tex/fcdf39ef6665f7f1cf2fa13845074f23.svg?invert_in_darkmode" align=middle width=327.63059999999996pt height=16.438356pt/></p>
-<p align="center"><img src="./tex/755a94154bdf72e6fa386a23803c7fde.svg?invert_in_darkmode" align=middle width=136.07995499999998pt height=16.438356pt/></p>
+<p align="center"><img src="./tex/2e6b46813a3b87b76a3694f71ddc9e22.svg?invert_in_darkmode" align=middle width=65.6177016pt height=27.61831875pt/></p>
+<p align="center"><img src="./tex/fcdf39ef6665f7f1cf2fa13845074f23.svg?invert_in_darkmode" align=middle width=327.63125835pt height=16.438356pt/></p>
+<p align="center"><img src="./tex/755a94154bdf72e6fa386a23803c7fde.svg?invert_in_darkmode" align=middle width=136.08000945pt height=16.438356pt/></p>
 
 In MATLAB with mosek's conic solver,
 
@@ -528,30 +525,30 @@ X = reshape(res.sol.itr.xx(1:n*nb),n,nb);
 
 ### 13.1. Transpose
 
-Consider also the <img src="./tex/5b918dca421c871de87c096acfeb29e5.svg?invert_in_darkmode" align=middle width=28.196520000000003pt height=22.46574pt/> norm of the transpose of an affine expression, i.e.,
-measuring the sum of Euclidean norms of each _row_ of <img src="./tex/87a9a9f76960fec5da1a1dc27666c98d.svg?invert_in_darkmode" align=middle width=60.62215500000001pt height=22.46574pt/>:
+Consider also the <img src="./tex/5b918dca421c871de87c096acfeb29e5.svg?invert_in_darkmode" align=middle width=28.19646884999999pt height=22.465723500000017pt/> norm of the transpose of an affine expression, i.e.,
+measuring the sum of Euclidean norms of each _row_ of <img src="./tex/87a9a9f76960fec5da1a1dc27666c98d.svg?invert_in_darkmode" align=middle width=60.62206589999998pt height=22.465723500000017pt/>:
 
-<p align="center"><img src="./tex/bfe5f2d5f228f43613a0bb544a594784.svg?invert_in_darkmode" align=middle width=148.08799499999998pt height=25.380795pt/></p>
+<p align="center"><img src="./tex/bfe5f2d5f228f43613a0bb544a594784.svg?invert_in_darkmode" align=middle width=148.08805769999998pt height=25.380872549999996pt/></p>
 
-First, let us move the affine expression in a constraint, leaving the <img src="./tex/5b918dca421c871de87c096acfeb29e5.svg?invert_in_darkmode" align=middle width=28.196520000000003pt height=22.46574pt/>
-norm of a matrix of auxiliary variables <img src="./tex/91aac9730317276af725abd8cef04ca9.svg?invert_in_darkmode" align=middle width=13.196370000000005pt height=22.46574pt/> in the objective:
+First, let us move the affine expression in a constraint, leaving the <img src="./tex/5b918dca421c871de87c096acfeb29e5.svg?invert_in_darkmode" align=middle width=28.19646884999999pt height=22.465723500000017pt/>
+norm of a matrix of auxiliary variables <img src="./tex/91aac9730317276af725abd8cef04ca9.svg?invert_in_darkmode" align=middle width=13.19638649999999pt height=22.465723500000017pt/> in the objective:
 
-<p align="center"><img src="./tex/7493077736e0498dccef3e079b8c4be3.svg?invert_in_darkmode" align=middle width=76.7811pt height=25.168934999999998pt/></p>
+<p align="center"><img src="./tex/7493077736e0498dccef3e079b8c4be3.svg?invert_in_darkmode" align=middle width=76.78102905pt height=25.168946549999998pt/></p>
 <p align="center"><img src="./tex/c28936ccee421e0fed854d70f740ced9.svg?invert_in_darkmode" align=middle width=212.67691169999998pt height=17.9744895pt/></p>
 
 Now, introduce a vector of auxiliary variables corresponding to the columns of
-<img src="./tex/91aac9730317276af725abd8cef04ca9.svg?invert_in_darkmode" align=middle width=13.196370000000005pt height=22.46574pt/>:
+<img src="./tex/91aac9730317276af725abd8cef04ca9.svg?invert_in_darkmode" align=middle width=13.19638649999999pt height=22.465723500000017pt/>:
 
-<p align="center"><img src="./tex/2e6b46813a3b87b76a3694f71ddc9e22.svg?invert_in_darkmode" align=middle width=65.617695pt height=27.618359999999996pt/></p>
+<p align="center"><img src="./tex/2e6b46813a3b87b76a3694f71ddc9e22.svg?invert_in_darkmode" align=middle width=65.6177016pt height=27.61831875pt/></p>
 <p align="center"><img src="./tex/c28936ccee421e0fed854d70f740ced9.svg?invert_in_darkmode" align=middle width=212.67691169999998pt height=17.9744895pt/></p>
-<p align="center"><img src="./tex/755a94154bdf72e6fa386a23803c7fde.svg?invert_in_darkmode" align=middle width=136.07995499999998pt height=16.438356pt/></p>
+<p align="center"><img src="./tex/755a94154bdf72e6fa386a23803c7fde.svg?invert_in_darkmode" align=middle width=136.08000945pt height=16.438356pt/></p>
 
 Many, solvers will require that variables are vectorized, so we may transform
 this yet again to:
 
-<p align="center"><img src="./tex/2e6b46813a3b87b76a3694f71ddc9e22.svg?invert_in_darkmode" align=middle width=65.617695pt height=27.618359999999996pt/></p>
+<p align="center"><img src="./tex/2e6b46813a3b87b76a3694f71ddc9e22.svg?invert_in_darkmode" align=middle width=65.6177016pt height=27.61831875pt/></p>
 <p align="center"><img src="./tex/253d3f995052390db9e5014e747fe50e.svg?invert_in_darkmode" align=middle width=338.72717339999997pt height=18.88772655pt/></p>
-<p align="center"><img src="./tex/755a94154bdf72e6fa386a23803c7fde.svg?invert_in_darkmode" align=middle width=136.07995499999998pt height=16.438356pt/></p>
+<p align="center"><img src="./tex/755a94154bdf72e6fa386a23803c7fde.svg?invert_in_darkmode" align=middle width=136.08000945pt height=16.438356pt/></p>
 
 In MATLAB with mosek's conic optimization (and [gptoolbox's
 kroneye](https://github.com/alecjacobson/gptoolbox/blob/master/matrix/kroneye.m)):
@@ -577,7 +574,7 @@ X = reshape(res.sol.itr.xx(1:n*nb),n,nb);
 ## Bonus: Orthogonal Procrustes
 
 Orthogonal Procrustes problem asks to find an orthogonal matrix <img src="./tex/1e438235ef9ec72fc51ac5025516017c.svg?invert_in_darkmode" align=middle width=12.60847334999999pt height=22.465723500000017pt/> that
-approximately maps a set of vectors in <img src="./tex/53d147e7f3fe6e47ee05b88b166bd3f6.svg?invert_in_darkmode" align=middle width=12.328800000000005pt height=22.46574pt/> to another set of vectors <img src="./tex/61e84f854bc6258d4108d08d4c4a0852.svg?invert_in_darkmode" align=middle width=13.29340979999999pt height=22.465723500000017pt/>:
+approximately maps a set of vectors in <img src="./tex/53d147e7f3fe6e47ee05b88b166bd3f6.svg?invert_in_darkmode" align=middle width=12.32879834999999pt height=22.465723500000017pt/> to another set of vectors <img src="./tex/61e84f854bc6258d4108d08d4c4a0852.svg?invert_in_darkmode" align=middle width=13.29340979999999pt height=22.465723500000017pt/>:
 
 <p align="center"><img src="./tex/dfc68e33fd9d625879cc8690c50247e4.svg?invert_in_darkmode" align=middle width=115.00352819999999pt height=24.805529099999998pt/></p>
 <p align="center"><img src="./tex/25d553fa67335aa4b6f4a3d77b825e47.svg?invert_in_darkmode" align=middle width=144.00684869999998pt height=17.9744895pt/></p>
