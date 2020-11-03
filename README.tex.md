@@ -511,12 +511,24 @@ x = speye(n,n+m) * quadprog( ...
 
 ## 12. L1 upper bound
 
-An $L_1$ term can also appear in the constraints with an upper bound. 
+An $L_1$ term can also appear in the constraints with an upper bound.  This form
+also includes the [LASSO](https://en.wikipedia.org/wiki/Lasso_(statistics))
+method from statistics.
+
 
 $$ \min_{x} \frac{1}{2} x^\top Q x + x^\top f,$$
 
 $$ \text{subject to: } 
-| x |_1 \leq b
+\| x \|_1 \leq c
+$$
+
+This problem corresponds to $A = I, b = 0$ of a more general problem where
+affine L1 upper bounds appear. 
+
+$$ \min_{x} \frac{1}{2} x^\top Q x + x^\top f,$$
+
+$$ \text{subject to: } 
+\| A x - b\|_1 \leq c
 $$
 
 
@@ -524,21 +536,21 @@ $$
 
 Introduce a set of auxiliary variables $y$ and require that:
 
-$$ |A x - b| \leq y \quad \text{ and } \quad \mathbf{1}^\top y = b $$
+$$ |A x - b| \leq y \quad \text{ and } \quad \mathbf{1}^\top y = c $$
 
 This can be incorporated into the optimization, for example, using two linear
 sets of inequalities:
 
 $$ \min_{x,y} \frac{1}{2} x^\top Q x + x^\top f,$$
 
-$$ \text{subject to: } \mathbf{1}^\top y = b $$
+$$ \text{subject to: } \mathbf{1}^\top y = c $$
 $$ \text{and: } Ax - b \leq y \quad \text{ and } \quad Ax - b \geq -y$$
 
 In turn, this can be converted into pure less-than-or-equals constraints:
 
 $$ \min_{x,y} \frac{1}{2} x^\top Q x + x^\top f,$$
 
-$$ \text{subject to: } \mathbf{1}^\top y = b $$
+$$ \text{subject to: } \mathbf{1}^\top y = c $$
 $$ \text{and: } 
 \begin{bmatrix}
  A & -I \\
@@ -548,7 +560,7 @@ $$ \text{and: }
 x \\
 y
 \end{bmatrix}
-=
+\leq
 \begin{bmatrix}
 b \\
 -b
@@ -564,14 +576,14 @@ I = speye(na,na);
 x = speye(n,n+na) * quadprog( ...
   blkdiag(Q,sparse(na,na)),[f;zeros(na,1)], ...
   [A -I;-A I],[b;-b], ...
-  [zeros(1,n) ones(1,na)], b);
+  [zeros(1,n) ones(1,na)], c);
 ```
 
 ### 12.2. Convex hull constraint
 
 Geometrically, this constraint is requiring that $x$ lie within in the convex
 hull of $b_1$-$L_1$-norm ball, which is also the [convex
-hull](convex-hull-constraint) of the points in the columns of $B := b [I -I]$.
+hull](convex-hull-constraint) of the points in the columns of $C := c [I -I]$.
 
 Introducing an auxiliary weight vectors $w^+,w^-$, the problem can be transformed into:
 
@@ -579,7 +591,7 @@ $$ \min_{x,w^+,w^-} \frac{1}{2} x^\top Q x + x^\top f,$$
 
 $$
 \text{subject to:} 
-\begin{bmatrix} b I & -b I \\ \mathbf{1}^\top & \mathbf{1}^\top \end{bmatrix} 
+\begin{bmatrix} c I & -c I \\ \mathbf{1}^\top & \mathbf{1}^\top \end{bmatrix} 
 \begin{bmatrix} w^+ \\ w^- \end{bmatrix}
 =
 \begin{bmatrix} x \\ 1 \end{bmatrix}
@@ -591,11 +603,10 @@ In MATLAB,
 
 ```matlab
 n = size(Q,1);
-m = size(B,2);
-x = speye(n,n+m) * quadprog( ...
+x = speye(n,n+2*n) * quadprog( ...
   blkdiag(Q,sparse(2*n,2*n)),[f;zeros(2*n,1)], ...
   [],[], ...
-  [-speye(n,n) b*speye(n,n) -b*speye(n,n);zeros(1,n) ones(1,2*n)],[zeros(n,1);1], ...
+  [-speye(n,n) c*speye(n,n) -c*speye(n,n);zeros(1,n) ones(1,2*n)],[zeros(n,1);1], ...
   [-inf(n,1);zeros(2*n,1)]);
 ```
 

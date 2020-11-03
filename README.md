@@ -402,33 +402,43 @@ x = speye(n,n+m) * quadprog( ...
 
 ## 12. L1 upper bound
 
-An <img src="./tex/929ed909014029a206f344a28aa47d15.svg?invert_in_darkmode" align=middle width=17.73978854999999pt height=22.465723500000017pt/> term can also appear in the constraints with an upper bound. 
+An <img src="./tex/929ed909014029a206f344a28aa47d15.svg?invert_in_darkmode" align=middle width=17.73978854999999pt height=22.465723500000017pt/> term can also appear in the constraints with an upper bound.  This form
+also includes the [LASSO](https://en.wikipedia.org/wiki/Lasso_(statistics))
+method from statistics.
+
 
 <p align="center"><img src="./tex/f95c7eef47b5400896a422ca13cc45e8.svg?invert_in_darkmode" align=middle width=139.2352038pt height=32.990165999999995pt/></p>
 
-<p align="center"><img src="./tex/f68b34c17171bcf3b7b5b3095082c60f.svg?invert_in_darkmode" align=middle width=138.52741154999998pt height=16.438356pt/></p>
+<p align="center"><img src="./tex/63a2cdeaaf7f16ede93366c1f6451f5f.svg?invert_in_darkmode" align=middle width=145.89238949999998pt height=16.438356pt/></p>
+
+This problem corresponds to <img src="./tex/a2a0c1898d7b2fbf58182ec841a3172a.svg?invert_in_darkmode" align=middle width=87.25991504999998pt height=22.831056599999986pt/> of a more general problem where
+affine L1 upper bounds appear. 
+
+<p align="center"><img src="./tex/f95c7eef47b5400896a422ca13cc45e8.svg?invert_in_darkmode" align=middle width=139.2352038pt height=32.990165999999995pt/></p>
+
+<p align="center"><img src="./tex/5cf048cc8d4fdea774c0caadedcf6182.svg?invert_in_darkmode" align=middle width=185.36717595pt height=16.438356pt/></p>
 
 
 ### 12.1. Auxiliary variables
 
 Introduce a set of auxiliary variables <img src="./tex/deceeaf6940a8c7a5a02373728002b0f.svg?invert_in_darkmode" align=middle width=8.649225749999989pt height=14.15524440000002pt/> and require that:
 
-<p align="center"><img src="./tex/5ec4d9af04a71dacc338156bffa632c2.svg?invert_in_darkmode" align=middle width=217.05914999999996pt height=18.887715pt/></p>
+<p align="center"><img src="./tex/0443dbf16d03203f2e0dc59d56e81d27.svg?invert_in_darkmode" align=middle width=217.1173686pt height=18.88772655pt/></p>
 
 This can be incorporated into the optimization, for example, using two linear
 sets of inequalities:
 
 <p align="center"><img src="./tex/fa0aa225ecc037b9f5d98dcb7deef50f.svg?invert_in_darkmode" align=middle width=139.2352038pt height=33.814738649999995pt/></p>
 
-<p align="center"><img src="./tex/521a89b6ca5759764600a5a899d99426.svg?invert_in_darkmode" align=middle width=141.822615pt height=17.974439999999998pt/></p>
+<p align="center"><img src="./tex/999b65f4d18c32c258f73ec95e05b865.svg?invert_in_darkmode" align=middle width=141.8816487pt height=17.9744895pt/></p>
 <p align="center"><img src="./tex/0bb810dbb23ea02edbde9397a45d9355.svg?invert_in_darkmode" align=middle width=280.335pt height=14.611871999999998pt/></p>
 
 In turn, this can be converted into pure less-than-or-equals constraints:
 
 <p align="center"><img src="./tex/fa0aa225ecc037b9f5d98dcb7deef50f.svg?invert_in_darkmode" align=middle width=139.2352038pt height=33.814738649999995pt/></p>
 
-<p align="center"><img src="./tex/521a89b6ca5759764600a5a899d99426.svg?invert_in_darkmode" align=middle width=141.822615pt height=17.974439999999998pt/></p>
-<p align="center"><img src="./tex/bc3f51fda609ead8b3abb83700270200.svg?invert_in_darkmode" align=middle width=209.89815pt height=39.45249pt/></p>
+<p align="center"><img src="./tex/999b65f4d18c32c258f73ec95e05b865.svg?invert_in_darkmode" align=middle width=141.8816487pt height=17.9744895pt/></p>
+<p align="center"><img src="./tex/eccb4ca92dfe299b36ae798da5f5c1da.svg?invert_in_darkmode" align=middle width=209.89737284999998pt height=39.452455349999994pt/></p>
 
 In MATLAB,
 
@@ -439,20 +449,20 @@ I = speye(na,na);
 x = speye(n,n+na) * quadprog( ...
   blkdiag(Q,sparse(na,na)),[f;zeros(na,1)], ...
   [A -I;-A I],[b;-b], ...
-  [zeros(1,n) ones(1,na)], b);
+  [zeros(1,n) ones(1,na)], c);
 ```
 
 ### 12.2. Convex hull constraint
 
 Geometrically, this constraint is requiring that <img src="./tex/332cc365a4987aacce0ead01b8bdcc0b.svg?invert_in_darkmode" align=middle width=9.39498779999999pt height=14.15524440000002pt/> lie within in the convex
 hull of <img src="./tex/a7d0e0605a6acafe642d0b54226ac650.svg?invert_in_darkmode" align=middle width=13.60734374999999pt height=22.831056599999986pt/>-<img src="./tex/929ed909014029a206f344a28aa47d15.svg?invert_in_darkmode" align=middle width=17.73978854999999pt height=22.465723500000017pt/>-norm ball, which is also the [convex
-hull](convex-hull-constraint) of the points in the columns of <img src="./tex/e8086ca465222379817decafbc013637.svg?invert_in_darkmode" align=middle width=93.08762594999999pt height=24.65753399999998pt/>.
+hull](convex-hull-constraint) of the points in the columns of <img src="./tex/244c6e9be7965885af94251abbe67f17.svg?invert_in_darkmode" align=middle width=92.77786649999999pt height=24.65753399999998pt/>.
 
 Introducing an auxiliary weight vectors <img src="./tex/3470bb0ee26884b43898593dd0249c07.svg?invert_in_darkmode" align=middle width=52.91488289999999pt height=26.17730939999998pt/>, the problem can be transformed into:
 
 <p align="center"><img src="./tex/00810526a0fc121554d356509b2f1b49.svg?invert_in_darkmode" align=middle width=165.73470375pt height=35.45857425pt/></p>
 
-<p align="center"><img src="./tex/8ee092afd3727894f3d926a79615cd74.svg?invert_in_darkmode" align=middle width=253.84328804999998pt height=39.452455349999994pt/></p>
+<p align="center"><img src="./tex/61a3e60d7c06916340685cb55dafdc13.svg?invert_in_darkmode" align=middle width=253.90230855pt height=39.452455349999994pt/></p>
 
 <p align="center"><img src="./tex/aa09c3a00c2361d17b95ef6c65370832.svg?invert_in_darkmode" align=middle width=122.22987314999999pt height=17.1069228pt/></p>
 
@@ -460,11 +470,10 @@ In MATLAB,
 
 ```matlab
 n = size(Q,1);
-m = size(B,2);
-x = speye(n,n+m) * quadprog( ...
+x = speye(n,n+2*n) * quadprog( ...
   blkdiag(Q,sparse(2*n,2*n)),[f;zeros(2*n,1)], ...
   [],[], ...
-  [-speye(n,n) b*speye(n,n) -b*speye(n,n);zeros(1,n) ones(1,2*n)],[zeros(n,1);1], ...
+  [-speye(n,n) c*speye(n,n) -c*speye(n,n);zeros(1,n) ones(1,2*n)],[zeros(n,1);1], ...
   [-inf(n,1);zeros(2*n,1)]);
 ```
 
