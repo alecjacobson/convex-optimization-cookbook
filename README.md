@@ -5,7 +5,7 @@ optimization problems (with a bias toward computer graphics and geometry
 processing). 
 
 Unless otherwise stated, we will assume that quadratic coefficient matrices
-(e.g., <img src="./tex/1afcdb0f704394b16fe85fb40c45ca7a.svg?invert_in_darkmode" align=middle width=12.99542474999999pt height=22.465723500000017pt/>) are symmetric positive (semi-)definite so that <img src="./tex/664cf1886128c5fc05c2213e395b3fb1.svg?invert_in_darkmode" align=middle width=42.88131539999999pt height=27.91243950000002pt/> is a
+(e.g., <img src="./tex/1afcdb0f704394b16fe85fb40c45ca7a.svg?invert_in_darkmode" align=middle width=12.99542474999999pt height=22.465723500000017pt/>) are symmetric and positive (semi-)definite so that <img src="./tex/664cf1886128c5fc05c2213e395b3fb1.svg?invert_in_darkmode" align=middle width=42.88131539999999pt height=27.91243950000002pt/> is a
 convex function and that the stated problem has a unique minimizer.
 
 ## 1. Unconstrained quadratic vector optimization
@@ -335,13 +335,13 @@ x = speye(n,n+na) * linprog([zeros(n,1);ones(na,1)],[A -I;-A -I],[b;-b]);
 
 Introduce the vector variables <img src="./tex/6dbb78540bd76da3f1625782d42d6d16.svg?invert_in_darkmode" align=middle width=9.41027339999999pt height=14.15524440000002pt/>,<img src="./tex/6c4adbc36120d62b98deef2a20d5d303.svg?invert_in_darkmode" align=middle width=8.55786029999999pt height=14.15524440000002pt/> so that the element-wise equalities hold:
 
-<p align="center"><img src="./tex/1c6d6f43b9b5fecca9212bdb2f24b61e.svg?invert_in_darkmode" align=middle width=490.50197295000004pt height=16.438356pt/></p>
+<p align="center"><img src="./tex/de99d4dee15becc9d1b1e79e87aad53e.svg?invert_in_darkmode" align=middle width=490.50197295000004pt height=16.438356pt/></p>
 
 Then the problem becomes:
 
 <p align="center"><img src="./tex/257c32646c21bfb4187dd4213d1320cf.svg?invert_in_darkmode" align=middle width=111.9177807pt height=26.878597349999996pt/></p>
 <p align="center"><img src="./tex/544e2e5d9ecc7c90123717a2be55d01c.svg?invert_in_darkmode" align=middle width=192.49981739999998pt height=14.611878599999999pt/></p>
-<p align="center"><img src="./tex/49f2cd6fa023b43130e4213f9f06a91c.svg?invert_in_darkmode" align=middle width=80.64315435pt height=14.611878599999999pt/></p>
+<p align="center"><img src="./tex/b04a53e8429bc71103218bcb5e2ba527.svg?invert_in_darkmode" align=middle width=93.7670943pt height=14.611878599999999pt/></p>
 
 This can be expanded in matrix form to:
 
@@ -409,14 +409,14 @@ method from statistics.
 
 <p align="center"><img src="./tex/f95c7eef47b5400896a422ca13cc45e8.svg?invert_in_darkmode" align=middle width=139.2352038pt height=32.990165999999995pt/></p>
 
-<p align="center"><img src="./tex/63a2cdeaaf7f16ede93366c1f6451f5f.svg?invert_in_darkmode" align=middle width=145.89238949999998pt height=16.438356pt/></p>
+<p align="center"><img src="./tex/291da12cc2e8bab66238664883abbce6.svg?invert_in_darkmode" align=middle width=298.99979505pt height=16.438356pt/></p>
 
 This problem corresponds to <img src="./tex/a2a0c1898d7b2fbf58182ec841a3172a.svg?invert_in_darkmode" align=middle width=87.25991504999998pt height=22.831056599999986pt/> of a more general problem where
 affine L1 upper bounds appear. 
 
 <p align="center"><img src="./tex/f95c7eef47b5400896a422ca13cc45e8.svg?invert_in_darkmode" align=middle width=139.2352038pt height=32.990165999999995pt/></p>
 
-<p align="center"><img src="./tex/5cf048cc8d4fdea774c0caadedcf6182.svg?invert_in_darkmode" align=middle width=185.36717595pt height=16.438356pt/></p>
+<p align="center"><img src="./tex/ee82f7fbbc3a494623f1217d7e17b104.svg?invert_in_darkmode" align=middle width=762.7317059999999pt height=16.438356pt/></p>
 
 
 ### 12.1. Auxiliary variables
@@ -479,9 +479,9 @@ x = speye(n,n+2*n) * quadprog( ...
 
 ## 13. L2,1 norm
 The <img src="./tex/5b918dca421c871de87c096acfeb29e5.svg?invert_in_darkmode" align=middle width=28.196520000000003pt height=22.46574pt/> norm is defined to be the sum of the Euclidean norms
-of a matrix's columns <img src="./tex/4f73b4185b81a335005ed93bb6eac66c.svg?invert_in_darkmode" align=middle width=270.972405pt height=28.603079999999977pt/>. Consider the matrix problem:
+of a matrix's columns <img src="./tex/795b59405aefb71d4343db8a701622ae.svg?invert_in_darkmode" align=middle width=274.625505pt height=28.603079999999977pt/>. Consider the matrix problem:
 
-<p align="center"><img src="./tex/030c5d9936c66f26a9c02059afb78e73.svg?invert_in_darkmode" align=middle width=116.900685pt height=22.931535pt/></p>
+<p align="center"><img src="./tex/07fc1d29dcfc72eca6916822b4c4825a.svg?invert_in_darkmode" align=middle width=124.20671999999999pt height=22.931535pt/></p>
 
 (If <img src="./tex/53d147e7f3fe6e47ee05b88b166bd3f6.svg?invert_in_darkmode" align=middle width=12.328800000000005pt height=22.46574pt/> has only one row, this reduces to [L1
 minimization](#10-l1-minimization).)
@@ -489,7 +489,7 @@ minimization](#10-l1-minimization).)
 First, let us move the affine expression in a constraint, leaving the <img src="./tex/5b918dca421c871de87c096acfeb29e5.svg?invert_in_darkmode" align=middle width=28.196520000000003pt height=22.46574pt/>
 norm of a matrix of auxiliary variables <img src="./tex/91aac9730317276af725abd8cef04ca9.svg?invert_in_darkmode" align=middle width=13.196370000000005pt height=22.46574pt/> in the objective:
 
-<p align="center"><img src="./tex/65108a9af4de6d535ac471fb5f310f0a.svg?invert_in_darkmode" align=middle width=69.47506499999999pt height=25.168934999999998pt/></p>
+<p align="center"><img src="./tex/7493077736e0498dccef3e079b8c4be3.svg?invert_in_darkmode" align=middle width=76.7811pt height=25.168934999999998pt/></p>
 <p align="center"><img src="./tex/cafa8156531ce27284a8385f864a8c31.svg?invert_in_darkmode" align=middle width=179.38965pt height=14.611871999999998pt/></p>
 
 Now, introduce a vector of auxiliary variables corresponding to the columns of
@@ -528,12 +528,15 @@ X = reshape(res.sol.itr.xx(1:n*nb),n,nb);
 
 ### 13.1. Transpose
 
-<p align="center"><img src="./tex/1660c365039facfd4ac031db6b1a9e69.svg?invert_in_darkmode" align=middle width=140.78208705pt height=25.380872549999996pt/></p>
+Consider also the <img src="./tex/5b918dca421c871de87c096acfeb29e5.svg?invert_in_darkmode" align=middle width=28.196520000000003pt height=22.46574pt/> norm of the transpose of an affine expression, i.e.,
+measuring the sum of Euclidean norms of each _row_ of <img src="./tex/87a9a9f76960fec5da1a1dc27666c98d.svg?invert_in_darkmode" align=middle width=60.62215500000001pt height=22.46574pt/>:
+
+<p align="center"><img src="./tex/bfe5f2d5f228f43613a0bb544a594784.svg?invert_in_darkmode" align=middle width=148.08799499999998pt height=25.380795pt/></p>
 
 First, let us move the affine expression in a constraint, leaving the <img src="./tex/5b918dca421c871de87c096acfeb29e5.svg?invert_in_darkmode" align=middle width=28.196520000000003pt height=22.46574pt/>
 norm of a matrix of auxiliary variables <img src="./tex/91aac9730317276af725abd8cef04ca9.svg?invert_in_darkmode" align=middle width=13.196370000000005pt height=22.46574pt/> in the objective:
 
-<p align="center"><img src="./tex/65108a9af4de6d535ac471fb5f310f0a.svg?invert_in_darkmode" align=middle width=69.47506499999999pt height=25.168934999999998pt/></p>
+<p align="center"><img src="./tex/7493077736e0498dccef3e079b8c4be3.svg?invert_in_darkmode" align=middle width=76.7811pt height=25.168934999999998pt/></p>
 <p align="center"><img src="./tex/c28936ccee421e0fed854d70f740ced9.svg?invert_in_darkmode" align=middle width=212.67691169999998pt height=17.9744895pt/></p>
 
 Now, introduce a vector of auxiliary variables corresponding to the columns of
@@ -551,7 +554,7 @@ this yet again to:
 <p align="center"><img src="./tex/755a94154bdf72e6fa386a23803c7fde.svg?invert_in_darkmode" align=middle width=136.07995499999998pt height=16.438356pt/></p>
 
 In MATLAB with mosek's conic optimization (and [gptoolbox's
-kroneye](https://github.com/alecjacobson/gptoolbox/master/matrix/kroneye.m)):
+kroneye](https://github.com/alecjacobson/gptoolbox/blob/master/matrix/kroneye.m)):
 
 ```matlab
 nb = size(B,2);
