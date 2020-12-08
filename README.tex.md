@@ -399,7 +399,7 @@ A & -I \\
 x \\ 
 t
 \end{bmatrix}
-= 
+\leq
 \begin{bmatrix}
 b \\ 
 -b

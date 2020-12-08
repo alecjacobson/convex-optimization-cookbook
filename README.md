@@ -320,7 +320,7 @@ In turn, this can be converted into pure less-than-or-equals constraints:
 
 <p align="center"><img src="./tex/2888e0417124dd59bf5fbfadb72235fe.svg?invert_in_darkmode" align=middle width=103.5960552pt height=39.452455349999994pt/></p>
 
-<p align="center"><img src="./tex/9613ca7ccb20f777e8186bed5254ef0e.svg?invert_in_darkmode" align=middle width=255.19420409999998pt height=39.452455349999994pt/></p>
+<p align="center"><img src="./tex/d3afb139c66dc580c289a286671bfb27.svg?invert_in_darkmode" align=middle width=255.19420409999998pt height=39.452455349999994pt/></p>
 
 In MATLAB,
 
