@@ -207,7 +207,58 @@ u(Ju) = bleq;
 x = quadprog(Q,f,[],[],[],[],l,u);
 ```
 
+### 7.1 Linear inequalities transformed into box constraints
 
+[Above](#5-linear-inequality-constraints) we considered
+linearity inequality constrained problems without loss of generality of the
+form:
+
+<p align="center"><img src="./tex/0688ba9278a74930c22623589918bcef.svg?invert_in_darkmode" align=middle width=165.47178449999998pt height=56.80098104999999pt/></p>
+
+By introducing auxiliary variables, this can be converted into a simple
+box-constrained problem. First, introduce the variable <img src="./tex/deceeaf6940a8c7a5a02373728002b0f.svg?invert_in_darkmode" align=middle width=8.649225749999989pt height=14.15524440000002pt/>, with the constraint
+that <img src="./tex/7b234ec9ddca8dc626aeabcc7bfe1cb1.svg?invert_in_darkmode" align=middle width=52.29064169999999pt height=22.465723500000017pt/>:
+
+<p align="center"><img src="./tex/c0c281f2789066c67122b75e07c7ee89.svg?invert_in_darkmode" align=middle width=275.00756745pt height=56.80098104999999pt/></p>
+
+To remove the [linear equality constraints](#4-linear-equality-constraints) on
+<img src="./tex/332cc365a4987aacce0ead01b8bdcc0b.svg?invert_in_darkmode" align=middle width=9.39498779999999pt height=14.15524440000002pt/> and <img src="./tex/deceeaf6940a8c7a5a02373728002b0f.svg?invert_in_darkmode" align=middle width=8.649225749999989pt height=14.15524440000002pt/>, let use consider the [singular value
+decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition) of
+<img src="./tex/2f1cb736efdff3621d231f37f2499aac.svg?invert_in_darkmode" align=middle width=74.35700909999998pt height=26.17730939999998pt/>:
+
+<p align="center"><img src="./tex/3cf126a74e6d76b48c6ce2c1844865a3.svg?invert_in_darkmode" align=middle width=82.6276968pt height=14.77813755pt/></p>
+
+where <img src="./tex/307aa9cc5fc58f622f3688760e377cae.svg?invert_in_darkmode" align=middle width=78.58297754999998pt height=26.17730939999998pt/> is a unitary matrix, <img src="./tex/2a391b059ea3bb404dcf9c6433a6288c.svg?invert_in_darkmode" align=middle width=73.05559469999999pt height=26.17730939999998pt/> is a sparse matrix with non-increasing, non-negative entries only along the main
+diagonal, and <img src="./tex/045eb90ce2d6e9386d720fdb87647ee3.svg?invert_in_darkmode" align=middle width=71.73141524999998pt height=26.17730939999998pt/> is a unitary matrix. Consider the
+largest index <img src="./tex/63bb9849783d01d91403bc9a5fea12a2.svg?invert_in_darkmode" align=middle width=9.075367949999992pt height=22.831056599999986pt/> such that <img src="./tex/522441db3be32b38a0a0027d33f677d4.svg?invert_in_darkmode" align=middle width=78.85255784999998pt height=24.65753399999998pt/>. We declare <img src="./tex/63bb9849783d01d91403bc9a5fea12a2.svg?invert_in_darkmode" align=middle width=9.075367949999992pt height=22.831056599999986pt/> to be the
+numerical rank of <img src="./tex/53d147e7f3fe6e47ee05b88b166bd3f6.svg?invert_in_darkmode" align=middle width=12.32879834999999pt height=22.465723500000017pt/>. We can make two observations. If we set 
+
+<p align="center"><img src="./tex/96f41a5f931735294b5af7bad7fa54f3.svg?invert_in_darkmode" align=middle width=542.3219571pt height=39.452455349999994pt/></p>
+
+then <img src="./tex/1278d53ad852c5ef76ea675ca64126b6.svg?invert_in_darkmode" align=middle width=65.83322624999998pt height=22.465723500000017pt/> for any choice of
+<img src="./tex/12a33e74d6144a71f4dd4f99bcbf7367.svg?invert_in_darkmode" align=middle width=69.53583615pt height=27.91243950000002pt/>. Meanwhile, <img src="./tex/db022617720516f5bce413dab060209a.svg?invert_in_darkmode" align=middle width=66.00450119999999pt height=26.17730939999998pt/>, and we call <img src="./tex/071ef668c649b60a76c2fba22fbdbcb0.svg?invert_in_darkmode" align=middle width=22.42017194999999pt height=26.17730939999998pt/> a
+pseudo-inverse of <img src="./tex/53d147e7f3fe6e47ee05b88b166bd3f6.svg?invert_in_darkmode" align=middle width=12.32879834999999pt height=22.465723500000017pt/>.  From these two definitions, if we substitute <img src="./tex/f8fea031f14adfdeebb96e4fc8635993.svg?invert_in_darkmode" align=middle width=106.66269239999998pt height=26.17730939999998pt/>, then
+
+<p align="center"><img src="./tex/72db78c8c8c2ad8cffe25ff7db15e7c4.svg?invert_in_darkmode" align=middle width=258.09257925pt height=63.89389545pt/></p>
+
+Substituting <img src="./tex/ae866ca5af22c70423d231560fbaa6d2.svg?invert_in_darkmode" align=middle width=61.26317999999999pt height=22.465723500000017pt/> into the problem above we see that only box constraints
+remain:
+
+<p align="center"><img src="./tex/9b7710f5701e3bc9ffeab54531979d2a.svg?invert_in_darkmode" align=middle width=223.09375605pt height=79.2489093pt/></p>
+
+In MATLAB,
+
+```
+[U,S,V] = svd(A);
+k = find(diag(S)<epsilon,1);
+n = size(A,2);
+m = size(A,1);
+Z = sparse(m,n-k);
+M = V*[[inv(S(1:k,1:k)) Z; sparse(m-k,n)]'*U' [Z;eye(n-k)]];
+G = M'*H*M;
+g = M'*f;
+x = M*quadprog(M'*H*M,M'*f,[],[],[],[],[l;-inf(k,1)],[u;inf(k,1)],[]);
+```
 
 ## 8. Upper-bound on absolute value
 
