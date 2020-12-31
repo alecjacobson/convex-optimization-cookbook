@@ -335,7 +335,7 @@ In MATLAB,
 
 ```
 [U,S,V] = svd(A);
-k = find(diag(S)<epsilon,1);
+k = find(diag(S)>=epsilon,1,'last');
 n = size(A,2);
 m = size(A,1);
 Z = sparse(m,n-k);
