@@ -364,7 +364,7 @@ problem:
 $$ \min_x \frac{1}{2} x^\top Q x + x^\top f,$$
 
 $$ \text{subject to: } 
-x_j \leq  a_j \quad \forall j \i J \quad \text{ and } \quad x_j \geq  -a_j.
+x_j \leq  a_j \quad \forall j \in J \quad \text{ and } \quad x_j \geq  -a_j.
 $$
 
 In MATLAB,

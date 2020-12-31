@@ -276,7 +276,7 @@ problem:
 
 <p align="center"><img src="./tex/771699c7667129e3dbe6d152ce541400.svg?invert_in_darkmode" align=middle width=139.2352038pt height=32.990165999999995pt/></p>
 
-<p align="center"><img src="./tex/8d1bd394ca4db0a6de11f6a1395464af.svg?invert_in_darkmode" align=middle width=327.5774733pt height=16.1187015pt/></p>
+<p align="center"><img src="./tex/0c83f294ccb8666b2c18ae9dcaea0649.svg?invert_in_darkmode" align=middle width=343.10238764999997pt height=16.1187015pt/></p>
 
 In MATLAB,
 
