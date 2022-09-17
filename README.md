@@ -27,10 +27,9 @@ x = Q \ -f;
 
 ## 2. Frobenius-norm matrix optimization
 
-Define the squared Frobenius norm of a matrix as $\|M\|_\text{F}^2 = \sum_i \sum_j
-x_{ij}^2$, then we may consider problems of the form:
+Define the squared Frobenius norm of a matrix as $\lVert X \rVert_\text{F}^2 = \sum_i \sum_j x_{ij}^2$, then we may consider problems of the form:
 
-$$ \min_{X \in \mathbb{R}^{n \times m}} \frac{1}{2} \|A X - B\|_\text{F}^2
+$$ \min_{X \in \mathbb{R}^{n \times m}} \frac{1}{2} \lVert A X - B \rVert_\text{F}^2
 $$
 
 Using the property $\mathop{\text{trace}}(Y^\top Y) = \|Y\|_\text{F}^2$, we can expand
