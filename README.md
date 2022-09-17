@@ -360,7 +360,7 @@ x = speye(n,n+na) * linprog([zeros(n,1);ones(na,1)],[A -I;-A -I],[b;-b]);
 
 ### 10.2. Variable splitting
 
-Introduce the vector variables $u$,$v$ so that the element-wise equalities hold:
+Introduce the vector variables $u$, $v$ so that the element-wise equalities hold:
 
 $$ |Ax - b| = u - v \quad \text{ and } u = max(Ax-b,0) \text{ and } v =
 max(b-Ax,0)$$
@@ -453,7 +453,8 @@ $$ \text{subject to: }
 $$
 
 This problem corresponds to $A = I, b = 0$ of a more general problem where affine L1 upper bounds appear. 
-$$ \min_{x} \frac{1}{2} x^\top Q x + x^\top f,$$
+
+$$\min_{x} \frac{1}{2} x^\top Q x + x^\top f,$$
 
 $$ \text{subject to: } 
 \lVert  A x - b \rVert_1 \leq c
@@ -508,7 +509,7 @@ x = speye(n,n+na) * quadprog( ...
 
 ### 12.2. Convex hull constraint
 
-Geometrically, this constraint is requiring that $x$ lie within in the convex hull of $b_1$-$L_1$-norm ball, which is also the [convex hull](convex-hull-constraint) of the points in the columns of $C := c [I -I]$.
+Geometrically, this constraint is requiring that $x$ lie within in the convex hull of $b_1$ - $L_1$-norm ball, which is also the [convex hull](convex-hull-constraint) of the points in the columns of $C := c [I -I]$.
 
 Introducing an auxiliary weight vectors $w^+,w^-$, the problem can be transformed into:
 
