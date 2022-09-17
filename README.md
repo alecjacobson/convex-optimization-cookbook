@@ -112,15 +112,11 @@ $$
 
 The [KKT theorem](https://en.wikipedia.org/wiki/Karush%E2%80%93Kuhn%E2%80%93Tucker_conditions) states that the solution is given when _all_ partial derivatives of this quadratic function are zero, or in matrix form, at the solution to the linear system:
 
-$$ \begin{bmatrix}
+$$\begin{bmatrix}
 Q & A_\text{eq}^\top \\
 A_\text{eq} & 0
 \end{bmatrix}
-\begin{bmatrix}
-x \\
-\lambda
-\end{bmatrix}
- = 
+\begin{bmatrix} x \\ \lambda \end{bmatrix} = 
 \begin{bmatrix}
 -f \\
 b_\text{eq}
@@ -380,15 +376,7 @@ This can be expanded in matrix form to:
 $$\min_{x,u,v} [x^\top u^\top v^\top] \begin{bmatrix}\mathbf{0}\\ \mathbf{1} \\
 \mathbf{1} \end{bmatrix}$$
 
-$$\text{subject to: } 
-\begin{bmatrix}
-A & -I & I 
-\end{bmatrix}
-\begin{bmatrix}
-x \\ u \\ v
-\end{bmatrix}
-= 
-b.$$
+$$\text{subject to: }  \begin{bmatrix} A & -I & I  \end{bmatrix} \begin{bmatrix} x \\ u \\ v \end{bmatrix} =  b.$$
 
 $$\text{and: } 
 \begin{bmatrix}
@@ -529,9 +517,7 @@ $$ \min_{x,w^+,w^-} \frac{1}{2} x^\top Q x + x^\top f,$$
 $$
 \text{subject to:} 
 \begin{bmatrix} c I & -c I \\ \mathbf{1}^\top & \mathbf{1}^\top \end{bmatrix} 
-\begin{bmatrix} w^+ \\ w^- \end{bmatrix}
-=
-\begin{bmatrix} x \\ 1 \end{bmatrix}
+\begin{bmatrix} w^+ \\ w^- \end{bmatrix} = \begin{bmatrix} x \\ 1 \end{bmatrix}
 $$
 
 $$\text{and: } w^+,w^- \geq 0$$
