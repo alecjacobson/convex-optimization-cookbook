@@ -311,7 +311,7 @@ x = speye(n,n+na) * quadprog( ...
 
 The absolute value may appear in the objective function such as with minimizing the $L_1$ norm of a linear expression (sum of absolute values):
 
-$$ \min_x \| A x - b \|_1 $$
+$$ \min_x \lVert  A x - b  \rVert_1 $$
 
 
 ### 10.1. Linear inequalities
@@ -449,14 +449,14 @@ An $L_1$ term can also appear in the constraints with an upper bound.  This form
 $$ \min_{x} \frac{1}{2} x^\top Q x + x^\top f,$$
 
 $$ \text{subject to: } 
-\| x \|_1 \leq c
+\lVert  x  \rVert_1 \leq c
 $$
 
 This problem corresponds to $A = I, b = 0$ of a more general problem where affine L1 upper bounds appear. 
 $$ \min_{x} \frac{1}{2} x^\top Q x + x^\top f,$$
 
 $$ \text{subject to: } 
-\| A x - b\|_1 \leq c
+\lVert  A x - b \rVert_1 \leq c
 $$
 
 
@@ -535,9 +535,9 @@ x = speye(n,n+2*n) * quadprog( ...
 
 ## 13. L2,1 norm
 
-The $L_{2,1}$ norm is defined to be the sum of the Euclidean norms of a matrix's columns $\lVert M \rVert_{2,1} = \sum_j \|M_j\| = \sum_j \sqrt{\sum_i (m_{ij})^2}$. Consider the matrix problem:
+The $L_{2,1}$ norm is defined to be the sum of the Euclidean norms of a matrix's columns $\lVert M \rVert_{2,1} = \sum_j \lVert M_j \rVert = \sum_j \sqrt{\sum_i (m_{ij})^2}$. Consider the matrix problem:
 
-$$ \min_X \|A X - B\|_{2,1} $$
+$$ \min_X \lVert A X - B \rVert_{2,1} $$
 
 (If $A$ has only one row, this reduces to [L1 minimization](#10-l1-minimization).)
 
@@ -550,14 +550,14 @@ Now, introduce a vector of auxiliary variables corresponding to the columns of $
 
 $$ \min_{X,Y,z} z^\top \mathbf{1} $$
 $$ \text{subject to: } A X - B = Y$$
-$$ \text{       and: } z_i \geq \| Y_i \| \quad \forall i$$
+$$ \text{       and: } z_i \geq \lVert  Y_i  \rVert \quad \forall i$$
 
 Many, solvers will require that variables are vectorized, so we may transform this yet again to:
 
 $$ \min_{X,Y,z} z^\top \mathbf{1} $$
 $$ \text{subject to: } 
 (I \otimes A) \text{vec}(X) - \text{vec}(B) = \text{vec}(Y)$$
-$$ \text{       and: } z_i \geq \| Y_i \| \quad \forall i$$
+$$ \text{       and: } z_i \geq \lVert  Y_i  \rVert \quad \forall i$$
 
 In MATLAB with mosek's conic solver,
 
@@ -583,7 +583,7 @@ X = reshape(res.sol.itr.xx(1:n*nb),n,nb);
 
 Consider also the $L_{2,1}$ norm of the transpose of an affine expression, i.e., measuring the sum of Euclidean norms of each _row_ of $A X - B$:
 
-$$ \min_X \|(A X - B)^\top\|_{2,1} $$
+$$ \min_X \lVert (A X - B)^\top \rVert_{2,1} $$
 
 First, let us move the affine expression in a constraint, leaving the $L_{2,1}$ norm of a matrix of auxiliary variables $Y$ in the objective:
 
@@ -594,14 +594,14 @@ Now, introduce a vector of auxiliary variables corresponding to the columns of $
 
 $$ \min_{X,Y,z} z^\top \mathbf{1} $$
 $$ \text{subject to: } X^\top A^\top - B^\top = Y$$
-$$ \text{       and: } z_i \geq \| Y_i \| \quad \forall i$$
+$$ \text{       and: } z_i \geq \lVert  Y_i  \rVert \quad \forall i$$
 
 Many, solvers will require that variables are vectorized, so we may transform this yet again to:
 
 $$ \min_{X,Y,z} z^\top \mathbf{1} $$
 $$ \text{subject to: } 
 (A \otimes I) \text{vec}(X) - \text{vec}(B^\top) = \text{vec}(Y)$$
-$$ \text{       and: } z_i \geq \| Y_i \| \quad \forall i$$
+$$ \text{       and: } z_i \geq \lVert  Y_i  \rVert \quad \forall i$$
 
 In MATLAB with mosek's conic optimization (and [gptoolbox's kroneye](https://github.com/alecjacobson/gptoolbox/blob/master/matrix/kroneye.m)):
 
@@ -627,7 +627,7 @@ X = reshape(res.sol.itr.xx(1:n*nb),n,nb);
 
 Orthogonal Procrustes problem asks to find an orthogonal matrix $R$ that approximately maps a set of vectors in $A$ to another set of vectors $B$:
 
-$$ \min_{R} \| R A - B \|_F^2$$
+$$ \min_{R} \lVert  R A - B  \rVert_F^2$$
 $$ \text{subject to } R^\top R = I$$
 
 While _not convex_, this problem can be solved efficiently via singular value decomposition. First, transform the minimization of the Frobenius into a maximization of a matrix-product trace:
@@ -655,4 +655,5 @@ end
 ## References
 
 See also: [MOSEK Modeling Cookbook](https://docs.mosek.com/MOSEKModelingCookbook-letter.pdf), [YALMIP](https://yalmip.github.io/)
+
 
