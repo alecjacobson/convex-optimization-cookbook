@@ -6,7 +6,7 @@ Unless otherwise stated, we will assume that quadratic coefficient matrices (e.g
 
 ## 1. Unconstrained quadratic vector optimization
 
-If $Q \in \mathbb{R}^{n \times n}$ is positive definite then problems of the form:
+If $Q \in \mathbb{R}^{n \times n}$ is (symmetric) positive definite then problems of the form:
 
 $$ \min_x \frac{1}{2} x^\top Q x + x^\top f + c $$
 
@@ -92,7 +92,7 @@ In MATLAB,
 U = setdiff(1:size(Q,1),I);
 x = zeros(size(Q,1),1);
 x(I) = y;
-x(U) = Q(U,U) \ -(f(U) + Q(U,I) x(I));
+x(U) = Q(U,U) \ -(f(U) + Q(U,I) * x(I));
 ```
 
 > **How to build $Q_{UI}$ etc.?**
@@ -111,6 +111,19 @@ x(U) = Q(U,U) \ -(f(U) + Q(U,I) x(I));
 > This way $x_I = S_I x$. Follow the same construction for 
 > $S_U \in \mathbb{R}^{n-k \times n}$, _mutatis mutandis_. Then you have 
 > $Q_{UI} = S_U Q S_I^\top$ and so on.
+> 
+> In MATLAB, 
+> 
+> ```matlab
+> U = setdiff(1:size(Q,1),I);
+> S_I = sparse(1:numel(I),I,1,numel(I),size(Q,1));
+> S_U = sparse(1:numel(U),U,1,numel(U),size(Q,1));
+> Q_UU = S_U * Q * S_U';
+> Q_UI = S_U * Q * S_I';
+> x = zeros(size(Q,1),1);
+> x(I) = y;
+> x(U) = Q_UU \ -(f(U) + Q_UI * x(I));
+> ```
 
 
 ## 4. Linear equality constraints
