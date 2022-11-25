@@ -110,7 +110,7 @@ x(U) = Q(U,U) \ -(f(U) + Q(U,I) x(I));
 >
 > This way $x_I = S_I x$. Follow the same construction for 
 > $S_U \in \mathbb{R}^{n-k \times n}$, _mutatis mutandis_. Then you have 
-> $Q_UI = S_U Q S_I^\top$ and so on.
+> $Q_{UI} = S_U Q S_I^\top$ and so on.
 
 
 ## 4. Linear equality constraints
