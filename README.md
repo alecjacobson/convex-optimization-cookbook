@@ -95,6 +95,23 @@ x(I) = y;
 x(U) = Q(U,U) \ -(f(U) + Q(U,I) x(I));
 ```
 
+> **How to build $Q_{UI}$ etc.?**
+>
+> In Matlab, python, and Eigen+libigl, one can build the (often large, sparse)
+> matrix `Q` and then "slice" it with a list of indices `U` and `I`.
+>
+> In some settings
+> ([pytorch](https://discuss.pytorch.org/t/column-row-slicing-a-torch-sparse-tensor/19130)?),
+> slicing is not available, so an alternative and algebraically equivalent
+> approach is to build for the index set $I$ a sparse selection matrix $S^I \in
+> \mathbb{R}^{k \times n}$ such that:
+>
+> $$S^I_{ij} = 1 \iff I_i = j$$
+>
+> This way $x_I = S^I x$. Follow the same construction for $S^U \in
+> \mathbb{R}^{n-k \imtes n}$, _mutatis mutandis_. Then you have $Q_UI =
+> (S^U)^\top Q (S_I)$ and so on.
+
 ## 4. Linear equality constraints
 
 Given a matrix $A_\text{eq} \in \mathbb{R}^{n_\text{eq} \times n}$ with linearly independent rows, consider the problem:
