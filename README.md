@@ -46,6 +46,50 @@ In MATLAB,
 X = Q \ -F;
 ```
 
+### 2.1 Frobenius-norm matrix optimization via second-order cone
+
+Certain second-order cone problems don't provide an explicit interface for adding a quadratic objective term. Therefore it's useful to be able to convert a simple squared Frobenius-norm minimization problem into a second-order cone problem (even though, if this is the only term, then it's usually overkill).
+
+We first introduce a new matrix variable $T = A X - B$:
+
+$$ \min_{X \in \mathbb{R}^{n \times m},\  T \in \mathbb{R}^{q \times n}} \frac{1}{2} \lVert T \rVert_\text{F}^2
+$$
+
+$$ \text{subject to: } T = A X - B $$
+
+Then introduce a scalar variable $y$ which we'll used to bound the norm of $T$ from above and then minimize its value:
+
+
+$$ \min_{X \in \mathbb{R}^{n \times m},\  T \in \mathbb{R}^{q \times n},\  y \in \mathbb{R}} \quad y
+$$
+
+$$ \text{subject to: } T = A X - B $$
+
+$$ \text{and } 2 y \ge \lVert T \rVert_\text{F} $$
+
+This last constraint is the (quadratic) cone constraint.
+
+In Mosek:
+
+```matlab
+  nb = size(B,2);
+  na = size(A,1);
+  n = size(A,2);
+  prob = struct();
+  prob.c = [zeros(n*nb + na*nb,1);1];
+  prob.a = [kroneye(A,nb) -speye(na*nb,na*nb) sparse(na*nb,1)];
+  prob.blc = reshape(B',[],1);
+  prob.buc = prob.blc;
+  [~, res] = mosekopt('symbcon echo(0)');
+  prob.cones.type = res.symbcon.MSK_CT_QUAD;
+  prob.cones.sub = [(n*nb+na*nb+1) (n*nb+(1:na*nb))];
+  prob.cones.subptr = 1;
+  [r,res]=mosekopt('minimize echo(0)',prob);
+  X = reshape(res.sol.itr.xx(1:n*nb),n,nb);
+```
+
+
+
 ## 3. Fixed value constraints
 
 Let $I \in [1,\dots,n]^k$ be a set of indices indicating elements of $x$ that
